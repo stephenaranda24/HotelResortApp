@@ -2,6 +2,7 @@ package sample;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.event.EventHandler;
@@ -46,50 +47,57 @@ public class SignInController implements Initializable {
 	private void loginButtonPressed() {
 		button_login.setOnMousePressed(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent e) {
+				try {
+					DatabaseManager db = new DatabaseManager();
+					// retrieves sign-in fields
+					String username = TF_username.getText();
+					String password = PF_password.getText();
+					String type = CB_type.getValue();
+					System.out.println("(Login Pressed)");
+					boolean fieldsCompleted = !username.equals("") && !password.equals("") //
+							&& !type.equals(null);
+					// checks that required fields are not empty
+					if (fieldsCompleted) {
+						System.out.println("Username: " + username);
+						System.out.println("Password: " + password);
+						System.out.println("Type: " + type);
+						db.LogInAccount(username,password,type);
 
-				// retrieves sign-in fields
-				String username = TF_username.getText();
-				String password = PF_password.getText();
-				String type = CB_type.getValue();
-				System.out.println("(Login Pressed)");
-				boolean fieldsCompleted = !username.equals("") && !password.equals("") //
-						&& !type.equals(null);
-				// checks that required fields are not empty
-				if (fieldsCompleted) {
-					System.out.println("Username: " + username);
-					System.out.println("Password: " + password);
-					System.out.println("Type: " + type);
+						/* do database stuff here*/
 
-					/* do database stuff here*/
-					
-					/* Change scene to main scene */
-					try {
-						// retrieves and closes current stage
-						stage = (Stage) button_login.getScene().getWindow();
-						stage.close();
+						/* Change scene to main scene */
+						try {
+							// retrieves and closes current stage
+							stage = (Stage) button_login.getScene().getWindow();
+							stage.close();
 
-						// loads main screen stage
-						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainScreenSample.fxml"));
-						Parent profile = (Parent) fxmlLoader.load();
+							// loads main screen stage
+							FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainScreenSample.fxml"));
+							Parent profile = (Parent) fxmlLoader.load();
 
-						// creates a new stage
-						Stage newStage = new Stage();
-						newStage.setTitle("Main Menu");
-						newStage.setScene(new Scene(profile));
+							// creates a new stage
+							Stage newStage = new Stage();
+							newStage.setTitle("Main Menu");
+							newStage.setScene(new Scene(profile));
 
-						// set new stage to current stage and display stage
-						stage = newStage;
-						stage.show();
-						
-						System.out.println("Successfully logged-in.");
-					} catch (IOException ex) {
-						ex.printStackTrace();
+							// set new stage to current stage and display stage
+							stage = newStage;
+							stage.show();
+
+							System.out.println("Successfully logged-in.");
+						} catch (IOException ex) {
+							ex.printStackTrace();
+						}
+
+					} else {
+						System.out.println(
+								"Please be sure that all required fields (username, password, type)" + " are completed.");
 					}
-
-				} else {
-					System.out.println(
-							"Please be sure that all required fields (username, password, type)" + " are completed.");
+				} catch (SQLException ex) {
+					ex.printStackTrace();
 				}
+
+
 			}
 		});
 	}
