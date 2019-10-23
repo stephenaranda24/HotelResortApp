@@ -40,7 +40,7 @@ public class SignInController implements Initializable {
 
 	private void setComboBoxText() {
 		CB_type.setPromptText("Select a role.");
-		CB_type.getItems().addAll("Owner", "Customer", "Desk Assistant", "Custodian");
+		CB_type.getItems().addAll("Owner", "Customer", "Desk_Assistant", "Custodian");
 	}
 
 	private void loginButtonPressed() {

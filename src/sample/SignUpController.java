@@ -2,6 +2,7 @@ package sample;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.event.EventHandler;
@@ -11,9 +12,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+
 
 public class SignUpController implements Initializable {
 
@@ -29,8 +32,12 @@ public class SignUpController implements Initializable {
 	@FXML
 	private Button button_create;
 
+
+
 	@Override
 	public void initialize(URL url, ResourceBundle resources) {
+
+
 		TF_name.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
 			@Override
@@ -39,26 +46,54 @@ public class SignUpController implements Initializable {
 			}
 
 		});
+
 		button_create.setOnMousePressed(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent e) {
-				String fullname = TF_name.getText();
-				String email = TF_email.getText();
-				String password = TF_password.getText();
-				String cpassword = TF_cpassword.getText();
-				System.out.println("(Create Pressed)");
-				boolean fieldsCompleted = !fullname.equals("") && !email.equals("") //
+				try {
+					String fullname = TF_name.getText();
+					String email = TF_email.getText();
+					String password = TF_password.getText();
+					String cpassword = TF_cpassword.getText();
+					System.out.println("(Create Pressed)");
+				/*boolean fieldsCompleted = !fullname.equals("") && !email.equals("") //
 						&& !password.equals("") && !cpassword.equals("");
 				if (fieldsCompleted) {
 					System.out.println("Name: " + fullname);
 					System.out.println("Email: " + email);
 					System.out.println("Password: " + password);
 					System.out.println("C Password: " + cpassword);
-					
-					/* do database stuff here*/
-					
+
+					*//* do database stuff here*//*
+
 					System.out.println("Account sucessfully created.");
-					
-					/* Go to log-in screen */
+
+					*//* Go to log-in screen */
+					if (password.equals(cpassword)) {
+						boolean fieldsCompleted = !fullname.equals("") && !email.equals("") //
+								&& !password.equals("") && !cpassword.equals("");
+						if (fieldsCompleted) {
+							System.out.println("Name: " + fullname);
+							System.out.println("Email: " + email);
+							System.out.println("Password: " + password);
+							System.out.println("C Password: " + cpassword);
+
+							/* do database stuff here*/
+
+							System.out.println("Account sucessfully created.");
+
+							/* Go to log-in screen */
+
+						} else {
+							System.out.println("Password doesnt match");
+
+						}
+						DatabaseManager db = new DatabaseManager();
+						db.AddCustomer(fullname, password, email);
+					}
+				}catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+
 					try {
 						// retrieves and closes current stage
 						stage = (Stage) button_create.getScene().getWindow();
@@ -80,7 +115,7 @@ public class SignUpController implements Initializable {
 						ex.printStackTrace();
 					}
 
-				}
+
 			}
 		});
 	}
