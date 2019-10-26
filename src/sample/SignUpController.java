@@ -18,7 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 
-public class SignUpController implements Initializable {
+public class SignUpController extends MainScreenController implements Initializable {
 
 	private Stage stage;
 	@FXML
@@ -31,11 +31,15 @@ public class SignUpController implements Initializable {
 	private TextField TF_cpassword;
 	@FXML
 	private Button button_create;
+	Button b2;
 
+	String accountCreated = "False";
 
 
 	@Override
 	public void initialize(URL url, ResourceBundle resources) {
+		b2 = button_create;
+
 
 
 		TF_name.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -49,6 +53,7 @@ public class SignUpController implements Initializable {
 
 		button_create.setOnMousePressed(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent e) {
+				MainScreenController msc = new MainScreenController();
 				try {
 					String fullname = TF_name.getText();
 					String email = TF_email.getText();
@@ -80,42 +85,29 @@ public class SignUpController implements Initializable {
 							/* do database stuff here*/
 
 							System.out.println("Account sucessfully created.");
+							accountCreated = "True";
 
-							/* Go to log-in screen */
+
 
 						} else {
-							System.out.println("Password doesnt match");
-
+							System.out.println("Please Enter the information");
 						}
 						DatabaseManager db = new DatabaseManager();
 						db.AddCustomer(fullname, password, email);
 					}
+					else{
+						System.out.println("Password doesnt match");
+					}
 				}catch (SQLException ex) {
 					ex.printStackTrace();
 				}
-
-					try {
-						// retrieves and closes current stage
-						stage = (Stage) button_create.getScene().getWindow();
-						stage.close();
-
-						// loads main screen stage
-						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SignInSample.fxml"));
-						Parent profile = (Parent) fxmlLoader.load();
-
-						// creates a new stage
-						Stage newStage = new Stage();
-						newStage.setTitle("Login");
-						newStage.setScene(new Scene(profile));
-						// set new stage to current stage and display stage
-						stage = newStage;
-						stage.show();
-
-					} catch (IOException ex) {
-						ex.printStackTrace();
-					}
-
-
+				if (accountCreated.equals("True")){
+					msc.loadScene(button_create,"MainScreenSample.fxml","Main Screen--Login Please");
+					accountCreated = "False";
+				}
+				else {
+					System.out.println("Please type Again");
+				}
 			}
 		});
 	}

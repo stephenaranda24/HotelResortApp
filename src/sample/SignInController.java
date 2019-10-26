@@ -49,6 +49,7 @@ public class SignInController implements Initializable {
 			public void handle(MouseEvent e) {
 				try {
 					DatabaseManager db = new DatabaseManager();
+					MainScreenController msc = new MainScreenController();
 					// retrieves sign-in fields
 					String username = TF_username.getText();
 					String password = PF_password.getText();
@@ -61,33 +62,10 @@ public class SignInController implements Initializable {
 						System.out.println("Username: " + username);
 						System.out.println("Password: " + password);
 						System.out.println("Type: " + type);
-						db.LogInAccount(username,password,type);
+						db.startDatabase(username,password,type);
+						msc.loadScene(button_login,"MainScreenSample.fxml","Main Screen");
 
-						/* do database stuff here*/
 
-						/* Change scene to main scene */
-						try {
-							// retrieves and closes current stage
-							stage = (Stage) button_login.getScene().getWindow();
-							stage.close();
-
-							// loads main screen stage
-							FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainScreenSample.fxml"));
-							Parent profile = (Parent) fxmlLoader.load();
-
-							// creates a new stage
-							Stage newStage = new Stage();
-							newStage.setTitle("Main Menu");
-							newStage.setScene(new Scene(profile));
-
-							// set new stage to current stage and display stage
-							stage = newStage;
-							stage.show();
-
-							System.out.println("Successfully logged-in.");
-						} catch (IOException ex) {
-							ex.printStackTrace();
-						}
 
 					} else {
 						System.out.println(

@@ -19,64 +19,67 @@ public class MainScreenController implements Initializable {
 	Stage stage;
 	@FXML
 	Button button_signup;
+
 	@FXML
 	Button button_login;
+
+	@FXML
+	private Button button_create;
+
+
+
+
+
+
 
 	@Override
 	public void initialize(URL url, ResourceBundle resources) {
 		button_signup.setOnMousePressed(new EventHandler<MouseEvent>() {
+
 			public void handle(MouseEvent e) {
 				System.out.println("(Sign-Up Pressed)");
-				/* Go to sign up page */
-				try {
-					// retrieves and closes current stage
-					stage = (Stage) button_login.getScene().getWindow();
-					stage.close();
-
-					// loads main screen stage
-					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SignUpSample.fxml"));
-					Parent profile = (Parent) fxmlLoader.load();
-
-					// creates a new stage
-					Stage newStage = new Stage();
-					newStage.setTitle("Sign-Up");
-					newStage.setScene(new Scene(profile));
-
-					// set new stage to current stage and display stage
-					stage = newStage;
-					stage.show();
-
-				} catch (IOException ex) {
-					ex.printStackTrace();
-				}
+				loadScene(button_signup,"SignUpSample.fxml","Sign Up");
 			}
 		});
+
+
 		button_login.setOnMousePressed(new EventHandler<MouseEvent>() {
+			Main msc = new Main();
 			public void handle(MouseEvent e) {
-				/* Go to login page */
-				try {
-					// retrieves and closes current stage
-					stage = (Stage) button_login.getScene().getWindow();
-					stage.close();
 
-					// loads main screen stage
-					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SignInSample.fxml"));
-					Parent profile = (Parent) fxmlLoader.load();
+				loadScene(button_login,"SignInSample.fxml","Log In Window");
 
-					// creates a new stage
-					Stage newStage = new Stage();
-					newStage.setTitle("Login");
-					newStage.setScene(new Scene(profile));
 
-					// set new stage to current stage and display stage
-					stage = newStage;
-					stage.show();
-
-				} catch (IOException ex) {
-					ex.printStackTrace();
-				}
 			}
+
+
 		});
+	}
+	public void loadScene(Button pressedButton, String nameOfFxml,String titleOftheScene){
+
+		try {
+			Stage stage;
+// retrieves and closes current stage
+			stage = (Stage) pressedButton.getScene().getWindow();
+			stage.close();
+
+// loads main screen stage
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(nameOfFxml));
+			Parent profile = (Parent) fxmlLoader.load();
+
+// creates a new stage
+			Stage newStage = new Stage();
+			newStage.setTitle(titleOftheScene);
+			newStage.setScene(new Scene(profile));
+
+// set new stage to current stage and display stage
+			stage = newStage;
+			stage.show();
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+
 	}
 
 }
