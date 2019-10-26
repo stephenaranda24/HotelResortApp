@@ -23,7 +23,7 @@ public class DatabaseManager extends Main {
   public DatabaseManager() throws SQLException {
 
     this.con = DriverManager
-        .getConnection("jdbc:h2:C:\\Users\\shafi\\IdeaProjects\\HotelResortApplication\\res\\ResortData");
+        .getConnection("jdbc:h2:C:\\Users\\moart\\OneDrive - Florida Gulf Coast University\\IDEAProjects\\HotelResortApp\\res\\ResortData");
 
   }
   public void startDatabase(String userName, String password ,String role) {
@@ -59,7 +59,7 @@ public class DatabaseManager extends Main {
       rs = stmt.executeQuery(String.format("SELECT * FROM  %s WHERE USERNAME = '%s'", role, userName));
       if(rs.next()){
 
-        System.out.println("usimg this name:" + password);
+        System.out.println("using this name:" + password);
         String pass = rs.getString("PASSWORD");
         System.out.println(pass);
 
