@@ -6,6 +6,8 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -51,20 +53,24 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                               </GridPane>
-                              <GridPane layoutX="781.0" layoutY="64.0" prefHeight="431.0" prefWidth="556.0">
+                              <GridPane layoutX="782.0" layoutY="71.0" prefHeight="431.0" prefWidth="556.0">
                                  <children>
-                                    <CheckBox GridPane.columnIndex="2" mnemonicParsing="false" />
-                                    <CheckBox GridPane.columnIndex="2" GridPane.rowIndex="1" mnemonicParsing="false" />
-                                    <CheckBox GridPane.columnIndex="2" GridPane.rowIndex="2" mnemonicParsing="false" />
+                                    <CheckBox GridPane.columnIndex="3" mnemonicParsing="false" />
+                                    <CheckBox GridPane.columnIndex="3" GridPane.rowIndex="1" mnemonicParsing="false" />
+                                    <CheckBox GridPane.columnIndex="3" GridPane.rowIndex="2" mnemonicParsing="false" />
                                     <ImageView GridPane.rowIndex="2" fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" />
                                     <ImageView fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" />
                                     <Label GridPane.columnIndex="1" GridPane.rowIndex="2" prefHeight="130.0" prefWidth="164.0" text="1 bed" wrapText="true" />
                                     <Label GridPane.columnIndex="1" prefHeight="130.0" prefWidth="164.0" text="3 beds&#10;" wrapText="true" />
                                     <Label GridPane.columnIndex="1" GridPane.rowIndex="1" prefHeight="130.0" prefWidth="164.0" text="2 beds&#10;" wrapText="true" />
+                                    <Label GridPane.columnIndex="2" text="Price:" />
+                                    <Label GridPane.columnIndex="2" GridPane.rowIndex="1" text="Price:" />
+                                    <Label GridPane.columnIndex="2" GridPane.rowIndex="2" text="Price:" />
                                  </children>
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.0" minWidth="10.0" prefWidth="170.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0" prefWidth="269.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0" prefWidth="100.0" />
                                  </columnConstraints>
                                  <rowConstraints>
@@ -81,8 +87,30 @@
                   </Tab>
                   <Tab text="Transactions">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView layoutX="172.0" layoutY="18.0" prefHeight="583.0" prefWidth="924.0">
+                                 <columns>
+                                    <TableColumn prefWidth="75.0" text="C1" />
+                                    <TableColumn prefWidth="75.0" text="C2" />
+                                 </columns>
+                              </TableView>
+                           </children></AnchorPane>
                      </content>
+                  </Tab>
+                  <Tab text="Booking History">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView layoutX="172.0" layoutY="18.0" prefHeight="583.0" prefWidth="924.0">
+                                 <columns>
+                                    <TableColumn prefWidth="75.0" text="C1" />
+                                    <TableColumn prefWidth="75.0" text="C2" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                    </content>
                   </Tab>
                </tabs>
             </TabPane>
