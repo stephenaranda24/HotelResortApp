@@ -13,7 +13,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -31,6 +33,9 @@ public class SignInController implements Initializable {
 	private Button button_login;
 	@FXML
 	private Button button_forgot;
+	@FXML
+	private TextArea idSpace;
+
 
 	@Override
 	public void initialize(URL url, ResourceBundle resources) {
@@ -44,6 +49,7 @@ public class SignInController implements Initializable {
 		CB_type.getItems().addAll("Owner", "Customer", "Desk_Assistant", "Custodian");
 	}
 
+	public static String username;
 	private void loginButtonPressed() {
 		button_login.setOnMousePressed(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent e) {
@@ -51,7 +57,7 @@ public class SignInController implements Initializable {
 					DatabaseManager db = new DatabaseManager();
 					MainScreenController msc = new MainScreenController();
 					// retrieves sign-in fields
-					String username = TF_username.getText();
+					username = TF_username.getText();
 					String password = PF_password.getText();
 					String type = CB_type.getValue();
 					System.out.println("(Login Pressed)");
@@ -63,7 +69,16 @@ public class SignInController implements Initializable {
 						System.out.println("Password: " + password);
 						System.out.println("Type: " + type);
 						db.startDatabase(username,password,type);
-						msc.loadScene(button_login,"MainScreenSample.fxml","Main Screen");
+						boolean verified = db.LogInAccount(username,password,type);
+						// Client client = new Client(username, password...)
+
+						if (verified == true) {
+							msc.loadScene(button_login, "ClientScreen.fxml", "Main cScreen");
+
+						}
+						else{
+							System.out.println("wrong passwrd");
+						}
 
 
 

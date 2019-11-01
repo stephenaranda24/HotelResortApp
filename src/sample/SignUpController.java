@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -31,69 +32,51 @@ public class SignUpController extends MainScreenController implements Initializa
 	private TextField TF_cpassword;
 	@FXML
 	private Button button_create;
-	Button b2;
+	@FXML
+	private TextArea idSpace;
+	@FXML
+	private TextField fullName;
 
-	String accountCreated = "False";
 
-
+	boolean accountCreated = false;
 	@Override
 	public void initialize(URL url, ResourceBundle resources) {
-		b2 = button_create;
-
-
-
 		TF_name.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
 			@Override
 			public void handle(MouseEvent e) {
 				System.out.println("Name: ");
 			}
-
 		});
-
 		button_create.setOnMousePressed(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent e) {
 				MainScreenController msc = new MainScreenController();
 				try {
-					String fullname = TF_name.getText();
+
+					String userName = TF_name.getText();
 					String email = TF_email.getText();
 					String password = TF_password.getText();
 					String cpassword = TF_cpassword.getText();
+					String fullNameText = fullName.getText();
 					System.out.println("(Create Pressed)");
-				/*boolean fieldsCompleted = !fullname.equals("") && !email.equals("") //
-						&& !password.equals("") && !cpassword.equals("");
-				if (fieldsCompleted) {
-					System.out.println("Name: " + fullname);
-					System.out.println("Email: " + email);
-					System.out.println("Password: " + password);
-					System.out.println("C Password: " + cpassword);
-
-					*//* do database stuff here*//*
-
-					System.out.println("Account sucessfully created.");
-
-					*//* Go to log-in screen */
 					if (password.equals(cpassword)) {
-						boolean fieldsCompleted = !fullname.equals("") && !email.equals("") //
-								&& !password.equals("") && !cpassword.equals("");
+						boolean fieldsCompleted = !userName.equals("") && !email.equals("") //
+								&& !password.equals("") && !cpassword.equals("") &&!fullNameText.equals("");
 						if (fieldsCompleted) {
-							System.out.println("Name: " + fullname);
+							System.out.println("UserName: " + userName);
 							System.out.println("Email: " + email);
 							System.out.println("Password: " + password);
 							System.out.println("C Password: " + cpassword);
-
+							System.out.println("Full Name: "+ fullNameText);
 							/* do database stuff here*/
-
 							System.out.println("Account sucessfully created.");
-							accountCreated = "True";
-
-
-
+							accountCreated = true;
 						} else {
 							System.out.println("Please Enter the information");
 						}
 						DatabaseManager db = new DatabaseManager();
-						db.AddCustomer(fullname, password, email);
+						db.AddCustomer(fullNameText, userName, password, email);
+						db.createCustomerTable(userName);
+
 					}
 					else{
 						System.out.println("Password doesnt match");
@@ -101,12 +84,12 @@ public class SignUpController extends MainScreenController implements Initializa
 				}catch (SQLException ex) {
 					ex.printStackTrace();
 				}
-				if (accountCreated.equals("True")){
-					msc.loadScene(button_create,"MainScreenSample.fxml","Main Screen--Login Please");
-					accountCreated = "False";
+				if (!accountCreated){
+					System.out.println("Please type Again");
 				}
 				else {
-					System.out.println("Please type Again");
+					msc.loadScene(button_create,"MainScreenSample.fxml","Main Screen--Login Please");
+					accountCreated = false;
 				}
 			}
 		});
