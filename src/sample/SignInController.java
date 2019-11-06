@@ -77,7 +77,7 @@ public class SignInController implements Initializable {
 
 						}
 						else{
-							System.out.println("wrong passwrd");
+							System.out.println("wrong password");
 						}
 
 

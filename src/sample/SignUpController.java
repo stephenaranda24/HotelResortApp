@@ -74,8 +74,15 @@ public class SignUpController extends MainScreenController implements Initializa
 							System.out.println("Please Enter the information");
 						}
 						DatabaseManager db = new DatabaseManager();
-						db.AddCustomer(fullNameText, userName, password, email);
-						db.createCustomerTable(userName);
+						boolean nameExist = db.AddCustomer(userName, fullNameText, password, email);
+						if (nameExist==true){
+							db.createCustomerTable(userName);
+
+						}
+						else{
+							System.out.println("Name does exist. Please use another name");
+						}
+
 
 					}
 					else{

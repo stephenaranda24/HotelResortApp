@@ -74,17 +74,34 @@ public class DatabaseManager extends Main {
 
 
   }
-  public void AddCustomer(String fullName, String userName, String password ,String customerEmail) {
+  public boolean AddCustomer(String userName, String fullName, String password ,String customerEmail) {
+    boolean nameExisted = false;
     try {
 
       Statement stmt = this.con.createStatement();
-      stmt.executeUpdate(String.format("INSERT INTO CUSTOMER (USERNAME, FULLNAME, PASSWORD, EMAIL) VALUES ('%s' ,'%s','%s')", userName, fullName, password
-          ,customerEmail));
+      ResultSet rs = null;
+      rs = stmt.executeQuery(String.format("SELECT * FROM CUSTOMER WHERE USERNAME = '%s'",userName));
+      if(rs.next()){
+        String userNameExisted = rs.getString("USERNAME");
+        System.out.println("it exist");
+        nameExisted = false;
+
+      }
+      else {
+
+        stmt.executeUpdate(String.format(
+            "INSERT INTO CUSTOMER (USERNAME, FULLNAME, PASSWORD, EMAIL) VALUES ('%s' ,'%s','%s', '%s')",
+            userName, fullName, password
+            , customerEmail));
+        System.out.println("HEy it pushed");
+        nameExisted= true;
+      }
 
 
     } catch (SQLException var6) {
       this.sqlExceptionHandler(var6);
     }
+    return nameExisted;
 
   }
   public boolean LogInAccount( String email, String password ,String role) {
@@ -232,15 +249,7 @@ public class DatabaseManager extends Main {
           }
           /*pushDate(userName, roomName, Datetobebook);*/
           return roomName;
-
         }
-
-
-
-
-
-
-
 
     } catch (SQLException var6) {
       this.sqlExceptionHandler(var6);
