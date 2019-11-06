@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
@@ -9,34 +9,41 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<ScrollPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="826.0" prefWidth="1390.0" xmlns="http://javafx.com/javafx/8.0.171">
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1090.0" prefWidth="1226.0" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171">
   <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1116.0" prefWidth="1600.0">
          <children>
             <TabPane maxHeight="-Infinity" prefHeight="1014.0" prefWidth="1541.0" tabClosingPolicy="UNAVAILABLE">
                <tabs>
                   <Tab text="Book Room">
                      <content>
-                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="992.0" prefWidth="1545.0">
+                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1337.0" prefWidth="1541.0">
                            <children>
-                              <Button layoutX="485.0" layoutY="417.0" mnemonicParsing="false" text="Submit" fx:id="submit" />
-                              <Button layoutX="68.0" layoutY="422.0" mnemonicParsing="false" text="Back" />
-                              <GridPane layoutX="86.0" layoutY="89.0" prefHeight="270.0" prefWidth="587.0">
+                              <Button layoutX="709.0" layoutY="774.0" mnemonicParsing="false" text="Submit" />
+                              <GridPane layoutX="182.0" layoutY="189.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="551.0" prefWidth="747.0">
                                  <children>
-                                    <Label text="Check-in Month" />
-                                    <Label GridPane.columnIndex="1" text="Check-In Day" />
-                                    <Label GridPane.rowIndex="2" text="Check-Out Month" />
-                                    <Label GridPane.columnIndex="1" GridPane.rowIndex="2" text="Check-Out Day" />
-                                    <TextField GridPane.rowIndex="1" maxWidth="-Infinity" prefHeight="25.0" prefWidth="170.0" fx:id="startMonth" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" maxWidth="-Infinity" prefHeight="25.0" prefWidth="164.0" fx:id="endDate" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="-Infinity" prefHeight="25.0" prefWidth="163.0" fx:id="startDat" />
-                                    <TextField GridPane.rowIndex="3" maxWidth="-Infinity" prefHeight="25.0" prefWidth="171.0" fx:id="endMonth" />
+                                    <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="5" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" />
+                                    <Label GridPane.rowIndex="6" prefHeight="17.0" prefWidth="113.0" text="Street" />
+                                    <Label GridPane.rowIndex="4" prefHeight="17.0" prefWidth="113.0" text="City" />
+                                    <Label GridPane.columnIndex="1" GridPane.rowIndex="4" prefHeight="17.0" prefWidth="113.0" text="Country" />
+                                    <Label GridPane.columnIndex="1" GridPane.rowIndex="6" prefHeight="17.0" prefWidth="113.0" text="Postal Code" />
+                                    <Label GridPane.columnIndex="1" prefHeight="17.0" prefWidth="113.0" text="Phone Number" />
+                                    <Label GridPane.rowIndex="2" prefHeight="42.0" prefWidth="79.0" text="Email" />
+                                    <Label GridPane.columnIndex="1" GridPane.rowIndex="2" text="Confirm Email" />
+                                    <Label text="Full Name" />
+                                    <TextField GridPane.rowIndex="7" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" />
+                                    <TextField GridPane.rowIndex="5" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" />
+                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" />
+                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" />
+                                    <TextField GridPane.rowIndex="1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" fx:id="fullName" />
+                                    <TextField GridPane.rowIndex="3" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" fx:id="TF_email" />
+                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" fx:id="TF_cemail" />
                                  </children>
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -53,34 +60,11 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                               </GridPane>
-                              <GridPane layoutX="782.0" layoutY="71.0" prefHeight="431.0" prefWidth="556.0">
-                                 <children>
-                                    <CheckBox GridPane.columnIndex="3" mnemonicParsing="false" />
-                                    <CheckBox GridPane.columnIndex="3" GridPane.rowIndex="1" mnemonicParsing="false" />
-                                    <CheckBox GridPane.columnIndex="3" GridPane.rowIndex="2" mnemonicParsing="false" />
-                                    <ImageView GridPane.rowIndex="2" fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" />
-                                    <Label GridPane.columnIndex="1" GridPane.rowIndex="2" prefHeight="130.0" prefWidth="164.0" text="1 bed" wrapText="true" />
-                                    <Label GridPane.columnIndex="1" prefHeight="130.0" prefWidth="164.0" text="3 beds&#10;" wrapText="true" />
-                                    <Label GridPane.columnIndex="1" GridPane.rowIndex="1" prefHeight="130.0" prefWidth="164.0" text="2 beds&#10;" wrapText="true" />
-                                    <Label GridPane.columnIndex="2" text="Price:" />
-                                    <Label GridPane.columnIndex="2" GridPane.rowIndex="1" text="Price:" />
-                                    <Label GridPane.columnIndex="2" GridPane.rowIndex="2" text="Price:" />
-                                 </children>
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.0" minWidth="10.0" prefWidth="170.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0" prefWidth="269.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints maxHeight="156.0" minHeight="10.0" prefHeight="154.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="193.0" minHeight="10.0" prefHeight="159.66668701171875" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="136.0" minHeight="0.0" prefHeight="113.33331298828125" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                              </GridPane>
-                              <Label layoutX="1148.0" layoutY="6.0" text="Logged in as:" />
-                              <Label layoutX="1229.0" layoutY="6.0" text="Null" fx:id="idSpace1" />
+                              <Label layoutX="380.0" layoutY="78.0" text="Guest Information">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                      </content>
