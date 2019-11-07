@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" prefHeight="1134.0" prefWidth="1544.0" xmlns="http://javafx.com/javafx/8.0.171">
+<ScrollPane maxHeight="-Infinity" prefHeight="734.0" prefWidth="644.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ClientScreenController">
    <content>
       <AnchorPane layoutX="1.0" layoutY="1.0" minHeight="0.0" minWidth="0.0" prefHeight="1026.0" prefWidth="1566.0">
          <children>
@@ -27,20 +27,20 @@
                      <content>
                         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="1106.0" prefWidth="1541.0">
                            <children>
-                              <Button layoutX="485.0" layoutY="376.0" mnemonicParsing="false" text="Submit" fx:id="submit" />
+                              <Button fx:id="submit" layoutX="485.0" layoutY="376.0" mnemonicParsing="false" onAction="#submitDate" text="Submit" />
                               <Button layoutX="59.0" layoutY="388.0" mnemonicParsing="false" text="Logout" />
                               <GridPane layoutX="86.0" layoutY="89.0" prefHeight="270.0" prefWidth="587.0">
                                  <children>
                                     <Label text="Check-in Month" />
-                                    <ComboBox GridPane.rowIndex="5" prefWidth="150.0" />
-                                    <Label GridPane.rowIndex="2" text="Check-Out Month" />
-                                    <Label GridPane.columnIndex="1" GridPane.rowIndex="2" text="Check-Out Day" />
-                                    <Label GridPane.columnIndex="1" text="Check-In Day" />
-                                    <Label GridPane.rowIndex="4" prefHeight="0.0" prefWidth="86.0" text="Room" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="-Infinity" prefHeight="25.0" prefWidth="163.0" fx:id="startDat" />
-                                    <TextField GridPane.rowIndex="3" maxWidth="-Infinity" prefHeight="25.0" prefWidth="171.0" fx:id="endMonth" />
-                                    <TextField GridPane.rowIndex="1" maxWidth="-Infinity" prefHeight="25.0" prefWidth="170.0" fx:id="startMonth" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" maxWidth="-Infinity" prefHeight="25.0" prefWidth="164.0" fx:id="endDate" />
+                                    <ComboBox fx:id="roomSelectCombo" prefWidth="150.0" GridPane.rowIndex="5" />
+                                    <Label text="Check-Out Month" GridPane.rowIndex="2" />
+                                    <Label text="Check-Out Day" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label text="Check-In Day" GridPane.columnIndex="1" />
+                                    <Label prefHeight="0.0" prefWidth="86.0" text="Room" GridPane.rowIndex="4" />
+                                    <TextField fx:id="startDate" maxWidth="-Infinity" prefHeight="25.0" prefWidth="163.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="endMonth" maxWidth="-Infinity" prefHeight="25.0" prefWidth="171.0" GridPane.rowIndex="3" />
+                                    <TextField fx:id="startMonth" maxWidth="-Infinity" prefHeight="25.0" prefWidth="170.0" GridPane.rowIndex="1" />
+                                    <TextField fx:id="endDate" maxWidth="-Infinity" prefHeight="25.0" prefWidth="164.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                  </children>
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -57,22 +57,22 @@
                               </GridPane>
                               <GridPane layoutX="782.0" layoutY="71.0" prefHeight="431.0" prefWidth="556.0">
                                  <children>
-                                    <ImageView GridPane.columnIndex="1" GridPane.rowIndex="2" fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView GridPane.columnIndex="1" fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView GridPane.columnIndex="1" GridPane.rowIndex="1" fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView GridPane.columnIndex="1" GridPane.rowIndex="3" fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" />
-                                    <Label GridPane.columnIndex="2" GridPane.rowIndex="3" prefHeight="130.0" prefWidth="164.0" text="1 bed" wrapText="true" />
-                                    <Label GridPane.columnIndex="2" GridPane.rowIndex="1" prefHeight="130.0" prefWidth="164.0" text="3 beds&#10;" wrapText="true" />
-                                    <Label GridPane.columnIndex="2" GridPane.rowIndex="2" prefHeight="130.0" prefWidth="164.0" text="2 beds&#10;" wrapText="true" />
-                                    <Label GridPane.columnIndex="3" text="Price:" />
-                                    <Label GridPane.columnIndex="3" GridPane.rowIndex="1" text="Price:" />
-                                    <Label GridPane.columnIndex="3" GridPane.rowIndex="2" text="Price:" />
-                                    <Label GridPane.columnIndex="3" GridPane.rowIndex="3" text="Price:" />
-                                    <Label GridPane.columnIndex="2" prefHeight="130.0" prefWidth="164.0" text="4 beds&#10;" wrapText="true" />
+                                    <ImageView fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <ImageView fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                                    <ImageView fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <ImageView fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label prefHeight="130.0" prefWidth="164.0" text="1 bed" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                    <Label prefHeight="130.0" prefWidth="164.0" text="3 beds&#10;" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <Label prefHeight="130.0" prefWidth="164.0" text="2 beds&#10;" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Label text="Price:" GridPane.columnIndex="3" />
+                                    <Label text="Price:" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <Label text="Price:" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                    <Label text="Price:" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                    <Label prefHeight="130.0" prefWidth="164.0" text="4 beds&#10;" wrapText="true" GridPane.columnIndex="2" />
                                     <Label text="Room A" />
-                                    <Label GridPane.rowIndex="1" text="Room B" />
-                                    <Label GridPane.rowIndex="2" text="Room C" />
-                                    <Label GridPane.rowIndex="3" text="Room D" />
+                                    <Label text="Room B" GridPane.rowIndex="1" />
+                                    <Label text="Room C" GridPane.rowIndex="2" />
+                                    <Label text="Room D" GridPane.rowIndex="3" />
                                  </children>
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.0" minWidth="10.0" prefWidth="170.0" />
@@ -88,7 +88,7 @@
                                  </rowConstraints>
                               </GridPane>
                               <Label layoutX="1148.0" layoutY="6.0" text="Logged in as:" />
-                              <Label layoutX="1229.0" layoutY="6.0" text="Null" fx:id="idSpace1" />
+                              <Label fx:id="idSpace1" layoutX="1229.0" layoutY="6.0" text="Null" />
                               <Label layoutX="185.0" layoutY="22.0" text="Select Room and Date">
                                  <font>
                                     <Font size="18.0" />
@@ -107,8 +107,8 @@
                               <GridPane layoutX="135.0" layoutY="675.0" prefHeight="296.0" prefWidth="478.0">
                                  <children>
                                     <Label text="Old Username" />
-                                    <Label GridPane.rowIndex="1" text="New Username" />
-                                    <Label GridPane.rowIndex="2" text="Confirm Username" />
+                                    <Label text="New Username" GridPane.rowIndex="1" />
+                                    <Label text="Confirm Username" GridPane.rowIndex="2" />
                                     <PasswordField GridPane.columnIndex="1" />
                                     <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -126,8 +126,8 @@
                               <GridPane layoutX="161.0" layoutY="95.0" prefHeight="296.0" prefWidth="478.0">
                                 <children>
                                     <Label text="Old Password" />
-                                    <Label GridPane.rowIndex="1" text="New Password" />
-                                    <Label GridPane.rowIndex="2" text="Confirm New Password" />
+                                    <Label text="New Password" GridPane.rowIndex="1" />
+                                    <Label text="Confirm New Password" GridPane.rowIndex="2" />
                                     <PasswordField GridPane.columnIndex="1" />
                                     <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="2" />

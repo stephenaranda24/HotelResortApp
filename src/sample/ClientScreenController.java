@@ -2,8 +2,8 @@ package sample;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.text.Format;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,19 +13,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.text.Format;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Calendar;
-import javax.xml.soap.Text;
 
 public class ClientScreenController implements Initializable {
 
   @FXML
-  private TextField startDat;
+  private TextField startDate;
 
   @FXML
   private TextField endDate;
@@ -60,17 +52,20 @@ public class ClientScreenController implements Initializable {
     setRoomSelectCombo();
   }
   private void setRoomSelectCombo() {
-    roomSelectCombo.setPromptText("Select a room.");
-    roomSelectCombo.getItems().addAll("A", "B", "C", "D");
+    DateAndCostManager dm = new DateAndCostManager();
+    dm.setRoomSelectCombo(roomSelectCombo);
   }
 
   @FXML
-    void submitDate(ActionEvent event) throws SQLException {
+  void submitDate(ActionEvent event) throws SQLException {
     MainScreenController msc = new MainScreenController();
     String gettId = idSpace1.getText();
     System.out.println("I got the id as " +gettId);
+    DateAndCostManager dm = new DateAndCostManager();
+    List newList = dm.dateCalc(roomSelectCombo, startDate,startMonth, endDate,endMonth );
 
-    String startDate = startDat.getText();
+
+    /*String startDate = startDat.getText();
     String startMonths = startMonth.getText();
     String endDatee = endDate.getText();
     String endMonths = endMonth.getText();
@@ -80,9 +75,9 @@ public class ClientScreenController implements Initializable {
     String dateMonthend = String.format("%s/%s/2019",endMonths,endDatee);
     System.out.println(dateMonthStart);
 
-   /* Format f = new SimpleDateFormat("MM/dd/yyyy");
+   *//* Format f = new SimpleDateFormat("MM/dd/yyyy");
     String strDate = f.format(dateMonthStart);
-    System.out.println(strDate + " Alpha");*/
+    System.out.println(strDate + " Alpha");*//*
     Date startBookingDate = new Date(dateMonthStart);
     System.out.println(new SimpleDateFormat("MM/dd/yyyy").format(startBookingDate));
     Date endBookingDate = new Date(dateMonthend);
@@ -104,11 +99,28 @@ public class ClientScreenController implements Initializable {
       String finalDateformat = sdf.format(addDate);
       System.out.println(finalDateformat );
       dateList.add(finalDateformat);
-    }
+    }*/
+    //  Object myObject[] =new String[4];
+    //    myObject[0] = totalDaysBooked;
+    //    myObject[1] = startBookingFDate;
+    //    myObject[2] = endBookingFDate;
+    //    myObject[3] = bookingCost;
+    //    myObject[4] = dateList;
 
     DatabaseManager db = new DatabaseManager();
+    ArrayList<String> dateList = (ArrayList<String>) newList.get(4);
+    System.out.println(dateList + "LOOKINGOUT");
+    double cost = (double) newList.get(3);
+    System.out.println(dateList + "LOOKINGOUT" + cost);
+    String dateToDisplay = (String) newList.get(5);
+    System.out.println("The booking was between " + dateToDisplay);
 
-    String result = db.pushDateToRoom(room,gettId,dateList);
+
+
+
+
+    String result = db.pushDateToRoom(roomSelectCombo.getValue(),gettId,dateList);
+
 
     if (result != null){
       System.out.println(result+" Looking for result");
@@ -126,7 +138,6 @@ public class ClientScreenController implements Initializable {
 
 
     /*try {
-
       Date date = formatter.parse(dateMonthStart);
       System.out.println(date+ "Alpha");
       String enDate = "02/03/2019";
@@ -135,7 +146,6 @@ public class ClientScreenController implements Initializable {
       System.out.println(formatter.format(date)+"test");
       long totalDaysBooked = endDate.getTime() - date.getTime();
       System.out.println(totalDaysBooked/86400000+"   020285555");
-
     } catch (ParseException e) {
       e.printStackTrace();
     }*/

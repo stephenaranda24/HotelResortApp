@@ -74,14 +74,17 @@ public class DatabaseManager extends Main {
 
 
   }
-  public boolean AddCustomer(String userName, String fullName, String password ,String customerEmail) {
+  public boolean AddCustomer(String fullName, String userName, String email, String phonenumber,
+      String password , int verifyPin, String address,String city, String state, int zipcode ,String country ) {
     boolean nameExisted = false;
     try {
 
       Statement stmt = this.con.createStatement();
       ResultSet rs = null;
       rs = stmt.executeQuery(String.format("SELECT * FROM CUSTOMER WHERE USERNAME = '%s'",userName));
+      rs = stmt.executeQuery(String.format("SELECT * FROM CUSTOMER WHERE email = '%s'",email));
       if(rs.next()){
+
         String userNameExisted = rs.getString("USERNAME");
         System.out.println("it exist");
         nameExisted = false;
@@ -90,9 +93,9 @@ public class DatabaseManager extends Main {
       else {
 
         stmt.executeUpdate(String.format(
-            "INSERT INTO CUSTOMER (USERNAME, FULLNAME, PASSWORD, EMAIL) VALUES ('%s' ,'%s','%s', '%s')",
-            userName, fullName, password
-            , customerEmail));
+            "INSERT INTO CUSTOMER (FULLNAME, USERNAME, email, phonenumber, password ,verifyPin, address,city, state, zipcode ,country ) VALUES ('%s' ,'%s','%s', '%s','%s','%d','%s', '%s','%s','%d','%s')",
+             fullName,  userName,  email,  phonenumber,
+             password ,  verifyPin,  address, city,  state,  zipcode , country ));
         System.out.println("HEy it pushed");
         nameExisted= true;
       }
@@ -152,7 +155,9 @@ public class DatabaseManager extends Main {
       String sql = "CREATE TABLE "+userName +
           "(ORDERNO INTEGER , " +
           " ROOMNO VARCHAR(255), " +
-          " DaysBooked VARCHAR(255)) ";
+          " DaysBooked VARCHAR(4555), "+
+          " DISPLAYDATE VARCHAR(255), " +
+          "COST DOUBLE ) ";
       stmt.executeUpdate(sql);
 
 
