@@ -55,12 +55,17 @@ public class ClientScreenController implements Initializable {
     DateAndCostManager dm = new DateAndCostManager();
     dm.setRoomSelectCombo(roomSelectCombo);
   }
+  public static String username;
+
 
   @FXML
   void submitDate(ActionEvent event) throws SQLException {
     MainScreenController msc = new MainScreenController();
+
+
     String gettId = idSpace1.getText();
-    System.out.println("I got the id as " +gettId);
+    username = gettId;
+        System.out.println("I got the id as " +gettId);
     DateAndCostManager dm = new DateAndCostManager();
     List newList = dm.dateCalc(roomSelectCombo, startDate,startMonth, endDate,endMonth );
 
@@ -114,13 +119,7 @@ public class ClientScreenController implements Initializable {
     System.out.println(dateList + "LOOKINGOUT" + cost);
     String dateToDisplay = (String) newList.get(5);
     System.out.println("The booking was between " + dateToDisplay);
-
-
-
-
-
     String result = db.pushDateToRoom(roomSelectCombo.getValue(),gettId,dateList);
-
 
     if (result != null){
       System.out.println(result+" Looking for result");
@@ -134,6 +133,7 @@ public class ClientScreenController implements Initializable {
 
 
     System.out.println(dateList);
+    msc.loadScene(submit,"PaymentScreen.fxml","Payment Screen");
 
 
 

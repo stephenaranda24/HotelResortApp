@@ -160,10 +160,12 @@ public class SignUpController extends MainScreenController implements Initializa
 							int pintoVerifyInInt = Integer.parseInt(pintoVerify);
 							int zipCodes = Integer.parseInt(zipcode);
 
-							boolean nameExist = db.AddCustomer(fullNameText,  userName,  email,  phonenumber,
+							boolean nameDoesnotExist = db.AddCustomer(fullNameText,  userName,  email,  phonenumber,
 									password ,  pintoVerifyInInt,  streetAddress, cityAddress,  stateName,  zipCodes ,countryName );
-							if (nameExist == true) {
+							if (nameDoesnotExist == true) {
 								db.createCustomerTable(userName);
+								db.saveEmailCardTable(email,userName);
+
 
 							} else {
 								System.out.println("Name does exist. Please use another name");

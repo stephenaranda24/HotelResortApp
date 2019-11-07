@@ -76,18 +76,24 @@ public class DatabaseManager extends Main {
   }
   public boolean AddCustomer(String fullName, String userName, String email, String phonenumber,
       String password , int verifyPin, String address,String city, String state, int zipcode ,String country ) {
-    boolean nameExisted = false;
+    boolean nameDoesntExisted = false;
     try {
 
       Statement stmt = this.con.createStatement();
       ResultSet rs = null;
+      ResultSet rss = null;
       rs = stmt.executeQuery(String.format("SELECT * FROM CUSTOMER WHERE USERNAME = '%s'",userName));
-      rs = stmt.executeQuery(String.format("SELECT * FROM CUSTOMER WHERE email = '%s'",email));
-      if(rs.next()){
+      rss = stmt.executeQuery(String.format("SELECT * FROM CUSTOMER WHERE email = '%s'",email));
+      if(rss.next()){
+        String emailExist = rss.getString("email");
+        nameDoesntExisted = false;
+
+      }
+      else if(rs.next()){
 
         String userNameExisted = rs.getString("USERNAME");
         System.out.println("it exist");
-        nameExisted = false;
+        nameDoesntExisted = false;
 
       }
       else {
@@ -97,14 +103,14 @@ public class DatabaseManager extends Main {
              fullName,  userName,  email,  phonenumber,
              password ,  verifyPin,  address, city,  state,  zipcode , country ));
         System.out.println("HEy it pushed");
-        nameExisted= true;
+        nameDoesntExisted= true;
       }
 
 
     } catch (SQLException var6) {
       this.sqlExceptionHandler(var6);
     }
-    return nameExisted;
+    return nameDoesntExisted;
 
   }
   public boolean LogInAccount( String email, String password ,String role) {
@@ -143,6 +149,27 @@ public class DatabaseManager extends Main {
     return verified;
 
   }
+  public void saveEmailCardTable(String userName, String email){
+
+    try {
+      ResultSet rs = null;
+
+      Statement stmt = this.con.createStatement();
+
+      stmt.executeUpdate(String.format("Insert Into CARDSAVED(CARDMEMBEREMAIL) VALUES ('%s')",email));
+
+
+
+
+    } catch (SQLException var6) {
+      this.sqlExceptionHandler(var6);
+    }
+
+
+
+
+  }
+
   public void createCustomerTable(String userName){
     try {
       System.out.println("SOB");
