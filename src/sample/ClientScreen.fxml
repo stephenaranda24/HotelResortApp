@@ -87,13 +87,18 @@
                                     <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="113.33331298828125" vgrow="SOMETIMES" />
                                  </rowConstraints>
                               </GridPane>
-                              <Label layoutX="1148.0" layoutY="6.0" text="Logged in as:" />
-                              <Label fx:id="idSpace1" layoutX="1229.0" layoutY="6.0" text="Null" />
+                              <Label layoutX="718.0" layoutY="27.0" text="Logged in as:" />
+                              <Label fx:id="idSpace1" layoutX="825.0" layoutY="16.0" text="Null" />
                               <Label layoutX="185.0" layoutY="22.0" text="Select Room and Date">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
+                              <Button layoutX="238.0" layoutY="441.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="303.0" text="PAY LATER">
+                                 <font>
+                                    <Font size="37.0" />
+                                 </font>
+                              </Button>
                            </children>
                         </AnchorPane>
                      </content>
@@ -102,16 +107,16 @@
                      <content>
                         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="1097.0" prefWidth="1541.0">
                            <children>
-                              <Button layoutX="561.0" layoutY="404.0" mnemonicParsing="false" text="Update" />
+                              <Button fx:id="updatePassword" layoutX="312.0" layoutY="332.0" mnemonicParsing="false" onAction="#updatePasswordAction" text="Update Password" />
                               <Button layoutX="562.0" layoutY="960.0" mnemonicParsing="false" text="Update" />
-                              <GridPane layoutX="135.0" layoutY="675.0" prefHeight="296.0" prefWidth="478.0">
+                              <GridPane layoutX="450.0" layoutY="54.0" prefHeight="273.0" prefWidth="269.0">
                                  <children>
-                                    <Label text="Old Username" />
-                                    <Label text="New Username" GridPane.rowIndex="1" />
-                                    <Label text="Confirm Username" GridPane.rowIndex="2" />
-                                    <PasswordField GridPane.columnIndex="1" />
-                                    <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label text="Old Pin" />
+                                    <Label text="New Pin" GridPane.rowIndex="1" />
+                                    <Label text="Confirm Pin" GridPane.rowIndex="2" />
+                                    <PasswordField fx:id="newPin" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <PasswordField fx:id="newPinVerify" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <PasswordField fx:id="oldPin" GridPane.columnIndex="1" />
                                  </children>
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -123,14 +128,14 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                               </GridPane>
-                              <GridPane layoutX="161.0" layoutY="95.0" prefHeight="296.0" prefWidth="478.0">
+                              <GridPane layoutX="37.0" layoutY="61.0" prefHeight="277.0" prefWidth="351.0">
                                 <children>
                                     <Label text="Old Password" />
                                     <Label text="New Password" GridPane.rowIndex="1" />
                                     <Label text="Confirm New Password" GridPane.rowIndex="2" />
-                                    <PasswordField GridPane.columnIndex="1" />
-                                    <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <PasswordField fx:id="oldPassword" GridPane.columnIndex="1" />
+                                    <PasswordField fx:id="newPassword" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <PasswordField fx:id="newPasswordVerify" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                  </children>
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -142,12 +147,15 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                               </GridPane>
-                              <Label layoutX="225.0" layoutY="23.0" text="Change Password">
+                              <Label layoutX="27.0" layoutY="23.0" text="Change Password">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="223.0" layoutY="515.0" text="Change Username">
+                              <Label layoutX="599.0" layoutY="18.0" text="Logged in as:" />
+                              <Label fx:id="idSpace11" layoutX="682.0" layoutY="18.0" text="Null" />
+                              <Button fx:id="updatePin" layoutX="644.0" layoutY="326.0" mnemonicParsing="false" onAction="#updatePin" text="Update Pin" />
+                              <Label layoutX="466.0" layoutY="37.0" text="Change Pin">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
@@ -165,6 +173,8 @@
                                     <TableColumn prefWidth="75.0" text="C2" />
                                  </columns>
                               </TableView>
+                              <Button fx:id="tempButton" layoutX="61.0" layoutY="155.0" mnemonicParsing="false" onAction="#tempButton" text="TempButton" />
+                              <Label fx:id="tempLabel" layoutX="61.0" layoutY="64.0" text="10230" />
                            </children>
                         </AnchorPane>
                     </content>

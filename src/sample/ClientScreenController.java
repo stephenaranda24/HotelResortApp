@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -35,9 +36,108 @@ public class ClientScreenController implements Initializable {
   @FXML
   private Label idSpace1;
   @FXML
+  private Label idSpace11;
+  @FXML
   private ComboBox<String> roomSelectCombo;
+  @FXML
+  private Button tempButton;
+  @FXML
+  private Label tempLabel;
+  @FXML
+  private Button updatePassword;
+
+  @FXML
+  private PasswordField newPin;
+
+  @FXML
+  private PasswordField newPinVerify;
+
+  @FXML
+  private PasswordField oldPin;
+
+  @FXML
+  private PasswordField oldPassword;
+
+  @FXML
+  private PasswordField newPassword;
+
+  @FXML
+  private PasswordField newPasswordVerify;
+  @FXML
+  private Button updatePin;
   public static String userId;
   public static int orderNo;
+
+
+  @FXML
+  void tempButton(ActionEvent event) {
+    MainScreenController msc = new MainScreenController();
+
+    ClientScreenController.orderNo = Integer.parseInt(tempLabel.getText());
+    System.out.println(ClientScreenController.orderNo + "if it works");
+    msc.loadScene(submit,"PaymentScreen.fxml","Payment Screen");
+
+
+
+  }
+  @FXML
+  void updatePasswordAction(ActionEvent event) throws SQLException {
+    boolean passwordMatched = false;
+    String userId = idSpace11.getText();
+    String oPassword = oldPassword.getText();
+    String password = newPassword.getText();
+    String cPassword = newPasswordVerify.getText();
+
+    DatabaseManager dm = new DatabaseManager();
+
+    if (password.equals(cPassword)) {
+      passwordMatched = dm.verifyPasswordorPin("Customer",userId,oPassword,"password");
+      if(passwordMatched = true){
+        dm.changePinOrPass("Customer",userId,"password",password);
+        System.out.println("password Changed");
+      }
+      else{
+        passwordMatched = false;
+      }
+    }
+    else{
+      System.out.println("New password doesnt match to verify");
+    }
+
+
+  }
+
+  @FXML
+  void updatePin(ActionEvent event) throws SQLException {
+    boolean pinMatched = false;
+    String userId = idSpace11.getText();
+    String oPin = oldPin.getText();
+    String pin = newPin.getText();
+    String cPin = newPinVerify.getText();
+
+    DatabaseManager dm = new DatabaseManager();
+
+    if (pin.equals(cPin)) {
+      pinMatched = dm.verifyPasswordorPin("Customer",userId,oPin,"verifypin");
+      if(pinMatched = true){
+        dm.changePinOrPass("Customer",userId,"verifypin",pin);
+        System.out.println("pin Changed");
+      }
+      else{
+        pinMatched = false;
+      }
+
+    }
+    else{
+      System.out.println("New pin doesnt match to verify");
+    }
+
+
+
+  }
+
+
+
   public void initialize(URL url, ResourceBundle resources) {
 
     try {
@@ -50,6 +150,7 @@ public class ClientScreenController implements Initializable {
 
 
     idSpace1.setText(userId);
+    idSpace11.setText(userId);
     setRoomSelectCombo();
   }
   private void setRoomSelectCombo() {
@@ -128,7 +229,7 @@ public class ClientScreenController implements Initializable {
       System.out.println(result+" Looking for result");
 
       db.pushDate(gettId,result,dateList,cost,dateToDisplay);
-      orderNo =  db.orderNoax();
+      orderNo =  db.orderNumber();
       System.out.println("order no is " + orderNo);
 
 

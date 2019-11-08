@@ -46,6 +46,72 @@ public class DatabaseManager extends Main {
 
 
   }
+  public boolean verifyPasswordorPin(String userType, String userID, String pinOrPassword, String type) throws SQLException {
+    boolean passwordChanged = false;
+    String pinToVerify = null;
+    String typeChanged = null;
+    Statement stmt = this.con.createStatement();
+    try {
+      ResultSet rs = null;
+
+      rs = stmt.executeQuery(String.format("SELECT * FROM %s WHERE USERNAME = '%s'",userType, userID));
+      if (rs.next()) {
+
+        System.out.println("usimg this pinOrPassword:" + pinOrPassword);
+        if(type.equals("PIN")){
+          int tempPinToVerify = rs.getInt("PIN");
+          pinToVerify = String.valueOf(tempPinToVerify);
+          typeChanged = type;
+          if (pinToVerify.equals(pinOrPassword)) {
+            System.out.println("Successfully " + typeChanged +" old verified");
+            passwordChanged = true;
+            return true;
+
+
+          } else {
+            System.out.println("Wrong "+typeChanged);
+            passwordChanged = false;
+            return false;
+
+          }
+
+        }
+        else if (type.equals("PASSWORD")){
+          pinToVerify  = rs.getString("Password");
+          typeChanged = type;
+          System.out.println("The password extracted "+ pinToVerify + " " +pinOrPassword);
+          if (pinToVerify.equals(pinOrPassword)) {
+            System.out.println("Successfully " + typeChanged +" old verified");
+            passwordChanged = true;
+            return true;
+
+
+          } else {
+            System.out.println("Wrong "+typeChanged);
+            passwordChanged = false;
+            return false;
+
+          }
+        }
+
+
+
+
+
+      }
+    }catch(SQLException var6){
+        this.sqlExceptionHandler(var6);
+      }
+      return passwordChanged;
+  }
+  public void changePinOrPass(String userType, String userId, String typeChange, String newPinOrPass)
+      throws SQLException {
+    Statement stmt = this.con.createStatement();
+    stmt.executeUpdate(String.format("UPDATE %s SET %s = '%s' where username = '%s'",userType, typeChange,newPinOrPass,userId));
+
+
+  }
+
   public String getTheName(String email){
     String id = null;
     try {
@@ -227,7 +293,7 @@ public class DatabaseManager extends Main {
     }
 
   }
-  public int orderNoax(){
+  public int orderNumber(){
     int orderNo = 0;
     try{
       Statement stmt = this.con.createStatement();
@@ -254,10 +320,10 @@ public class DatabaseManager extends Main {
       int orderNo = 0;
 
       long timeStamp = System.currentTimeMillis();
-      String defaulPay  = "NO";
+      String defaultPay  = "NO";
 
       Statement stmt = this.con.createStatement();
-      stmt.executeUpdate(String.format("INSERT INTO INVOICENO (roomname, username, dateBooked,pay,cost,displaydate) VALUES ('%s','%s','%s','%s','%d','%s')",roomNo,userName,dateBooked, defaulPay, cost, dateToDisplay));
+      stmt.executeUpdate(String.format("INSERT INTO INVOICENO (roomname, username, dateBooked, pay, cost, displaydate) VALUES ('%s','%s','%s','%s','%f','%s')",roomNo,userName,dateBooked, defaultPay, cost, dateToDisplay));
 /*
       ResultSet rs = stmt.executeQuery(String.format("Select ORDERNO FROM INVOICENO"));
 
@@ -278,8 +344,8 @@ public class DatabaseManager extends Main {
       }
       System.out.println(orderNo+ " I finally pushed the order no");
 
-      stmt.executeUpdate(String.format("INSERT INTO %s (orderno, username, dateBooked) VALUES ('%s','%s','%s','%d','%s')",roomNo,orderNo,userName,dateBooked, cost, dateToDisplay));
-      stmt.executeUpdate(String.format("INSERT INTO %s (orderno, roomno, daysBooked) VALUES ('%d', '%s' ,'%s','%d','%s')",userName,orderNo, roomNo,dateBooked, cost, dateToDisplay));
+      stmt.executeUpdate(String.format("INSERT INTO %s (orderno, username, dateBooked, cost, displaydate) VALUES ('%s','%s','%s','%f','%s')",roomNo,orderNo,userName,dateBooked, cost, dateToDisplay));
+      stmt.executeUpdate(String.format("INSERT INTO %s (orderno, roomno, daysBooked, cost, displaydate) VALUES ('%d', '%s' ,'%s','%f','%s')",userName,orderNo, roomNo,dateBooked, cost, dateToDisplay));
 
 
     } catch (SQLException var6) {
