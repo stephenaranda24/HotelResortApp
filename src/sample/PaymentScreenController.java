@@ -55,6 +55,9 @@ public class PaymentScreenController {
   @FXML
   private Text label;
 
+  @FXML
+  private Button payLater;
+
 
   int finalCardYear = 0;
   int finalCardMonth = 0;
@@ -67,6 +70,11 @@ public class PaymentScreenController {
 
   @FXML
   void backFrompaymentAction(ActionEvent event) {
+    {
+      MainScreenController msc = new MainScreenController();
+      msc.loadScene(backFrompayment,"ClientScreen.fxml","clientScreen");
+    }
+
 
   }
 
@@ -91,6 +99,13 @@ public class PaymentScreenController {
     cardType.setPromptText("Select a type of card.");
     cardType.getItems().addAll("VISA", "MasterCard", "Discover", "Amex");
   }
+  @FXML
+  void payLaterAction(ActionEvent event) {
+    MainScreenController msc = new MainScreenController();
+    msc.loadScene(submitPayment,"ClientScreen.fxml","clientScreen");
+  }
+
+
 
   @FXML
   void submitPaymentSuccessfull(ActionEvent event) throws SQLException {
