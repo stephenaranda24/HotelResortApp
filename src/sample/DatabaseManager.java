@@ -249,7 +249,7 @@ public class DatabaseManager extends Main {
     }
     return orderNo;
   }
-  public void pushDate(String userName, String roomNo, ArrayList<String> dateBooked){
+  public void pushDate(String userName, String roomNo, ArrayList<String> dateBooked,double cost, String dateToDisplay){
     try {
       int orderNo = 0;
 
@@ -257,7 +257,7 @@ public class DatabaseManager extends Main {
       String defaulPay  = "NO";
 
       Statement stmt = this.con.createStatement();
-      stmt.executeUpdate(String.format("INSERT INTO INVOICENO (roomname, username, dateBooked,pay) VALUES ('%s','%s','%s','%s')",roomNo,userName,dateBooked, defaulPay));
+      stmt.executeUpdate(String.format("INSERT INTO INVOICENO (roomname, username, dateBooked,pay,cost,displaydate) VALUES ('%s','%s','%s','%s','%d','%s')",roomNo,userName,dateBooked, defaulPay, cost, dateToDisplay));
 /*
       ResultSet rs = stmt.executeQuery(String.format("Select ORDERNO FROM INVOICENO"));
 
@@ -278,8 +278,8 @@ public class DatabaseManager extends Main {
       }
       System.out.println(orderNo+ " I finally pushed the order no");
 
-      stmt.executeUpdate(String.format("INSERT INTO %s (orderno, username, dateBooked) VALUES ('%s','%s','%s')",roomNo,orderNo,userName,dateBooked));
-      stmt.executeUpdate(String.format("INSERT INTO %s (orderno, roomno, daysBooked) VALUES ('%d', '%s' ,'%s')",userName,orderNo, roomNo,dateBooked));
+      stmt.executeUpdate(String.format("INSERT INTO %s (orderno, username, dateBooked) VALUES ('%s','%s','%s','%d','%s')",roomNo,orderNo,userName,dateBooked, cost, dateToDisplay));
+      stmt.executeUpdate(String.format("INSERT INTO %s (orderno, roomno, daysBooked) VALUES ('%d', '%s' ,'%s','%d','%s')",userName,orderNo, roomNo,dateBooked, cost, dateToDisplay));
 
 
     } catch (SQLException var6) {

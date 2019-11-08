@@ -120,13 +120,14 @@ public class ClientScreenController implements Initializable {
     System.out.println(dateList + "LOOKINGOUT" + cost);
     String dateToDisplay = (String) newList.get(5);
     System.out.println("The booking was between " + dateToDisplay);
+
     String result = db.pushDateToRoom(roomSelectCombo.getValue(),gettId,dateList);
 
 
     if (result != null){
       System.out.println(result+" Looking for result");
 
-      db.pushDate(gettId,result,dateList);
+      db.pushDate(gettId,result,dateList,cost,dateToDisplay);
       orderNo =  db.orderNoax();
       System.out.println("order no is " + orderNo);
 
