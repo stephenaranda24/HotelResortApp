@@ -55,6 +55,8 @@
             </Label>
             <Label fx:id="idSpace" layoutX="746.0" layoutY="46.0" text="Label" />
             <Text layoutX="642.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logged in as" />
+            <Label fx:id="orderNo" layoutX="746.0" layoutY="70.0" text="Order No" />
+
          </children>
       </AnchorPane>
    </content>

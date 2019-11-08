@@ -36,19 +36,20 @@ public class ClientScreenController implements Initializable {
   private Label idSpace1;
   @FXML
   private ComboBox<String> roomSelectCombo;
-
+  public static String userId;
+  public static int orderNo;
   public void initialize(URL url, ResourceBundle resources) {
-    String userEmail = null;
+
     try {
       DatabaseManager db = new DatabaseManager();
-      userEmail = db.getTheName(SignInController.username);
+      userId = db.getTheName(SignInController.username);
 
     } catch (SQLException e) {
       e.printStackTrace();
     }
 
 
-    idSpace1.setText(userEmail);
+    idSpace1.setText(userId);
     setRoomSelectCombo();
   }
   private void setRoomSelectCombo() {
@@ -66,8 +67,8 @@ public class ClientScreenController implements Initializable {
     String gettId = idSpace1.getText();
     username = gettId;
         System.out.println("I got the id as " +gettId);
-    DateAndCostManager dm = new DateAndCostManager();
-    List newList = dm.dateCalc(roomSelectCombo, startDate,startMonth, endDate,endMonth );
+    DateAndCostManager dc = new DateAndCostManager();
+    List newList = dc.dateCalc(roomSelectCombo, startDate,startMonth, endDate,endMonth );
 
 
     /*String startDate = startDat.getText();
@@ -121,10 +122,14 @@ public class ClientScreenController implements Initializable {
     System.out.println("The booking was between " + dateToDisplay);
     String result = db.pushDateToRoom(roomSelectCombo.getValue(),gettId,dateList);
 
+
     if (result != null){
       System.out.println(result+" Looking for result");
 
       db.pushDate(gettId,result,dateList);
+      orderNo =  db.orderNoax();
+      System.out.println("order no is " + orderNo);
+
 
     }
     else{
@@ -132,7 +137,9 @@ public class ClientScreenController implements Initializable {
     }
 
 
+
     System.out.println(dateList);
+
     msc.loadScene(submit,"PaymentScreen.fxml","Payment Screen");
 
 

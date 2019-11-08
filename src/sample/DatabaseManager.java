@@ -80,23 +80,33 @@ public class DatabaseManager extends Main {
     try {
 
       Statement stmt = this.con.createStatement();
-      ResultSet rs = null;
+
+      boolean rssHad = false;
+      boolean rsHad = false;
+
       ResultSet rss = null;
-      rs = stmt.executeQuery(String.format("SELECT * FROM CUSTOMER WHERE USERNAME = '%s'",userName));
       rss = stmt.executeQuery(String.format("SELECT * FROM CUSTOMER WHERE email = '%s'",email));
       if(rss.next()){
         String emailExist = rss.getString("email");
         nameDoesntExisted = false;
-
+        rssHad = true;
       }
-      else if(rs.next()){
+
+//      System.out.println("rf.close is " + rs.isClosed());
+//      System.out.println("rf.close is " + rss.isClosed());
+
+
+      ResultSet rs = null;
+      rs = stmt.executeQuery(String.format("SELECT * FROM CUSTOMER WHERE USERNAME = '%s'",userName));
+      if(!rssHad && rs.next()){
 
         String userNameExisted = rs.getString("USERNAME");
         System.out.println("it exist");
         nameDoesntExisted = false;
-
+        rsHad = true;
       }
-      else {
+
+      if (!rssHad && !rsHad) {
 
         stmt.executeUpdate(String.format(
             "INSERT INTO CUSTOMER (FULLNAME, USERNAME, email, phonenumber, password ,verifyPin, address,city, state, zipcode ,country ) VALUES ('%s' ,'%s','%s', '%s','%s','%d','%s', '%s','%s','%d','%s')",
@@ -155,20 +165,28 @@ public class DatabaseManager extends Main {
       ResultSet rs = null;
 
       Statement stmt = this.con.createStatement();
-
-      stmt.executeUpdate(String.format("Insert Into CARDSAVED(CARDMEMBEREMAIL) VALUES ('%s')",email));
-
-
-
-
+      stmt.executeUpdate(String.format("Insert Into CARDSAVED (CARDMEMBEREMAIL, USERID) VALUES ('%s','%s')",email,userName));
     } catch (SQLException var6) {
       this.sqlExceptionHandler(var6);
     }
-
-
-
-
   }
+  public void saveCardInfo(String userId, String cardType, long cardNumber, int month, int year, int cvv, int zipcode){
+    try {
+
+
+      Statement stmt = this.con.createStatement();
+      System.out.println(userId+"0000000000005");
+      System.out.println(cardNumber);
+      System.out.println(month);
+      System.out.println(userId+"0000000000005");
+      stmt.executeUpdate(String.format("UPDATE CARDSAVED SET (cardtype, cardNumber, month, year, cvv, billingzipcode) = ('%s','%d','%d','%d','%d','%d') where userid = '%s'",cardType,cardNumber,month,
+          year,cvv,zipcode,userId));
+      System.out.println("Card Saved");
+    } catch (SQLException var6) {
+      this.sqlExceptionHandler(var6);
+    }
+  }
+
 
   public void createCustomerTable(String userName){
     try {
@@ -197,14 +215,49 @@ public class DatabaseManager extends Main {
     }
 
   }
+  public void paidColumn(int orderNO){
+    try {
+      Statement stmt = this.con.createStatement();
+      String paymentDone = "Yes";
+      ResultSet rs = null;
+      stmt.executeUpdate(String.format("UPDATE INVOICENO SET pay = 'yes' where orderno = '%d'",orderNO));
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+  }
+  public int orderNoax(){
+    int orderNo = 0;
+    try{
+      Statement stmt = this.con.createStatement();
+
+      ResultSet rs = null;
+      rs = stmt.executeQuery(String.format("Select MAX(ORDERNO) FROM INVOICENO"));
+      while(rs.next()){
+        String orderNo1 = rs.getString(1);
+        orderNo = Integer.parseInt(orderNo1);
+        System.out.println("HAPPYYYY " + orderNo);
+
+        System.out.println(orderNo+ " I finally pushed the order no for the client screen");
+
+
+      }
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return orderNo;
+  }
   public void pushDate(String userName, String roomNo, ArrayList<String> dateBooked){
     try {
       int orderNo = 0;
 
       long timeStamp = System.currentTimeMillis();
+      String defaulPay  = "NO";
 
       Statement stmt = this.con.createStatement();
-      stmt.executeUpdate(String.format("INSERT INTO INVOICENO (roomname, username, dateBooked) VALUES ('%s','%s','%s')",roomNo,userName,dateBooked));
+      stmt.executeUpdate(String.format("INSERT INTO INVOICENO (roomname, username, dateBooked,pay) VALUES ('%s','%s','%s','%s')",roomNo,userName,dateBooked, defaulPay));
 /*
       ResultSet rs = stmt.executeQuery(String.format("Select ORDERNO FROM INVOICENO"));
 
@@ -289,6 +342,7 @@ public class DatabaseManager extends Main {
     return null;
 
   }
+
 
 
   public void sqlExceptionHandler(SQLException error) {

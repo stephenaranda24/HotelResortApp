@@ -164,28 +164,33 @@ public class SignUpController extends MainScreenController implements Initializa
 									password ,  pintoVerifyInInt,  streetAddress, cityAddress,  stateName,  zipCodes ,countryName );
 							if (nameDoesnotExist == true) {
 								db.createCustomerTable(userName);
-								db.saveEmailCardTable(email,userName);
+								db.saveEmailCardTable(userName,email);
 
 
 							} else {
 								System.out.println("Name does exist. Please use another name");
+								accountCreated = false;
 							}
 
 
 						} else {
 							System.out.println("Password/PIN doesnt match");
+							accountCreated = false;
 						}
 					} catch (SQLException ex) {
 						ex.printStackTrace();
 					}
 					if (!accountCreated) {
 						System.out.println("Please type Again");
+
 					} else {
 						msc.loadScene(button_create, "MainScreenSample.fxml", "Main Screen--Login Please");
 						accountCreated = false;
 					}
 				}
+
 			});
+
 		}
 
 	}
