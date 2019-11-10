@@ -1,7 +1,5 @@
 package sample;
 
-import com.sun.xml.internal.bind.v2.model.core.ID;
-
 public enum State {
   AK,
   AL,

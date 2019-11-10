@@ -1,14 +1,14 @@
 package sample;
 
-import com.sun.org.apache.xpath.internal.objects.XBoolean;
-import java.io.Serializable;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import javax.xml.soap.Text;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,8 +16,6 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javax.smartcardio.Card;
-import javax.xml.soap.Text;
 
 public class PaymentScreenController {
 
@@ -80,13 +78,12 @@ public class PaymentScreenController {
 
 
 
-  public void initialize() {
+  public void initialize(URL url, ResourceBundle resources) {
+	
     MainScreenController msc = new MainScreenController();
 
-    setComboBoxText();
+    setComboBoxText();    
     userID= ClientScreenController.userId;
-
-
 
     idSpace.setText(userID);
     orderNo.setText(String.valueOf(ClientScreenController.orderNo));
@@ -147,8 +144,7 @@ public class PaymentScreenController {
       System.out.println("Card Saved123");
     }
     else {
-      System.out.println("Not Saved");
-
+    	Main.infoMessage("Card details not saved");
     }
     msc.loadScene(submitPayment,"ClientScreen.fxml","clientScreen");
 
@@ -176,7 +172,7 @@ public class PaymentScreenController {
         zipCodeR = zipCode;
       }//end of 15 long credit card check
       else{
-        System.out.println("Please retype again");
+        Main.infoMessage("Please be sure that card details are the correct length");
       }
     }
     else{
@@ -190,7 +186,7 @@ public class PaymentScreenController {
 
       }//end of 15 long credit card check
       else{
-        System.out.println("Please retype again");
+          Main.infoMessage("Please be sure that card details are the correct length");
       }
     }
     return Arrays.asList(cardSelection, cardNumberR,cvcR, zipCodeR);
@@ -217,12 +213,12 @@ public class PaymentScreenController {
         yearMonthmet = true;
       }
       else{
-        System.out.println("expired card");
+    	Main.errorMessage("The card detailed entered is expired");
       }
     }
     else{
-      System.out.println("expired card");
-    }
+       	Main.errorMessage("The card detailed entered is expired");
+            }
     return yearMonthmet;
   }
   public boolean saveCardValidation(){

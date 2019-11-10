@@ -11,9 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -37,7 +35,6 @@ public class MainScreenController implements Initializable {
     button_signup.setOnMousePressed(new EventHandler<MouseEvent>() {
 
       public void handle(MouseEvent e) {
-        System.out.println("(Sign-Up Pressed)");
         loadScene(button_signup,"SignUpSample.fxml","Sign Up");
       }
     });
@@ -51,6 +48,7 @@ public class MainScreenController implements Initializable {
       }
     });
   }
+  
   //Method use for calling a scene (Andre use it for every scene calling)******************
   public void loadScene(Button pressedButton, String nameOfFxml,String titleOftheScene){
 

@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -101,10 +102,8 @@ public class ClientScreenController implements Initializable {
       }
     }
     else{
-      System.out.println("New password doesnt match to verify");
+      Main.errorMessage("Password does not match");
     }
-
-
   }
 
   @FXML
@@ -129,7 +128,7 @@ public class ClientScreenController implements Initializable {
 
     }
     else{
-      System.out.println("New pin doesnt match to verify");
+    	Main.errorMessage("Pin does not match");
     }
 
 
@@ -142,7 +141,7 @@ public class ClientScreenController implements Initializable {
 
     try {
       DatabaseManager db = new DatabaseManager();
-      userId = db.getTheName(SignInController.username);
+      userId = db.getTheName(Main.loggedInUser);
 
     } catch (SQLException e) {
       e.printStackTrace();
@@ -235,9 +234,8 @@ public class ClientScreenController implements Initializable {
 
     }
     else{
-      System.out.println("Sorry rooms you selected are not available for those dates");
+      Main.infoMessage("Sorry the rooms selected are not available for those dates");
     }
-
 
 
     System.out.println(dateList);

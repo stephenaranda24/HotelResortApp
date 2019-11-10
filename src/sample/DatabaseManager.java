@@ -1,24 +1,14 @@
 package sample;
 
 
-import com.sun.xml.internal.fastinfoset.util.StringArray;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javax.xml.crypto.Data;
-import org.h2.command.Prepared;
 
 public class DatabaseManager extends Main {
 
@@ -30,8 +20,8 @@ public class DatabaseManager extends Main {
   public DatabaseManager() throws SQLException {
 
     this.con = DriverManager
-        .getConnection("jdbc:h2:C:\\Users\\moart\\OneDrive - Florida Gulf Coast University\\IDEAProjects\\HotelResortApp\\res\\ResortData");
-
+        .getConnection("jdbc:h2:C:\\Users\\Romanov\\eclipse-workspace\\HotelResortApp\\res\\ResortData");
+    	//C:\Users\Romanov\eclipse-workspace
   }
   public void startDatabase(String userName, String password ,String role) {
     LogInAccount(userName, password, role);
