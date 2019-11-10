@@ -1,18 +1,16 @@
 package sample;
 
-import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -30,6 +28,9 @@ public class SignInController implements Initializable {
 	private Button button_login;
 	@FXML
 	private Button button_forgot;
+	@FXML
+	private TextArea idSpace;
+
 
 	@Override
 	public void initialize(URL url, ResourceBundle resources) {
@@ -40,56 +41,48 @@ public class SignInController implements Initializable {
 
 	private void setComboBoxText() {
 		CB_type.setPromptText("Select a role.");
-		CB_type.getItems().addAll("Owner", "Customer", "Desk Assistant", "Custodian");
+		CB_type.getItems().addAll("Owner", "Customer", "Desk_Assistant", "Custodian");
 	}
 
 	private void loginButtonPressed() {
 		button_login.setOnMousePressed(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent e) {
+				try {
+					DatabaseManager db = new DatabaseManager();
+					MainScreenController msc = new MainScreenController();
+					// retrieves sign-in fields
+					String username = TF_username.getText();
+					String password = PF_password.getText();
+					String type = CB_type.getValue();
+					boolean fieldsCompleted = !username.equals("") && !password.equals("") //
+							&& !type.equals(null);
+					// checks that required fields are not empty
+					if (fieldsCompleted) {
+						System.out.println("Username: " + username);
+						System.out.println("Password: " + password);
+						System.out.println("Type: " + type);
+						db.startDatabase(username,password,type);
+						boolean verified = db.LogInAccount(username,password,type);
 
-				// retrieves sign-in fields
-				String username = TF_username.getText();
-				String password = PF_password.getText();
-				String type = CB_type.getValue();
-				System.out.println("(Login Pressed)");
-				boolean fieldsCompleted = !username.equals("") && !password.equals("") //
-						&& !type.equals(null);
-				// checks that required fields are not empty
-				if (fieldsCompleted) {
-					System.out.println("Username: " + username);
-					System.out.println("Password: " + password);
-					System.out.println("Type: " + type);
+						if (verified == true) {
+							Main.loggedInUser = username;
+							msc.loadScene(button_login, "ClientScreen.fxml", "Main cScreen");
 
-					/* do database stuff here*/
-					
-					/* Change scene to main scene */
-					try {
-						// retrieves and closes current stage
-						stage = (Stage) button_login.getScene().getWindow();
-						stage.close();
+						}
+						else{
+							Main.errorMessage("Password or Username is incorrect");
+						}
 
-						// loads main screen stage
-						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainScreenSample.fxml"));
-						Parent profile = (Parent) fxmlLoader.load();
 
-						// creates a new stage
-						Stage newStage = new Stage();
-						newStage.setTitle("Main Menu");
-						newStage.setScene(new Scene(profile));
 
-						// set new stage to current stage and display stage
-						stage = newStage;
-						stage.show();
-						
-						System.out.println("Successfully logged-in.");
-					} catch (IOException ex) {
-						ex.printStackTrace();
+					} else {
+						Main.infoMessage("Please be sure that all required fields are completed");
 					}
-
-				} else {
-					System.out.println(
-							"Please be sure that all required fields (username, password, type)" + " are completed.");
+				} catch (SQLException ex) {
+					ex.printStackTrace();
 				}
+
+
 			}
 		});
 	}
