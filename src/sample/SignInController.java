@@ -66,7 +66,7 @@ public class SignInController implements Initializable {
 
 						if (verified == true) {
 							Main.loggedInUser = username;
-							msc.loadScene(button_login, "ClientScreen.fxml", "Main cScreen");
+							msc.loadScene(button_login, "ClientScreen.fxml", "Main Screen");
 
 						}
 						else{

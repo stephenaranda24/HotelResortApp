@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -53,10 +54,22 @@
                                     </GridPane>
                                     <GridPane layoutX="763.0" layoutY="9.0" prefHeight="431.0" prefWidth="556.0">
                                        <children>
-                                          <ImageView GridPane.columnIndex="1" GridPane.rowIndex="2" fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView GridPane.columnIndex="1" fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView GridPane.columnIndex="1" GridPane.rowIndex="1" fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" />
-                                          <ImageView GridPane.columnIndex="1" GridPane.rowIndex="3" fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView GridPane.columnIndex="1" GridPane.rowIndex="2" fitHeight="95.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@Room C.jpg" />
+                                             </image></ImageView>
+                                          <ImageView GridPane.columnIndex="1" fitHeight="95.0" fitWidth="147.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@Room A.jpg" />
+                                             </image></ImageView>
+                                          <ImageView GridPane.columnIndex="1" GridPane.rowIndex="1" fitHeight="116.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@Room B.jpg" />
+                                             </image></ImageView>
+                                          <ImageView GridPane.columnIndex="1" GridPane.rowIndex="3" fitHeight="98.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@Room D.jpg" />
+                                             </image></ImageView>
                                           <Label GridPane.columnIndex="2" GridPane.rowIndex="3" prefHeight="130.0" prefWidth="164.0" text="1 bed" wrapText="true" />
                                           <Label GridPane.columnIndex="2" GridPane.rowIndex="1" prefHeight="130.0" prefWidth="164.0" text="3 beds&#10;" wrapText="true" />
                                           <Label GridPane.columnIndex="2" GridPane.rowIndex="2" prefHeight="130.0" prefWidth="164.0" text="2 beds&#10;" wrapText="true" />
@@ -77,9 +90,9 @@
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0" prefWidth="100.0" />
                                        </columnConstraints>
                                        <rowConstraints>
-                                          <RowConstraints maxHeight="156.0" minHeight="10.0" prefHeight="154.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="193.0" minHeight="10.0" prefHeight="159.66668701171875" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="136.0" minHeight="0.0" prefHeight="113.33331298828125" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="156.0" minHeight="10.0" prefHeight="114.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="193.0" minHeight="10.0" prefHeight="119.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="136.0" minHeight="0.0" prefHeight="97.0" vgrow="SOMETIMES" />
                                           <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="113.33331298828125" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                     </GridPane>
