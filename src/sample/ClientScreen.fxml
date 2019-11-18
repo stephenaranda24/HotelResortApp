@@ -88,7 +88,7 @@
                                  </rowConstraints>
                               </GridPane>
                               <Label layoutX="718.0" layoutY="27.0" text="Logged in as:" />
-                              <Label layoutX="795.0" layoutY="29.0" text="Null" fx:id="idSpace1" />
+                              <Label fx:id="idSpace1" layoutX="825.0" layoutY="16.0" text="Null" />
                               <Label layoutX="185.0" layoutY="22.0" text="Select Room and Date">
                                  <font>
                                     <Font size="18.0" />
@@ -162,14 +162,24 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView layoutX="172.0" layoutY="34.0" prefHeight="610.0" prefWidth="700.0">
-                                 <columns>
-                                    <TableColumn prefWidth="75.0" text="C1" />
-                                    <TableColumn prefWidth="75.0" text="C2" />
-                                 </columns>
+                              <Button fx:id="tempButton" layoutX="29.0" layoutY="127.0" mnemonicParsing="false" onAction="#tempButton" text="Temp,,Button" />
+                              <Label fx:id="tempLabel" layoutX="61.0" layoutY="64.0" text="10255530" />
+                              <TableView fx:id="tablePaid" layoutX="369.0" layoutY="52.0" prefHeight="200.0" prefWidth="408.0">
+                                <columns>
+                                  <TableColumn fx:id="upTableRoomNo" prefWidth="75.0" text="RoomNo" />
+                                  <TableColumn fx:id="upTableDate" prefWidth="75.0" text="Date" />
+                                    <TableColumn fx:id="upTableAmount" prefWidth="75.0" text="Amount" />
+                                    <TableColumn fx:id="upTableInvoice" prefWidth="75.0" text="Invoice" />
+                                </columns>
                               </TableView>
-                              <Button fx:id="tempButton" layoutX="61.0" layoutY="155.0" mnemonicParsing="false" onAction="#tempButton" text="TempButton" />
-                              <Label fx:id="tempLabel" layoutX="61.0" layoutY="64.0" text="10230" />
+                              <TableView fx:id="tableUnpaid" layoutX="369.0" layoutY="331.0" prefHeight="200.0" prefWidth="367.0">
+                                <columns>
+                                  <TableColumn fx:id="pTableRoomNo" prefWidth="75.0" text="C1" />
+                                  <TableColumn fx:id="pTableDate" prefWidth="75.0" text="C2" />
+                                    <TableColumn fx:id="pTableAmount" prefWidth="75.0" text="Column X" />
+                                    <TableColumn fx:id="pTableInvoice" prefWidth="75.0" text="Column X" />
+                                </columns>
+                              </TableView>
                            </children>
                         </AnchorPane>
                     </content>
