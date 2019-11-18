@@ -1,19 +1,14 @@
 package sample;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -49,7 +44,6 @@ public class SignInController implements Initializable {
 		CB_type.getItems().addAll("Owner", "Customer", "Desk_Assistant", "Custodian");
 	}
 
-	public static String username;
 	private void loginButtonPressed() {
 		button_login.setOnMousePressed(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent e) {
@@ -57,10 +51,9 @@ public class SignInController implements Initializable {
 					DatabaseManager db = new DatabaseManager();
 					MainScreenController msc = new MainScreenController();
 					// retrieves sign-in fields
-					username = TF_username.getText();
+					String username = TF_username.getText();
 					String password = PF_password.getText();
 					String type = CB_type.getValue();
-					System.out.println("(Login Pressed)");
 					boolean fieldsCompleted = !username.equals("") && !password.equals("") //
 							&& !type.equals(null);
 					// checks that required fields are not empty
@@ -70,21 +63,20 @@ public class SignInController implements Initializable {
 						System.out.println("Type: " + type);
 						db.startDatabase(username,password,type);
 						boolean verified = db.LogInAccount(username,password,type);
-						// Client client = new Client(username, password...)
 
 						if (verified == true) {
+							Main.loggedInUser = username;
 							msc.loadScene(button_login, "ClientScreen.fxml", "Main cScreen");
 
 						}
 						else{
-							System.out.println("wrong password");
+							Main.errorMessage("Password or Username is incorrect");
 						}
 
 
 
 					} else {
-						System.out.println(
-								"Please be sure that all required fields (username, password, type)" + " are completed.");
+						Main.infoMessage("Please be sure that all required fields are completed");
 					}
 				} catch (SQLException ex) {
 					ex.printStackTrace();

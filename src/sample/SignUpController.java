@@ -1,51 +1,15 @@
 package sample;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-import java.io.IOException;
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
-import java.sql.Date;
-import java.sql.SQLException;
-import java.sql.SQLOutput;
-import java.sql.Statement;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -107,6 +71,18 @@ public class SignUpController extends MainScreenController implements Initializa
 		for (int i = 0; i < State.values().length; i++) {
 			state.getItems().add(State.values()[i].name());
 		}
+		countries.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				if (!countries.getValue().equals("USA")) {
+					state.setDisable(true);
+				} else {
+					state.setDisable(false);
+				}
+				System.out.println(countries.getValue());
+				
+			}
+		    });
   }
 	@Override
 	public void initialize(URL url, ResourceBundle resources) {
@@ -137,8 +113,6 @@ public class SignUpController extends MainScreenController implements Initializa
 						String countryName = countries.getValue();
 						String phonenumber = phoneNumber.getText();
 
-
-						System.out.println("(Create Pressed)");
 						if (password.equals(cpassword) && pintoVerify.equals(pintoVerifyC)) {
 							boolean fieldsCompleted = !userName.equals("") && !email.equals("") //
 									&& !password.equals("") && !cpassword.equals("")
@@ -154,7 +128,7 @@ public class SignUpController extends MainScreenController implements Initializa
 								System.out.println("Account sucessfully created.");
 								accountCreated = true;
 							} else {
-								System.out.println("Please Enter the information");
+								Main.infoMessage("Please complete the required fields");
 							}
 							DatabaseManager db = new DatabaseManager();
 							int pintoVerifyInInt = Integer.parseInt(pintoVerify);
@@ -168,20 +142,20 @@ public class SignUpController extends MainScreenController implements Initializa
 
 
 							} else {
-								System.out.println("Name does exist. Please use another name");
+								Main.errorMessage("Username is unavailable");
 								accountCreated = false;
 							}
 
 
 						} else {
-							System.out.println("Password/PIN doesnt match");
+							Main.errorMessage("Password or PIN does not match");
 							accountCreated = false;
 						}
 					} catch (SQLException ex) {
 						ex.printStackTrace();
 					}
 					if (!accountCreated) {
-						System.out.println("Please type Again");
+						Main.infoMessage("Please complete all the required fields");
 
 					} else {
 						msc.loadScene(button_create, "MainScreenSample.fxml", "Main Screen--Login Please");
