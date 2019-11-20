@@ -10,7 +10,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -18,15 +17,15 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" prefHeight="924.0" prefWidth="1451.0" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="sample.ClientScreenController">
+<ScrollPane maxHeight="-Infinity" prefHeight="734.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ClientScreenController">
    <content>
       <AnchorPane layoutX="1.0" layoutY="1.0" minHeight="0.0" minWidth="0.0" prefHeight="1026.0" prefWidth="1566.0">
          <children>
-            <TabPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1138.0" prefWidth="1625.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1138.0" prefWidth="1541.0" tabClosingPolicy="UNAVAILABLE">
                <tabs>
                   <Tab text="Book Room">
                      <content>
-                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="898.0" prefWidth="1835.0">
+                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="1106.0" prefWidth="1541.0">
                            <children>
                               <Button fx:id="submit" layoutX="485.0" layoutY="376.0" mnemonicParsing="false" onAction="#submitDate" text="Submit" />
                               <Button layoutX="59.0" layoutY="388.0" mnemonicParsing="false" text="Logout" />
@@ -56,28 +55,12 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                               </GridPane>
-                              <GridPane layoutX="749.0" layoutY="93.0" prefHeight="431.0" prefWidth="556.0">
+                              <GridPane layoutX="782.0" layoutY="71.0" prefHeight="431.0" prefWidth="556.0">
                                  <children>
-                                    <ImageView GridPane.columnIndex="1" GridPane.rowIndex="2" fitHeight="95.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@Room C.jpg" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView GridPane.columnIndex="1" fitHeight="95.0" fitWidth="147.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@Room A.jpg" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView GridPane.columnIndex="1" GridPane.rowIndex="1" fitHeight="116.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@Room B.jpg" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView GridPane.columnIndex="1" GridPane.rowIndex="3" fitHeight="98.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@Room D.jpg" />
-                                       </image>
-                                    </ImageView>
+                                    <ImageView fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <ImageView fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                                    <ImageView fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <ImageView fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     <Label prefHeight="130.0" prefWidth="164.0" text="1 bed" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                                     <Label prefHeight="130.0" prefWidth="164.0" text="3 beds&#10;" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                     <Label prefHeight="130.0" prefWidth="164.0" text="2 beds&#10;" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
@@ -98,19 +81,19 @@
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0" prefWidth="100.0" />
                                  </columnConstraints>
                                  <rowConstraints>
-                                    <RowConstraints maxHeight="156.0" minHeight="10.0" prefHeight="114.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="193.0" minHeight="10.0" prefHeight="119.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="136.0" minHeight="0.0" prefHeight="97.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="156.0" minHeight="10.0" prefHeight="154.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="193.0" minHeight="10.0" prefHeight="159.66668701171875" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="136.0" minHeight="0.0" prefHeight="113.33331298828125" vgrow="SOMETIMES" />
                                     <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="113.33331298828125" vgrow="SOMETIMES" />
                                  </rowConstraints>
                               </GridPane>
-                              <Label layoutX="795.0" layoutY="29.0" text="Null" fx:id="idSpace1" />
+                              <Label layoutX="718.0" layoutY="27.0" text="Logged in as:" />
+                              <Label fx:id="idSpace1" layoutX="825.0" layoutY="16.0" text="Null" />
                               <Label layoutX="185.0" layoutY="22.0" text="Select Room and Date">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="718.0" layoutY="27.0" text="Logged in as:" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -179,14 +162,24 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView layoutX="172.0" layoutY="34.0" prefHeight="610.0" prefWidth="700.0">
-                                 <columns>
-                                    <TableColumn prefWidth="75.0" text="C1" />
-                                    <TableColumn prefWidth="75.0" text="C2" />
-                                 </columns>
+                              <Button fx:id="tempButton" layoutX="29.0" layoutY="127.0" mnemonicParsing="false" onAction="#tempButton" text="Temp,,Button" />
+                              <Label fx:id="tempLabel" layoutX="61.0" layoutY="64.0" text="10255530" />
+                              <TableView fx:id="tablePaid" layoutX="369.0" layoutY="52.0" prefHeight="200.0" prefWidth="408.0">
+                                <columns>
+                                  <TableColumn fx:id="upTableRoomNo" prefWidth="75.0" text="RoomNo" />
+                                  <TableColumn fx:id="upTableDate" prefWidth="75.0" text="Date" />
+                                    <TableColumn fx:id="upTableAmount" prefWidth="75.0" text="Amount" />
+                                    <TableColumn fx:id="upTableInvoice" prefWidth="75.0" text="Invoice" />
+                                </columns>
                               </TableView>
-                              <Button fx:id="tempButton" layoutX="61.0" layoutY="155.0" mnemonicParsing="false" onAction="#tempButton" text="TempButton" />
-                              <Label fx:id="tempLabel" layoutX="61.0" layoutY="64.0" text="10230" />
+                              <TableView fx:id="tableUnpaid" layoutX="369.0" layoutY="331.0" prefHeight="200.0" prefWidth="367.0">
+                                <columns>
+                                  <TableColumn fx:id="pTableRoomNo" prefWidth="75.0" text="C1" />
+                                  <TableColumn fx:id="pTableDate" prefWidth="75.0" text="C2" />
+                                    <TableColumn fx:id="pTableAmount" prefWidth="75.0" text="Column X" />
+                                    <TableColumn fx:id="pTableInvoice" prefWidth="75.0" text="Column X" />
+                                </columns>
+                              </TableView>
                            </children>
                         </AnchorPane>
                     </content>

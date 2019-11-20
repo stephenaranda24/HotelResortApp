@@ -63,10 +63,26 @@ public class SignInController implements Initializable {
 						System.out.println("Type: " + type);
 						db.startDatabase(username,password,type);
 						boolean verified = db.LogInAccount(username,password,type);
+						//"Owner", "Customer", "Desk_Assistant", "Custodian"
 
-						if (verified == true) {
+						if (verified == true && type == "Customer") {
 							Main.loggedInUser = username;
-							msc.loadScene(button_login, "ClientScreen.fxml", "Main Screen");
+							msc.loadScene(button_login, "ClientScreen.fxml", "Main cScreen");
+
+						}
+						else if (verified == true && type == "Owner") {
+							Main.loggedInUser = username;
+							msc.loadScene(button_login, "OwnerScreen.fxml", "Main cScreen");
+
+						}
+						else if (verified == true && type == "Custodian") {
+							Main.loggedInUser = username;
+							msc.loadScene(button_login, "CustodianScreen.fxml", "Main cScreen");
+
+						}
+						else if (verified == true && type == "Desk_Assistant") {
+							Main.loggedInUser = username;
+							msc.loadScene(button_login, "Desk_AssistantScreen.fxml", "Main cScreen");
 
 						}
 						else{

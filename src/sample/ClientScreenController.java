@@ -76,11 +76,11 @@ public class ClientScreenController implements Initializable {
 
     ClientScreenController.orderNo = Integer.parseInt(tempLabel.getText());
     System.out.println(ClientScreenController.orderNo + "if it works");
-    msc.loadScene(submit, "PaymentScreen.fxml", "Payment Screen");
+    msc.loadScene(submit,"PaymentScreen.fxml","Payment Screen");
+
 
 
   }
-
   @FXML
   void updatePasswordAction(ActionEvent event) throws SQLException {
     boolean passwordMatched = false;
@@ -92,14 +92,16 @@ public class ClientScreenController implements Initializable {
     DatabaseManager dm = new DatabaseManager();
 
     if (password.equals(cPassword)) {
-      passwordMatched = dm.verifyPasswordorPin("Customer", userId, oPassword, "password");
-      if (passwordMatched = true) {
-        dm.changePinOrPass("Customer", userId, "password", password);
+      passwordMatched = dm.verifyPasswordorPin("Customer",userId,oPassword,"password");
+      if(passwordMatched = true){
+        dm.changePinOrPass("Customer",userId,"password",password);
         System.out.println("password Changed");
-      } else {
+      }
+      else{
         passwordMatched = false;
       }
-    } else {
+    }
+    else{
       Main.errorMessage("Password does not match");
     }
   }
@@ -115,20 +117,24 @@ public class ClientScreenController implements Initializable {
     DatabaseManager dm = new DatabaseManager();
 
     if (pin.equals(cPin)) {
-      pinMatched = dm.verifyPasswordorPin("Customer", userId, oPin, "verifypin");
-      if (pinMatched = true) {
-        dm.changePinOrPass("Customer", userId, "verifypin", pin);
+      pinMatched = dm.verifyPasswordorPin("Customer",userId,oPin,"verifypin");
+      if(pinMatched = true){
+        dm.changePinOrPass("Customer",userId,"verifypin",pin);
         System.out.println("pin Changed");
-      } else {
+      }
+      else{
         pinMatched = false;
       }
 
-    } else {
-      Main.errorMessage("Pin does not match");
+    }
+    else{
+    	Main.errorMessage("Pin does not match");
     }
 
 
+
   }
+
 
 
   public void initialize(URL url, ResourceBundle resources) {
@@ -141,16 +147,15 @@ public class ClientScreenController implements Initializable {
       e.printStackTrace();
     }
 
+
     idSpace1.setText(userId);
     idSpace11.setText(userId);
     setRoomSelectCombo();
   }
-
   private void setRoomSelectCombo() {
     DateAndCostManager dm = new DateAndCostManager();
     dm.setRoomSelectCombo(roomSelectCombo);
   }
-
   public static String username;
 
 
@@ -158,11 +163,12 @@ public class ClientScreenController implements Initializable {
   void submitDate(ActionEvent event) throws SQLException {
     MainScreenController msc = new MainScreenController();
 
+
     String gettId = idSpace1.getText();
     username = gettId;
-    System.out.println("I got the id as " + gettId);
+        System.out.println("I got the id as " +gettId);
     DateAndCostManager dc = new DateAndCostManager();
-    List newList = dc.dateCalc(roomSelectCombo, startDate, startMonth, endDate, endMonth);
+    List newList = dc.dateCalc(roomSelectCombo, startDate,startMonth, endDate,endMonth );
 
 
     /*String startDate = startDat.getText();
@@ -215,23 +221,26 @@ public class ClientScreenController implements Initializable {
     String dateToDisplay = (String) newList.get(5);
     System.out.println("The booking was between " + dateToDisplay);
 
-    String result = db.pushDateToRoom(roomSelectCombo.getValue(), gettId, dateList);
+    String result = db.pushDateToRoom(roomSelectCombo.getValue(),gettId,dateList);
 
-    if (result != null) {
-      System.out.println(result + " Looking for result");
 
-      db.pushDate(gettId, result, dateList, cost, dateToDisplay);
-      orderNo = db.orderNumber();
+    if (result != null){
+      System.out.println(result+" Looking for result");
+
+      db.pushDate(gettId,result,dateList,cost,dateToDisplay);
+      orderNo =  db.orderNumber();
       System.out.println("order no is " + orderNo);
 
 
-    } else {
+    }
+    else{
       Main.infoMessage("Sorry the rooms selected are not available for those dates");
     }
 
+
     System.out.println(dateList);
 
-    msc.loadScene(submit, "PaymentScreen.fxml", "Payment Screen");
+    msc.loadScene(submit,"PaymentScreen.fxml","Payment Screen");
 
 
 
@@ -248,6 +257,7 @@ public class ClientScreenController implements Initializable {
       e.printStackTrace();
     }*/
   }
+
 
 
 }
