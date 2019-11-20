@@ -11,13 +11,14 @@ import javax.xml.soap.Text;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class PaymentScreenController {
+public class PaymentScreenController implements Initializable {
 
   @FXML
   private Button backFrompayment;
@@ -82,8 +83,9 @@ public class PaymentScreenController {
 	
     MainScreenController msc = new MainScreenController();
 
-    setComboBoxText();    
-    userID= ClientScreenController.userId;
+    setComboBoxText();  
+    System.out.println("Logged User:" + Main.loggedInUser);
+    userID = Main.loggedInUser;
 
     idSpace.setText(userID);
     orderNo.setText(String.valueOf(ClientScreenController.orderNo));

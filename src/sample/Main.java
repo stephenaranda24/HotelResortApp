@@ -40,5 +40,4 @@ public class Main extends Application {
       		  message, "Message", JOptionPane.INFORMATION_MESSAGE);
 	}
 
-
 }

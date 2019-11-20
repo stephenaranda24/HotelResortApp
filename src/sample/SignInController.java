@@ -29,14 +29,16 @@ public class SignInController implements Initializable {
 	@FXML
 	private Button button_forgot;
 	@FXML
+	private Button button_back;
+	@FXML
 	private TextArea idSpace;
-
 
 	@Override
 	public void initialize(URL url, ResourceBundle resources) {
 		setComboBoxText();
 		loginButtonPressed();
 		forgotButtonPressed();
+		backButtonPressed();
 	}
 
 	private void setComboBoxText() {
@@ -61,35 +63,28 @@ public class SignInController implements Initializable {
 						System.out.println("Username: " + username);
 						System.out.println("Password: " + password);
 						System.out.println("Type: " + type);
-						db.startDatabase(username,password,type);
-						boolean verified = db.LogInAccount(username,password,type);
-						//"Owner", "Customer", "Desk_Assistant", "Custodian"
+						db.startDatabase(username, password, type);
+						boolean verified = db.LogInAccount(username, password, type);
+						// "Owner", "Customer", "Desk_Assistant", "Custodian"
 
 						if (verified == true && type == "Customer") {
 							Main.loggedInUser = username;
 							msc.loadScene(button_login, "ClientScreen.fxml", "Main cScreen");
-
-						}
-						else if (verified == true && type == "Owner") {
+						} else if (verified == true && type == "Owner") {
 							Main.loggedInUser = username;
 							msc.loadScene(button_login, "OwnerScreen.fxml", "Main cScreen");
 
-						}
-						else if (verified == true && type == "Custodian") {
+						} else if (verified == true && type == "Custodian") {
 							Main.loggedInUser = username;
 							msc.loadScene(button_login, "CustodianScreen.fxml", "Main cScreen");
 
-						}
-						else if (verified == true && type == "Desk_Assistant") {
+						} else if (verified == true && type == "Desk_Assistant") {
 							Main.loggedInUser = username;
 							msc.loadScene(button_login, "Desk_AssistantScreen.fxml", "Main cScreen");
 
-						}
-						else{
+						} else {
 							Main.errorMessage("Password or Username is incorrect");
 						}
-
-
 
 					} else {
 						Main.infoMessage("Please be sure that all required fields are completed");
@@ -97,7 +92,6 @@ public class SignInController implements Initializable {
 				} catch (SQLException ex) {
 					ex.printStackTrace();
 				}
-
 
 			}
 		});
@@ -108,9 +102,23 @@ public class SignInController implements Initializable {
 			public void handle(MouseEvent event) {
 				System.out.println("(Forgot Pressed)");
 				// go to forgot username screen
+
 			}
 
 		});
+	}
+
+	void backButtonPressed() {
+
+		button_back.setOnMousePressed(new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent event) {
+				System.out.println("(Back Pressed)");
+
+				MainScreenController msc = new MainScreenController();
+				msc.loadScene(button_back, "MainScreenSample.fxml", "Main Screen");
+			}
+		});
+
 	}
 
 }
