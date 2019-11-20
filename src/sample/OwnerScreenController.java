@@ -3,7 +3,7 @@ package sample;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
+
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -64,6 +64,7 @@ public class OwnerScreenController implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle resources) {
     setComboBoxText();
+    idSpace1.setText(Main.loggedInUser);
     TF_name.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent e) {
@@ -110,11 +111,6 @@ public class OwnerScreenController implements Initializable {
 
             db.addByOwner(type,  email, userName,
                 password ,  pintoVerifyInInt);
-
-
-
-
-
 
           } else {
             Main.errorMessage("Password or PIN does not match");

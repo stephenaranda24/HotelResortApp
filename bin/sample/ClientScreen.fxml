@@ -162,14 +162,24 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView layoutX="172.0" layoutY="18.0" prefHeight="583.0" prefWidth="924.0">
-                                 <columns>
-                                    <TableColumn prefWidth="75.0" text="C1" />
-                                    <TableColumn prefWidth="75.0" text="C2" />
-                                 </columns>
+                              <Button fx:id="tempButton" layoutX="741.0" layoutY="257.0" mnemonicParsing="false" onAction="#tempButton" text="Pay" />
+                              <Label fx:id="tempLabel" layoutX="517.0" layoutY="257.0" text="These bookings are currently unpaid." />
+                              <TableView fx:id="tableUnpaid" layoutX="369.0" layoutY="52.0" prefHeight="200.0" prefWidth="408.0">
+                                <columns>
+                                  <TableColumn fx:id="upTableRoomNo" prefWidth="75.0" text="Room Type" />
+                                  <TableColumn fx:id="upTableDate" prefWidth="75.0" text="Date" />
+                                    <TableColumn fx:id="upTableAmount" prefWidth="75.0" text="Amount" />
+                                    <TableColumn fx:id="upTableInvoice" prefWidth="75.0" text="Invoice" />
+                                </columns>
                               </TableView>
-                              <Button fx:id="tempButton" layoutX="61.0" layoutY="155.0" mnemonicParsing="false" onAction="#tempButton" text="TempButton" />
-                              <Label fx:id="tempLabel" layoutX="61.0" layoutY="64.0" text="10230" />
+                              <TableView fx:id="tablePaid" layoutX="369.0" layoutY="331.0" prefHeight="200.0" prefWidth="367.0">
+                                <columns>
+                                  <TableColumn fx:id="pTableRoomNo" prefWidth="75.0" text="Room Type" />
+                                  <TableColumn fx:id="pTableDate" prefWidth="75.0" text="Date" />
+                                    <TableColumn fx:id="pTableAmount" prefWidth="75.0" text="Amount" />
+                                    <TableColumn fx:id="pTableInvoice" prefWidth="75.0" text="Invoice" />
+                                </columns>
+                              </TableView>
                            </children>
                         </AnchorPane>
                     </content>
