@@ -10,19 +10,28 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 public class OwnerScreenController implements Initializable {
-
-  @FXML
-  private Button submit;
-
   @FXML
   private Label idSpace1;
 
   @FXML
   private Button logout;
+
+  @FXML
+  private ComboBox<String> CB_type1;
+
+  @FXML
+  private PasswordField pin_User;
+
+  @FXML
+  private TextField userName_Pass;
+
+  @FXML
+  private Button submitVerify;
 
   @FXML
   private TextField fullName;
@@ -45,11 +54,14 @@ public class OwnerScreenController implements Initializable {
   @FXML
   private TextField confirmPin;
 
+
   @FXML
   private ComboBox<String> CB_type;
 
   @FXML
   private Button button_create;
+  public static String changeType;
+  public static String changeUserPassword;
 
 
 
@@ -71,6 +83,26 @@ public class OwnerScreenController implements Initializable {
         System.out.println("Name: ");
       }
     });
+    submitVerify.setOnMousePressed(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent e) {
+        MainScreenController msc = new MainScreenController();
+        try{
+          String userName = userName_Pass.getText();
+          String verifyPin = pin_User.getText();
+          Integer verifyPinInInt = Integer.parseInt(verifyPin);
+          String type = CB_type1.getValue();
+
+
+
+
+        } catch (Exception ex) {
+          ex.printStackTrace();
+        }
+
+
+      }
+    });
+
 
     button_create.setOnMousePressed(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent e) {

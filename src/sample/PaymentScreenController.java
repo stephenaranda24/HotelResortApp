@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.fxml.Initializable;
 import javax.xml.soap.Text;
 
 import javafx.event.ActionEvent;
@@ -77,8 +78,7 @@ public class PaymentScreenController implements Initializable {
 
   }
 
-
-
+  @FXML
   public void initialize(URL url, ResourceBundle resources) {
 	
     MainScreenController msc = new MainScreenController();

@@ -41,8 +41,6 @@ public class DateAndCostManager {
     totalDaysBooked = (long) Math.ceil((double) totalDaysBooked / 86400000);
     String dateBookedToDisplay = startBookingFDate + " - " + endBookingFDate;
     System.out.println(dateBookedToDisplay);
-    System.out.println("result sdfjosaekjfkjdskfndsjfndskjlfnkjdskjfbsdkjfsdkjfnkndsjllkjfns   "
-        + totalDaysBooked);
     double roomsCost = PricePerNight.valueOf(room).getValue();
     Double bookingCost = totalDaysBooked*roomsCost + (totalDaysBooked*roomsCost*TAXRATE);
     ArrayList<String> dateList = new ArrayList<>();
