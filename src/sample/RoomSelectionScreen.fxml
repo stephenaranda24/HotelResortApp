@@ -12,107 +12,144 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="926.0" prefWidth="1415.0" xmlns="http://javafx.com/javafx/8.0.171">
+<GridPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity"
+  minHeight="-Infinity" minWidth="-Infinity" prefHeight="926.0" prefWidth="1415.0"
+  xmlns="http://javafx.com/javafx/8.0.171">
   <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <TabPane maxHeight="-Infinity" prefHeight="1014.0" prefWidth="1417.0" tabClosingPolicy="UNAVAILABLE">
-                     <tabs>
-                        <Tab text="Book Room">
-                           <content>
-                              <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="992.0" prefWidth="1545.0">
-                                 <children>
-                                    <Button layoutX="485.0" layoutY="417.0" mnemonicParsing="false" text="Submit" fx:id="submit" />
-                                    <Button layoutX="68.0" layoutY="422.0" mnemonicParsing="false" text="Back" />
-                                    <GridPane layoutX="86.0" layoutY="89.0" prefHeight="270.0" prefWidth="587.0">
-                                       <children>
-                                          <Label text="Check-in Month" />
-                                          <Label GridPane.columnIndex="1" text="Check-In Day" />
-                                          <Label GridPane.rowIndex="2" text="Check-Out Month" />
-                                          <Label GridPane.columnIndex="1" GridPane.rowIndex="2" text="Check-Out Day" />
-                                          <TextField GridPane.rowIndex="1" maxWidth="-Infinity" prefHeight="25.0" prefWidth="170.0" fx:id="startMonth" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" maxWidth="-Infinity" prefHeight="25.0" prefWidth="164.0" fx:id="endDate" />
-                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="-Infinity" prefHeight="25.0" prefWidth="163.0" fx:id="startDat" />
-                                          <TextField GridPane.rowIndex="3" maxWidth="-Infinity" prefHeight="25.0" prefWidth="171.0" fx:id="endMonth" />
-                                       </children>
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                    <GridPane layoutX="763.0" layoutY="9.0" prefHeight="431.0" prefWidth="556.0">
-                                       <children>
-                                          <ImageView GridPane.columnIndex="1" GridPane.rowIndex="2" fitHeight="95.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@Room C.jpg" />
-                                             </image></ImageView>
-                                          <ImageView GridPane.columnIndex="1" fitHeight="95.0" fitWidth="147.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@Room A.jpg" />
-                                             </image></ImageView>
-                                          <ImageView GridPane.columnIndex="1" GridPane.rowIndex="1" fitHeight="116.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@Room B.jpg" />
-                                             </image></ImageView>
-                                          <ImageView GridPane.columnIndex="1" GridPane.rowIndex="3" fitHeight="98.0" fitWidth="154.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@Room D.jpg" />
-                                             </image></ImageView>
-                                          <Label GridPane.columnIndex="2" GridPane.rowIndex="3" prefHeight="130.0" prefWidth="164.0" text="1 bed" wrapText="true" />
-                                          <Label GridPane.columnIndex="2" GridPane.rowIndex="1" prefHeight="130.0" prefWidth="164.0" text="3 beds&#10;" wrapText="true" />
-                                          <Label GridPane.columnIndex="2" GridPane.rowIndex="2" prefHeight="130.0" prefWidth="164.0" text="2 beds&#10;" wrapText="true" />
-                                          <Label GridPane.columnIndex="3" text="Price:" />
-                                          <Label GridPane.columnIndex="3" GridPane.rowIndex="1" text="Price:" />
-                                          <Label GridPane.columnIndex="3" GridPane.rowIndex="2" text="Price:" />
-                                          <Label GridPane.columnIndex="3" GridPane.rowIndex="3" text="Price:" />
-                                          <Label GridPane.columnIndex="2" prefHeight="130.0" prefWidth="164.0" text="4 beds&#10;" wrapText="true" />
-                                          <Label text="Room A" />
-                                          <Label GridPane.rowIndex="1" text="Room B" />
-                                          <Label GridPane.rowIndex="2" text="Room C" />
-                                          <Label GridPane.rowIndex="3" text="Room D" />
-                                       </children>
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.0" minWidth="10.0" prefWidth="170.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0" prefWidth="269.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints maxHeight="156.0" minHeight="10.0" prefHeight="114.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="193.0" minHeight="10.0" prefHeight="119.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="136.0" minHeight="0.0" prefHeight="97.0" vgrow="SOMETIMES" />
-                                          <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="113.33331298828125" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                    </GridPane>
-                                    <Label layoutX="1229.0" layoutY="6.0" text="Null" fx:id="idSpace1" />
-                                    <Label layoutX="1148.0" layoutY="6.0" text="Logged in as:" />
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </Tab>
-                     </tabs>
-                  </TabPane>
-               </children>
-            </AnchorPane>
-         </children>
-      </AnchorPane>
-   </children>
+    <AnchorPane prefHeight="200.0" prefWidth="200.0">
+      <children>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+          <children>
+            <TabPane maxHeight="-Infinity" prefHeight="1014.0" prefWidth="1417.0"
+              tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Book Room">
+                  <content>
+                    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0"
+                      minWidth="0.0" prefHeight="992.0" prefWidth="1545.0">
+                      <children>
+                        <Button layoutX="485.0" layoutY="417.0" mnemonicParsing="false"
+                          text="Submit" fx:id="submit"/>
+                        <Button layoutX="68.0" layoutY="422.0" mnemonicParsing="false" text="Back"/>
+                        <GridPane layoutX="86.0" layoutY="89.0" prefHeight="270.0"
+                          prefWidth="587.0">
+                          <children>
+                            <Label text="Check-in Month"/>
+                            <Label GridPane.columnIndex="1" text="Check-In Day"/>
+                            <Label GridPane.rowIndex="2" text="Check-Out Month"/>
+                            <Label GridPane.columnIndex="1" GridPane.rowIndex="2"
+                              text="Check-Out Day"/>
+                            <TextField GridPane.rowIndex="1" maxWidth="-Infinity" prefHeight="25.0"
+                              prefWidth="170.0" fx:id="startMonth"/>
+                            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3"
+                              maxWidth="-Infinity" prefHeight="25.0" prefWidth="164.0"
+                              fx:id="endDate"/>
+                            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1"
+                              maxWidth="-Infinity" prefHeight="25.0" prefWidth="163.0"
+                              fx:id="startDat"/>
+                            <TextField GridPane.rowIndex="3" maxWidth="-Infinity" prefHeight="25.0"
+                              prefWidth="171.0" fx:id="endMonth"/>
+                          </children>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                          </rowConstraints>
+                        </GridPane>
+                        <GridPane layoutX="763.0" layoutY="9.0" prefHeight="431.0"
+                          prefWidth="556.0">
+                          <children>
+                            <ImageView GridPane.columnIndex="1" GridPane.rowIndex="2"
+                              fitHeight="95.0" fitWidth="200.0" pickOnBounds="true"
+                              preserveRatio="true">
+                              <image>
+                                <Image url="@Room C.jpg"/>
+                              </image>
+                            </ImageView>
+                            <ImageView GridPane.columnIndex="1" fitHeight="95.0" fitWidth="147.0"
+                              pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                <Image url="@Room A.jpg"/>
+                              </image>
+                            </ImageView>
+                            <ImageView GridPane.columnIndex="1" GridPane.rowIndex="1"
+                              fitHeight="116.0" fitWidth="144.0" pickOnBounds="true"
+                              preserveRatio="true">
+                              <image>
+                                <Image url="@Room B.jpg"/>
+                              </image>
+                            </ImageView>
+                            <ImageView GridPane.columnIndex="1" GridPane.rowIndex="3"
+                              fitHeight="98.0" fitWidth="154.0" pickOnBounds="true"
+                              preserveRatio="true">
+                              <image>
+                                <Image url="@Room D.jpg"/>
+                              </image>
+                            </ImageView>
+                            <Label GridPane.columnIndex="2" GridPane.rowIndex="3" prefHeight="130.0"
+                              prefWidth="164.0" text="1 bed" wrapText="true"/>
+                            <Label GridPane.columnIndex="2" GridPane.rowIndex="1" prefHeight="130.0"
+                              prefWidth="164.0" text="3 beds&#10;" wrapText="true"/>
+                            <Label GridPane.columnIndex="2" GridPane.rowIndex="2" prefHeight="130.0"
+                              prefWidth="164.0" text="2 beds&#10;" wrapText="true"/>
+                            <Label GridPane.columnIndex="3" text="Price:"/>
+                            <Label GridPane.columnIndex="3" GridPane.rowIndex="1" text="Price:"/>
+                            <Label GridPane.columnIndex="3" GridPane.rowIndex="2" text="Price:"/>
+                            <Label GridPane.columnIndex="3" GridPane.rowIndex="3" text="Price:"/>
+                            <Label GridPane.columnIndex="2" prefHeight="130.0" prefWidth="164.0"
+                              text="4 beds&#10;" wrapText="true"/>
+                            <Label text="Room A"/>
+                            <Label GridPane.rowIndex="1" text="Room B"/>
+                            <Label GridPane.rowIndex="2" text="Room C"/>
+                            <Label GridPane.rowIndex="3" text="Room D"/>
+                          </children>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.0" minWidth="10.0"
+                              prefWidth="170.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0"
+                              prefWidth="269.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0"
+                              prefWidth="100.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0"
+                              prefWidth="100.0"/>
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="156.0" minHeight="10.0" prefHeight="114.0"
+                              vgrow="SOMETIMES"/>
+                            <RowConstraints maxHeight="193.0" minHeight="10.0" prefHeight="119.0"
+                              vgrow="SOMETIMES"/>
+                            <RowConstraints maxHeight="136.0" minHeight="0.0" prefHeight="97.0"
+                              vgrow="SOMETIMES"/>
+                            <RowConstraints maxHeight="136.0" minHeight="10.0"
+                              prefHeight="113.33331298828125" vgrow="SOMETIMES"/>
+                          </rowConstraints>
+                        </GridPane>
+                        <Label layoutX="1229.0" layoutY="6.0" text="Null" fx:id="idSpace1"/>
+                        <Label layoutX="1148.0" layoutY="6.0" text="Logged in as:"/>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+          </children>
+        </AnchorPane>
+      </children>
+    </AnchorPane>
+  </children>
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
   </columnConstraints>
-   <rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
   </rowConstraints>
 </GridPane>
