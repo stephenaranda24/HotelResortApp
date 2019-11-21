@@ -39,6 +39,10 @@ public class SignInController implements Initializable {
 		loginButtonPressed();
 		forgotButtonPressed();
 		backButtonPressed();
+		TF_username.setText("alpha@bravo.com");
+		PF_password.setText("hotel");
+		CB_type.setValue("Owner");
+		
 	}
 
 	private void setComboBoxText() {
