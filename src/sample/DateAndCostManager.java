@@ -12,20 +12,22 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 public class DateAndCostManager {
+
   final double TAXRATE = 0.065;
+
   public void setRoomSelectCombo(ComboBox<String> roomSelectCombo) {
     roomSelectCombo.setPromptText("Select a room.");
     roomSelectCombo.getItems().addAll("A", "B", "C", "D");
   }
-  public List<Serializable> dateCalc(ComboBox<String> roomSelectCombo, TextField startDate, TextField startMonth, TextField endDate,TextField endMonth ){
 
+  public List<Serializable> dateCalc(ComboBox<String> roomSelectCombo, TextField startDate,
+      TextField startMonth, TextField endDate, TextField endMonth) {
 
     String SartookingDate = startDate.getText();
     String startBookingMonths = startMonth.getText();
     String endBookingDate = endDate.getText();
     String endBookingMonths = endMonth.getText();
     String room = roomSelectCombo.getValue();
-
 
     String dateMonthStart = String.format("%s/%s/2019", startBookingMonths, SartookingDate);
     String dateMonthend = String.format("%s/%s/2019", endBookingMonths, endBookingDate);
@@ -42,9 +44,9 @@ public class DateAndCostManager {
     String dateBookedToDisplay = startBookingFDate + " - " + endBookingFDate;
     System.out.println(dateBookedToDisplay);
     double roomsCost = PricePerNight.valueOf(room).getValue();
-    Double bookingCost = totalDaysBooked*roomsCost + (totalDaysBooked*roomsCost*TAXRATE);
+    Double bookingCost = totalDaysBooked * roomsCost + (totalDaysBooked * roomsCost * TAXRATE);
     ArrayList<String> dateList = new ArrayList<>();
-    for(int i =0; i<totalDaysBooked;i++){
+    for (int i = 0; i < totalDaysBooked; i++) {
       Calendar cal = Calendar.getInstance();
       SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 
@@ -54,16 +56,13 @@ public class DateAndCostManager {
       Date addDate = cal.getTime();
       System.out.println(addDate);
       String finalDateformat = sdf.format(addDate);
-      System.out.println(finalDateformat );
+      System.out.println(finalDateformat);
       dateList.add(finalDateformat);
     }
     String dateToDisplay = String.format(dateMonthStart) + " - " + String.format(dateMonthend);
 
-
-
-
-
-    return Arrays.asList(totalDaysBooked,startBookingFDate,endBookingFDate,bookingCost,dateList,dateToDisplay);
+    return Arrays.asList(totalDaysBooked, startBookingFDate, endBookingFDate, bookingCost, dateList,
+        dateToDisplay);
   }
 
 

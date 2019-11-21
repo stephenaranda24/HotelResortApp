@@ -164,20 +164,20 @@
                            <children>
                               <Button fx:id="tempButton" layoutX="741.0" layoutY="257.0" mnemonicParsing="false" onAction="#tempButton" text="Pay" />
                               <Label fx:id="tempLabel" layoutX="517.0" layoutY="257.0" text="These bookings are currently unpaid." />
-                              <TableView fx:id="tableUnpaid" layoutX="369.0" layoutY="52.0" prefHeight="200.0" prefWidth="408.0">
+                              <TableView layoutX="369.0" layoutY="52.0" prefHeight="200.0" prefWidth="412.0" fx:id="tableUnpaid">
                                 <columns>
                                   <TableColumn fx:id="upTableRoomNo" prefWidth="75.0" text="Room Type" />
-                                  <TableColumn fx:id="upTableDate" prefWidth="75.0" text="Date" />
-                                    <TableColumn fx:id="upTableAmount" prefWidth="75.0" text="Amount" />
-                                    <TableColumn fx:id="upTableInvoice" prefWidth="75.0" text="Invoice" />
+                                  <TableColumn prefWidth="127.0" text="Date" fx:id="upTableDate" />
+                                    <TableColumn prefWidth="102.0" text="Amount" fx:id="upTableAmount" />
+                                    <TableColumn prefWidth="109.0" text="Invoice" fx:id="upTableInvoice" />
                                 </columns>
                               </TableView>
-                              <TableView fx:id="tablePaid" layoutX="369.0" layoutY="331.0" prefHeight="200.0" prefWidth="367.0">
+                              <TableView layoutX="369.0" layoutY="331.0" prefHeight="200.0" prefWidth="411.0" fx:id="tablePaid">
                                 <columns>
                                   <TableColumn fx:id="pTableRoomNo" prefWidth="75.0" text="Room Type" />
-                                  <TableColumn fx:id="pTableDate" prefWidth="75.0" text="Date" />
-                                    <TableColumn fx:id="pTableAmount" prefWidth="75.0" text="Amount" />
-                                    <TableColumn fx:id="pTableInvoice" prefWidth="75.0" text="Invoice" />
+                                  <TableColumn prefWidth="127.0" text="Date" fx:id="pTableDate" />
+                                    <TableColumn prefWidth="109.0" text="Amount" fx:id="pTableAmount" />
+                                    <TableColumn prefWidth="99.0" text="Invoice" fx:id="pTableInvoice" />
                                 </columns>
                               </TableView>
                            </children>
