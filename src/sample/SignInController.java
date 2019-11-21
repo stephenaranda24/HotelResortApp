@@ -84,7 +84,7 @@ public class SignInController implements Initializable {
 
 						} else if (verified == true && type == "Desk_Assistant") {
 							Main.loggedInUser = username;
-							msc.loadScene(button_login, "Desk_AssistantScreen.fxml", "Main cScreen");
+							msc.loadScene(button_login, "DeskAssistantScreen.fxml", "Main cScreen");
 
 						} else {
 							Main.errorMessage("Password or Username is incorrect");

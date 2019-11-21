@@ -73,6 +73,9 @@ public class ClientScreenController implements Initializable {
 	private Button updatePin;
 	public static String userId;
 	public static int orderNo;
+	private ObservableList<CustomerBooking> paid;
+	private ObservableList<CustomerBooking> unpaid;
+
 	@FXML
 	TableView<CustomerBooking> tableUnpaid;
 	@FXML
@@ -94,6 +97,7 @@ public class ClientScreenController implements Initializable {
 	@FXML
 	TableColumn<CustomerBooking, Boolean> pTableInvoice;
 
+
 	@FXML
 	void tempButton(ActionEvent event) {
 		MainScreenController msc = new MainScreenController();
@@ -110,7 +114,7 @@ public class ClientScreenController implements Initializable {
 			
 			// After transaction has been paid:
 			CustomerBooking selection = tableUnpaid.getSelectionModel().getSelectedItem();
-			selection.setPaid(true);
+			selection.setPaid("TRUE");
 			// add booking to paid table
 			ObservableList<CustomerBooking> nowPaid = FXCollections.observableArrayList(//
 					tableUnpaid.getSelectionModel().getSelectedItem()); //
@@ -179,6 +183,13 @@ public class ClientScreenController implements Initializable {
 		try {
 			DatabaseManager db = new DatabaseManager();
 			userId = db.getTheName(Main.loggedInUser);
+			paid =FXCollections.observableArrayList(db.BookingStatus(userId,"true"));
+			System.out.println(userId+ "dsadasdada");
+			System.out.println(paid);
+			unpaid =FXCollections.observableArrayList(db.BookingStatus(userId,"false"));
+			tableUnpaid.setItems(unpaid);
+			tablePaid.setItems(paid);
+
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -187,8 +198,8 @@ public class ClientScreenController implements Initializable {
 		idSpace1.setText(userId);
 		idSpace11.setText(userId);
 		setRoomSelectCombo();
-		setTableForPaidBookings();
-		setTableForUnpaidBookings();
+
+
 
 	}
 
@@ -284,7 +295,7 @@ public class ClientScreenController implements Initializable {
 
 	private void setTableForUnpaidBookings() {
 		ObservableList<CustomerBooking> unpaidBookings = FXCollections.observableArrayList(//
-				new CustomerBooking(0, Main.loggedInUser, "A", "11/19/19", false)); //
+				new CustomerBooking(0, Main.loggedInUser, "A", "11/19/19", 88.00, "no")); //
 
 		upTableRoomNo.setCellValueFactory(new PropertyValueFactory<CustomerBooking, String>("room"));
 		upTableDate.setCellValueFactory(new PropertyValueFactory<CustomerBooking, String>("date"));
@@ -297,7 +308,7 @@ public class ClientScreenController implements Initializable {
 	private void setTableForPaidBookings() {
 		// set table for paid bookings
 		ObservableList<CustomerBooking> paidBookings = FXCollections.observableArrayList(//
-				new CustomerBooking(0, Main.loggedInUser, "B", "10/19/19", true)); //
+				new CustomerBooking(0, Main.loggedInUser, "B", "10/19/19",88.00, "NO")); //
 
 		pTableRoomNo.setCellValueFactory(new PropertyValueFactory<CustomerBooking, String>("room"));
 		pTableDate.setCellValueFactory(new PropertyValueFactory<CustomerBooking, String>("date"));

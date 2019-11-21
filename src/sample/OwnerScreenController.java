@@ -85,7 +85,7 @@ public class OwnerScreenController implements Initializable {
 	public void initialize(URL url, ResourceBundle resources) {
 		setComboBoxText();
 		idSpace1.setText(Main.loggedInUser);
-		setActivityTableView();
+
 		setRoomStatus();
 		TF_name.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
@@ -151,7 +151,7 @@ public class OwnerScreenController implements Initializable {
 
 	}
 
-	private void setActivityTableView() {
+	/*private void setActivityTableView() {
 		ObservableList<CustomerBooking> bookings = FXCollections.observableArrayList(//
 				new CustomerBooking(10, "Jared12", "A", "11/19/19", false)); //
 
@@ -162,7 +162,7 @@ public class OwnerScreenController implements Initializable {
 		tableCost.setCellValueFactory(new PropertyValueFactory<CustomerBooking, Double>("cost"));
 		tablePaid.setCellValueFactory(new PropertyValueFactory<CustomerBooking, Boolean>("paid"));
 		tableActivity.setItems(bookings);
-	}
+	}*/
 
 	private void setRoomStatus() {
 		Label[] roomStatus = { labelRoom1, labelRoom2, labelRoom3, labelRoom4, //

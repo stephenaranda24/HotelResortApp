@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Currency;
 import java.util.HashMap;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class DatabaseManager extends Main {
 	public DatabaseManager() throws SQLException {
 		// "jdbc:h2:C:\\Users\\shafi\\IdeaProjects\\HotelResortApp\\res\\ResortData"
 		this.con = DriverManager
-				.getConnection("jdbc:h2:C:\\Users\\Romanov\\eclipse-workspace\\HotelResortApp-master\\res\\ResortData");
+				.getConnection("jdbc:h2:C:\\Users\\shafi\\IdeaProjects\\HotelResortApp\\res\\ResortData");
 
 	}
 
@@ -229,36 +230,116 @@ public class DatabaseManager extends Main {
 
 	}
 
-	public boolean LogInAccount(String email, String password, String role) {
-		Boolean verified = false;
+  public boolean LogInAccount( String email, String password ,String role) {
+    Boolean verified = false;
+//    //"Owner", "Customer", "Desk_Assistant", "Custodian"
+    try {
+      String query = "Select * from ";
+      switch (role.toLowerCase()){
+        case "owner":
+          query += "owner ";
+          break;
+        case "customer":
+          query += "customer ";
+          break;
+        case "desk_assistant":
+          query += "Desk_Assistant ";
+          break;
+        case "custodian":
+          query += "CUSTODIAN ";
+          break;
+        default:
+          query += "something ";
+          break;
+      }
+      query += "where email = ?";
+
+      ResultSet rs;
+      PreparedStatement stmt = con.prepareStatement(query);
+      stmt.setString(1,email);
+      rs = stmt.executeQuery();
+
+      if(rs.next()){
+        System.out.println("usimg this name:" + password);
+        String pass = rs.getString("PASSWORD");
+        System.out.println(pass);
+        if (pass.equals(password)){
+          System.out.println("Successfull");
+          verified = true;
+        }
+        else{
+          System.out.println("Wrong Password");
+          verified = false;
+        }
+      }
+      else{
+        System.out.println("Email DOESNT EXIST");
+        verified = false;
+      }
+
+    } catch (SQLException var6) {
+      this.sqlExceptionHandler(var6);
+    }
+    return verified;
+  }
+  //method for displaying table information
+	public List<CustomerBooking> BookingStatus(String userName, String status){
+
 		try {
-			ResultSet rs = null;
+			String query = "Select * from invoiceno where username = ? AND PAY = ";
+			System.out.println(userName+"Error");
 
-			Statement stmt = this.con.createStatement();
+			switch (status.toLowerCase()){
+				case "true":
+					query += "'yes'";
+					break;
+				case "false":
+					query += "'NO'";
+					break;
+				case "all":
+					query += "'yes' OR PAY = 'NO' ";
+					break;
 
-			rs = stmt.executeQuery(String.format("SELECT * FROM  %s WHERE EMAIL = '%s'", role, email));
-			if (rs.next()) {
-				System.out.println("usimg this name:" + password);
-				String pass = rs.getString("PASSWORD");
-				System.out.println(pass);
-				if (pass.equals(password)) {
-					System.out.println("Successfull");
-					verified = true;
-				} else {
-					System.out.println("Wrong Password");
-					verified = false;
-				}
-			} else {
-				System.out.println("Email DOESNT EXIST");
-				verified = false;
+				default:
+					query += "null ";
+					break;
+			}
+			ResultSet rs;
+			System.out.println(userName+ "PPPPPPPPPPP");
+			System.out.println(query);
+			ArrayList<CustomerBooking> paymentStatus = new ArrayList<>();
+			PreparedStatement stmt = con.prepareStatement(query);
+			stmt.setString(1,userName);
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				int invoice = rs.getInt("Orderno");
+				String cname = rs.getString("username");
+				String room = rs.getString("roomname");
+				String date = rs.getString("DisplayDate");
+				double cost = rs.getDouble("Cost");
+				String paid = rs.getString("pay");
+				CustomerBooking cb = new CustomerBooking(invoice,cname,room,date,cost,paid);
+
+
+				paymentStatus.add(cb);
+
+
 			}
 
-		} catch (SQLException var6) {
-			this.sqlExceptionHandler(var6);
+
+
+
+
+			return paymentStatus;
+
+			} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return verified;
+		return null;
 	}
 
+
+//Method for saving card information to the database
 	public void saveEmailCardTable(String userName, String email) {
 		try {
 			ResultSet rs = null;

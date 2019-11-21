@@ -7,19 +7,20 @@ public class CustomerBooking {
 	private String room;
 	private String date;
 	private double cost;
-	private boolean paid;
+	private String paid;
 
 	/*
 	 * public CustomerBooking(String roomType, String date, boolean paid) { this(0,
 	 * Main.loggedInUser, roomType, date, paid); }
 	 */
 
-	public CustomerBooking(int invoiceNumber, String customerName, String roomType, String date, boolean paid) {
-		this.invoice = invoiceNumber;
-		this.cname = customerName;
-		this.room = roomType;
+	public CustomerBooking(int invoice, String cname, String room, String date, double cost,
+			String paid) {
+		this.invoice = invoice;
+		this.cname = cname;
+		this.room = room;
 		this.date = date;
-		this.cost = PricePerNight.valueOf(roomType).getValue();
+		this.cost = cost;
 		this.paid = paid;
 	}
 
@@ -27,27 +28,47 @@ public class CustomerBooking {
 		return invoice;
 	}
 
+	public void setInvoice(int invoice) {
+		this.invoice = invoice;
+	}
+
 	public String getCname() {
 		return cname;
+	}
+
+	public void setCname(String cname) {
+		this.cname = cname;
 	}
 
 	public String getRoom() {
 		return room;
 	}
 
+	public void setRoom(String room) {
+		this.room = room;
+	}
+
 	public String getDate() {
 		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 	public double getCost() {
 		return cost;
 	}
 
-	public void setPaid(boolean paid) {
-		this.paid = paid;
+	public void setCost(double cost) {
+		this.cost = cost;
 	}
 
-	public boolean isPaid() {
+	public String getPaid() {
 		return paid;
+	}
+
+	public void setPaid(String paid) {
+		this.paid = paid;
 	}
 }
