@@ -284,7 +284,7 @@ public class ClientScreenController implements Initializable {
 
 	private void setTableForUnpaidBookings() {
 		ObservableList<CustomerBooking> unpaidBookings = FXCollections.observableArrayList(//
-				new CustomerBooking("A", "11/19/19", false)); //
+				new CustomerBooking(0, Main.loggedInUser, "A", "11/19/19", false)); //
 
 		upTableRoomNo.setCellValueFactory(new PropertyValueFactory<CustomerBooking, String>("room"));
 		upTableDate.setCellValueFactory(new PropertyValueFactory<CustomerBooking, String>("date"));
@@ -297,7 +297,7 @@ public class ClientScreenController implements Initializable {
 	private void setTableForPaidBookings() {
 		// set table for paid bookings
 		ObservableList<CustomerBooking> paidBookings = FXCollections.observableArrayList(//
-				new CustomerBooking("B", "10/19/19", true)); //
+				new CustomerBooking(0, Main.loggedInUser, "B", "10/19/19", true)); //
 
 		pTableRoomNo.setCellValueFactory(new PropertyValueFactory<CustomerBooking, String>("room"));
 		pTableDate.setCellValueFactory(new PropertyValueFactory<CustomerBooking, String>("date"));

@@ -18,73 +18,77 @@
 <ScrollPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1090.0" prefWidth="1226.0" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/8.0.171">
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1116.0" prefWidth="1600.0">
-         <children>
-            <TabPane maxHeight="-Infinity" prefHeight="1014.0" prefWidth="1541.0" tabClosingPolicy="UNAVAILABLE">
-               <tabs>
-                  <Tab text="Book Room">
-                     <content>
-                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1337.0" prefWidth="1541.0">
-                           <children>
-                              <Button layoutX="709.0" layoutY="774.0" mnemonicParsing="false" text="Submit" />
-                              <GridPane layoutX="182.0" layoutY="189.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="551.0" prefWidth="747.0">
-                                 <children>
-                                    <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="5" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" />
-                                    <Label GridPane.rowIndex="6" prefHeight="17.0" prefWidth="113.0" text="Street" />
-                                    <Label GridPane.rowIndex="4" prefHeight="17.0" prefWidth="113.0" text="City" />
-                                    <Label GridPane.columnIndex="1" GridPane.rowIndex="4" prefHeight="17.0" prefWidth="113.0" text="Country" />
-                                    <Label GridPane.columnIndex="1" GridPane.rowIndex="6" prefHeight="17.0" prefWidth="113.0" text="Postal Code" />
-                                    <Label GridPane.columnIndex="1" prefHeight="17.0" prefWidth="113.0" text="Phone Number" />
-                                    <Label GridPane.rowIndex="2" prefHeight="42.0" prefWidth="79.0" text="Email" />
-                                    <Label GridPane.columnIndex="1" GridPane.rowIndex="2" text="Confirm Email" />
-                                    <Label text="Full Name" />
-                                    <TextField GridPane.rowIndex="7" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" />
-                                    <TextField GridPane.rowIndex="5" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" />
-                                    <TextField GridPane.rowIndex="1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" fx:id="fullName" />
-                                    <TextField GridPane.rowIndex="3" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" fx:id="TF_email" />
-                                    <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" fx:id="TF_cemail" />
-                                 </children>
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                              </GridPane>
+      <children>
+        <TabPane maxHeight="-Infinity" prefHeight="1014.0" prefWidth="1541.0" tabClosingPolicy="UNAVAILABLE">
+          <tabs>
+            <Tab text="Book Room">
+              <content>
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1337.0" prefWidth="1541.0">
+                  <children>
+                    <Button layoutX="709.0" layoutY="774.0" mnemonicParsing="false" text="Submit" />
+                    <Button layoutX="40.0" layoutY="54.0" mnemonicParsing="false" text="Logout" />
+                    <GridPane layoutX="182.0" layoutY="189.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="551.0" prefWidth="747.0">
+                      <children>
+                        <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="5" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" />
+                        <Label GridPane.rowIndex="6" prefHeight="17.0" prefWidth="113.0" text="Street" />
+                        <Label GridPane.rowIndex="4" prefHeight="17.0" prefWidth="113.0" text="City" />
+                        <Label GridPane.columnIndex="1" GridPane.rowIndex="4" prefHeight="17.0" prefWidth="113.0" text="Country" />
+                        <Label GridPane.columnIndex="1" GridPane.rowIndex="6" prefHeight="17.0" prefWidth="113.0" text="Postal Code" />
+                        <Label GridPane.columnIndex="1" prefHeight="17.0" prefWidth="113.0" text="Phone Number" />
+                        <Label GridPane.rowIndex="2" prefHeight="42.0" prefWidth="79.0" text="Email" />
+                        <Label GridPane.columnIndex="1" GridPane.rowIndex="2" text="Confirm Email" />
+                        <Label text="Full Name" />
+                        <TextField GridPane.rowIndex="7" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" />
+                        <TextField GridPane.rowIndex="5" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" />
+                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" />
+                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" />
+                        <TextField GridPane.rowIndex="1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" fx:id="fullName" />
+                        <TextField GridPane.rowIndex="3" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" fx:id="TF_email" />
+                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="183.0" fx:id="TF_cemail" />
+                      </children>
+                      <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      </columnConstraints>
+                      <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      </rowConstraints>
+                    </GridPane>
                               <Label layoutX="380.0" layoutY="78.0" text="Guest Information">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
-                  <Tab text="Booking History">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <TableView layoutX="172.0" layoutY="18.0" prefHeight="583.0" prefWidth="924.0">
-                                 <columns>
-                                    <TableColumn prefWidth="75.0" text="C1" />
-                                    <TableColumn prefWidth="75.0" text="C2" />
-                                 </columns>
-                              </TableView>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
-               </tabs>
-            </TabPane>
-         </children></AnchorPane>
+                      <font>
+                        <Font size="18.0" />
+                      </font>
+                    </Label>
+                              <Label layoutX="997.0" layoutY="83.0" text="Logged in as: " />
+                              <Label layoutX="1076.0" layoutY="83.0" text="null" />
+                  </children>
+                </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Booking History">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                    <TableView layoutX="172.0" layoutY="18.0" prefHeight="583.0" prefWidth="924.0">
+                      <columns>
+                        <TableColumn prefWidth="75.0" text="C1" />
+                        <TableColumn prefWidth="75.0" text="C2" />
+                      </columns>
+                    </TableView>
+                  </children>
+                </AnchorPane>
+              </content>
+            </Tab>
+          </tabs>
+        </TabPane>
+      </children>
+    </AnchorPane>
   </content>
 </ScrollPane>
