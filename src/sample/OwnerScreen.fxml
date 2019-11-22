@@ -68,32 +68,72 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="tableActivity" layoutX="172.0" layoutY="18.0" prefHeight="583.0" prefWidth="924.0">
+                              <TableView fx:id="tableActivity" layoutX="14.0" layoutY="7.0" prefHeight="583.0" prefWidth="650.0">
                                  <columns>
-                                    <TableColumn fx:id="invoiceID" prefWidth="136.77777099609375" text="Invoice No">
+                                    <TableColumn fx:id="invoiceID" prefWidth="107.22219848632812" text="Invoice No">
                                    <cellValueFactory><PropertyValueFactory property="invoice" /></cellValueFactory>
                                  </TableColumn>
-                                    <TableColumn fx:id="fullNametoDisplay" prefWidth="189.22222900390625" text="Full Name">
+                                    <TableColumn fx:id="fullNametoDisplay" prefWidth="118.66668701171875" text="Full Name">
                                    <cellValueFactory><PropertyValueFactory property="cname" /></cellValueFactory>
                                  </TableColumn>
-                                    <TableColumn fx:id="roomNo" prefWidth="97.11114501953125" text="Room Number">
+                                    <TableColumn fx:id="roomNo" prefWidth="72.888916015625" text="Room Number">
                                 <cellValueFactory><PropertyValueFactory property="room" /></cellValueFactory>
                               </TableColumn>
-                                    <TableColumn fx:id="dateToDisplay" prefWidth="208.2222900390625" text="Stay Date">
+                                    <TableColumn fx:id="dateToDisplay" prefWidth="99.111083984375" text="Stay Date">
                              <cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory>
                            </TableColumn>
-                                    <TableColumn fx:id="amount" prefWidth="86.111083984375" text="Amount">
+                                    <TableColumn fx:id="amount" prefWidth="89.5555419921875" text="Amount">
                           <cellValueFactory><PropertyValueFactory property="cost" /></cellValueFactory>
                         </TableColumn>
-                                    <TableColumn fx:id="paymentStatus" prefWidth="113.888916015625" text="Payment Status">
+                                    <TableColumn fx:id="paymentStatus" prefWidth="67.888916015625" text="Payment Status">
                        <cellValueFactory><PropertyValueFactory property="paid" /></cellValueFactory>
                      </TableColumn>
-                                    <TableColumn fx:id="checkInStatus" prefWidth="75.0" text="CheckinStatus" >
-                                      <cellValueFactory><PropertyValueFactory property="checkinStatus" /></cellValueFactory>
+                                    <TableColumn fx:id="checkInStatus" prefWidth="90.11114501953125" text="CheckinStatus">
+                                      <cellValueFactory><PropertyValueFactory property="paid" /></cellValueFactory>
                                     </TableColumn>
 
                                  </columns>
                               </TableView>
+                              <Button layoutX="917.0" layoutY="395.0" mnemonicParsing="false" text="Submit" />
+                              <GridPane layoutX="784.0" layoutY="55.0">
+                                 <children>
+                                    <Label text="Room A 101" GridPane.rowIndex="2" />
+                                    <Label prefHeight="17.0" prefWidth="75.0" text="Room B 103" GridPane.rowIndex="4" />
+                                    <Label text="Room B 104" GridPane.rowIndex="5" />
+                                    <Label text="Room C 105" GridPane.rowIndex="6" />
+                                    <Label text="Room C 106" GridPane.rowIndex="7" />
+                                    <Label prefHeight="17.0" prefWidth="68.0" text="Room A 102" GridPane.rowIndex="3" />
+                                    <Label text="Room D 107" GridPane.rowIndex="8" />
+                                    <Label text="Room D 108" GridPane.rowIndex="9" />
+                                    <Label text="Room Number" underline="true" />
+                                    <Label text="Status" underline="true" GridPane.columnIndex="1" />
+                                    <Label fx:id="labelRoom1" prefWidth="356.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label fx:id="labelRoom2" prefWidth="224.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label fx:id="labelRoom3" prefWidth="224.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label fx:id="labelRoom4" prefWidth="224.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label fx:id="labelRoom5" prefWidth="224.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <Label fx:id="labelRoom6" prefWidth="224.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <Label fx:id="labelRoom7" prefWidth="224.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                    <Label fx:id="labelRoom8" prefWidth="224.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                    <Label fx:id="labelRoom4" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                 </children>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="33.5555419921875" minHeight="0.0" prefHeight="14.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                              </GridPane>
                            </children>
                         </AnchorPane>
                      </content>
