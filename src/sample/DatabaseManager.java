@@ -1,5 +1,6 @@
 package sample;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -282,12 +283,92 @@ public class DatabaseManager extends Main {
     }
     return verified;
   }
-  //method for displaying table information
-	public List<CustomerBooking> BookingStatus(String userName, String status){
+  //method for getting customers name
+	public String nameOfTheCustomer(String userId){
+		String fullName = null;
+		try{
+			String query = "Select * from CUSTOMER where username = ?";
+			ResultSet rs;
+			PreparedStatement stmt = con.prepareStatement(query);
+			stmt.setString(1,userId);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				fullName = rs.getString("FULLNAME");
+			}
+			return fullName;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public List<CustomerBooking> BookingStatusForAll(){
+
+
 
 		try {
+
+			String query = "Select * from invoiceno ";
+
+
+			System.out.println(query);
+			ResultSet rs;
+			ArrayList<CustomerBooking> paymentStatus = new ArrayList<>();
+
+			PreparedStatement stmt = con.prepareStatement(query);
+
+			rs = stmt.executeQuery();
+
+
+
+			while(rs.next()) {
+				int invoice = rs.getInt("Orderno");
+				String fullName = rs.getString("fullname");
+				String room = rs.getString("roomname");
+				String date = rs.getString("DisplayDate");
+				double cost = rs.getDouble("Cost");
+				String paid = rs.getString("pay");
+				String statusCheckin = rs.getString("CHECKINSTATUS");
+				CustomerBooking cb = new CustomerBooking(invoice,fullName,room,date,cost,paid,statusCheckin);
+
+
+				paymentStatus.add(cb);
+
+
+			}
+
+
+
+
+
+			return paymentStatus;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+  //method for displaying table information in customer screen
+	public List<CustomerBooking> BookingStatus(String userName, String status){
+
+
+
+		try {
+
 			String query = "Select * from invoiceno where username = ? AND PAY = ";
-			System.out.println(userName+"Error");
+			String queryFullName = "Select * from CUSTOMER where username = ?";
+
+		/*	System.out.println(userName+"Error");
+			switch (userName.toLowerCase()){
+				case "all":
+					query = "Select * from invoiceno where PAY = ";
+					break;
+				default:
+					query += "null ";
+					break;
+			}
+*/
 
 			switch (status.toLowerCase()){
 				case "true":
@@ -304,21 +385,26 @@ public class DatabaseManager extends Main {
 					query += "null ";
 					break;
 			}
-			ResultSet rs;
-			System.out.println(userName+ "PPPPPPPPPPP");
 			System.out.println(query);
+			ResultSet rs;
+			ResultSet rsFullName;
 			ArrayList<CustomerBooking> paymentStatus = new ArrayList<>();
+			PreparedStatement stmt2 = con.prepareStatement(queryFullName);
 			PreparedStatement stmt = con.prepareStatement(query);
 			stmt.setString(1,userName);
 			rs = stmt.executeQuery();
+			stmt2.setString(1,userName);
+			rsFullName = stmt2.executeQuery();
+
 			while(rs.next()) {
 				int invoice = rs.getInt("Orderno");
-				String cname = rs.getString("username");
+				String fullName = rs.getString("fullname");
 				String room = rs.getString("roomname");
 				String date = rs.getString("DisplayDate");
 				double cost = rs.getDouble("Cost");
 				String paid = rs.getString("pay");
-				CustomerBooking cb = new CustomerBooking(invoice,cname,room,date,cost,paid);
+				String statusCheckin = rs.getString("CHECKINSTATUS");
+				CustomerBooking cb = new CustomerBooking(invoice,fullName,room,date,cost,paid,statusCheckin);
 
 
 				paymentStatus.add(cb);
@@ -337,9 +423,51 @@ public class DatabaseManager extends Main {
 		}
 		return null;
 	}
+	//method for getting the payment amount on the payment screen
+	public double paymentAmount (int orderNo){
+		double amount = 0;
+		try{
+			String query = "Select * from invoiceno where ORDERNO = ?";
+			System.out.println(orderNo);
 
 
-//Method for saving card information to the database
+			ResultSet rs = null;
+			PreparedStatement stmt = con.prepareStatement(query);;
+			stmt.setInt(1,orderNo);
+			while(rs.next()){
+				amount = rs.getDouble("cost");
+				System.out.println(amount+"SSSS");
+
+				return amount;
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return 0;
+	}
+	public double orderNumberAmountr(int OrderNo) {
+		double amountOf = 0;
+		try {
+			Statement stmt = this.con.createStatement();
+
+			ResultSet rs = null;
+			rs = stmt.executeQuery(String.format("Select * FROM INVOICENO where orderno = '%d'",OrderNo));
+			while (rs.next()) {
+				String orderNo1 = rs.getString("cost");
+				amountOf = Double.parseDouble(orderNo1);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return amountOf;
+	}
+
+
+
+	//Method for saving card information to the database
 	public void saveEmailCardTable(String userName, String email) {
 		try {
 			ResultSet rs = null;
@@ -408,7 +536,7 @@ public class DatabaseManager extends Main {
 	}
 
 	public void pushDate(String userName, String roomNo, ArrayList<String> dateBooked, double cost,
-			String dateToDisplay) {
+			String dateToDisplay, String fullName, String checkedInStatus) {
 		try {
 			int orderNo = 0;
 
@@ -417,8 +545,8 @@ public class DatabaseManager extends Main {
 
 			Statement stmt = this.con.createStatement();
 			stmt.executeUpdate(String.format(
-					"INSERT INTO INVOICENO (roomname, username, dateBooked, pay, cost, displaydate) VALUES ('%s','%s','%s','%s','%f','%s')",
-					roomNo, userName, dateBooked, defaultPay, cost, dateToDisplay));
+					"INSERT INTO INVOICENO (roomname, fullname, username, dateBooked, pay, cost, displaydate, CHECKINSTATUS) VALUES ('%s','%s','%s','%s','%s','%f','%s','%s')",
+					roomNo, fullName, userName, dateBooked, defaultPay, cost, dateToDisplay,checkedInStatus));
 			/*
 			 * ResultSet rs =
 			 * stmt.executeQuery(String.format("Select ORDERNO FROM INVOICENO"));
@@ -436,8 +564,8 @@ public class DatabaseManager extends Main {
 			System.out.println(orderNo + " I finally pushed the order no");
 
 			stmt.executeUpdate(String.format(
-					"INSERT INTO %s (orderno, username, dateBooked, cost, displaydate) VALUES ('%s','%s','%s','%f','%s')",
-					roomNo, orderNo, userName, dateBooked, cost, dateToDisplay));
+					"INSERT INTO %s (orderno, username, dateBooked, cost, displaydate,CHECKINSTATUS) VALUES ('%s','%s','%s','%f','%s')",
+					roomNo, orderNo, userName, dateBooked, cost, dateToDisplay,"NO"));
 			stmt.executeUpdate(String.format(
 					"INSERT INTO %s (orderno, roomno, daysBooked, cost, displaydate) VALUES ('%d', '%s' ,'%s','%f','%s')",
 					userName, orderNo, roomNo, dateBooked, cost, dateToDisplay));

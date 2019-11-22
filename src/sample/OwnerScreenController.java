@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -62,18 +63,40 @@ public class OwnerScreenController implements Initializable {
 	private TableView<CustomerBooking> tableActivity;
 
 	@FXML
+	private TableColumn<?, ?> checkInStatus;
+
+	@FXML
 	private TableColumn<CustomerBooking, Integer> tableInvoice;
 	@FXML
 	private TableColumn<CustomerBooking, String> tableName, tableRoom, tableDate;
 	@FXML
 	private TableColumn<CustomerBooking, Double> tableCost;
 	@FXML
-	private TableColumn<CustomerBooking, Boolean> tablePaid;
+	private TableColumn<CustomerBooking, String> tablePaid;
+	@FXML
+	private TableColumn<?, ?> invoiceID;
+
+	@FXML
+	private TableColumn<?, ?> fullNametoDisplay;
+
+	@FXML
+	private TableColumn<?, ?> roomNo;
+
+	@FXML
+	private TableColumn<?, ?> dateToDisplay;
+
+	@FXML
+	private TableColumn<?, ?> amount;
+
+	@FXML
+	private TableColumn<?, ?> paymentStatus;
 	@FXML
 	private Label labelRoom1, labelRoom2, labelRoom3, labelRoom4, labelRoom5, //
 			labelRoom6, labelRoom7, labelRoom8;
 
 	boolean accountCreated = false;
+	private ObservableList<CustomerBooking> roomStatus;
+
 
 	public void setComboBoxText() {
 
@@ -85,8 +108,17 @@ public class OwnerScreenController implements Initializable {
 	public void initialize(URL url, ResourceBundle resources) {
 		setComboBoxText();
 		idSpace1.setText(Main.loggedInUser);
+		DatabaseManager db = null;
+		try {
+			db = new DatabaseManager();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		roomStatus =FXCollections.observableArrayList(db.BookingStatus("all","all"));
+		tableActivity.setItems(roomStatus);
 
-		setRoomStatus();
+
+		//setRoomStatus();
 		TF_name.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent e) {
@@ -98,6 +130,8 @@ public class OwnerScreenController implements Initializable {
 			public void handle(MouseEvent e) {
 				MainScreenController msc = new MainScreenController();
 				try {
+
+					
 
 					String userName = TF_name.getText();
 					String email = TF_email.getText();
@@ -126,8 +160,9 @@ public class OwnerScreenController implements Initializable {
 						} else {
 							Main.infoMessage("Please complete the required fields");
 						}
-						DatabaseManager db = new DatabaseManager();
+						
 						int pintoVerifyInInt = Integer.parseInt(pintoVerify);
+						DatabaseManager db = new DatabaseManager();
 
 						db.addByOwner(type, email, userName, password, pintoVerifyInInt);
 
@@ -181,5 +216,8 @@ public class OwnerScreenController implements Initializable {
 				status.setTextFill(Color.RED);
 			}
 		}
+	}
+
+	public void goToResetScreen(ActionEvent actionEvent) {
 	}
 }

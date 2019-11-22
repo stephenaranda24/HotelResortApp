@@ -8,6 +8,7 @@ public class CustomerBooking {
 	private String date;
 	private double cost;
 	private String paid;
+	private String checkinStatus;
 
 	/*
 	 * public CustomerBooking(String roomType, String date, boolean paid) { this(0,
@@ -15,13 +16,14 @@ public class CustomerBooking {
 	 */
 
 	public CustomerBooking(int invoice, String cname, String room, String date, double cost,
-			String paid) {
+			String paid,String checkinStatus) {
 		this.invoice = invoice;
 		this.cname = cname;
 		this.room = room;
 		this.date = date;
 		this.cost = cost;
 		this.paid = paid;
+		this.checkinStatus = checkinStatus;
 	}
 
 	public int getInvoice() {
@@ -70,5 +72,13 @@ public class CustomerBooking {
 
 	public void setPaid(String paid) {
 		this.paid = paid;
+	}
+
+	public String getCheckinStatus() {
+		return checkinStatus;
+	}
+
+	public void setCheckinStatus(String checkinStatus) {
+		this.checkinStatus = checkinStatus;
 	}
 }

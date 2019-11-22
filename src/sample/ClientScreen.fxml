@@ -10,29 +10,14 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
-<?import java.net.URL?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <ScrollPane maxHeight="-Infinity" prefHeight="734.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ClientScreenController">
    <content>
       <AnchorPane layoutX="1.0" layoutY="1.0" minHeight="0.0" minWidth="0.0" prefHeight="1026.0" prefWidth="1566.0">
@@ -178,41 +163,50 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="tempButton" layoutX="741.0" layoutY="257.0" mnemonicParsing="false" onAction="#tempButton" text="Pay" />
-                              <Label fx:id="tempLabel" layoutX="517.0" layoutY="257.0" text="These bookings are currently unpaid." />
-                              <TableView layoutX="369.0" layoutY="52.0" prefHeight="200.0" prefWidth="412.0" fx:id="tableUnpaid">
-                                <columns>
-                                  <TableColumn fx:id="upTableRoomNo" prefWidth="75.0" text="Room Type" >
-                                  <cellValueFactory><PropertyValueFactory property="room" /></cellValueFactory>
-                                  </TableColumn>
-                                  <TableColumn prefWidth="127.0" text="Date" fx:id="upTableDate" >
-                                    <cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory>
-                                  </TableColumn>
-                                    <TableColumn prefWidth="102.0" text="Amount" fx:id="upTableAmount" >
-                                      <cellValueFactory><PropertyValueFactory property="cost" /></cellValueFactory>
-                                    </TableColumn>
-                                    <TableColumn prefWidth="109.0" text="Invoice" fx:id="upTableInvoice" >
-                                      <cellValueFactory><PropertyValueFactory property="invoice" /></cellValueFactory>
-                                    </TableColumn>
-
+                              <Button fx:id="payNow" layoutX="205.0" layoutY="258.0" mnemonicParsing="false" onAction="#paymentScreenRunning" text="Pay Now" />
+                              <Label fx:id="tempLabel" layoutX="61.0" layoutY="64.0" text="10255530" />
+                             <TableView fx:id="tablePaid" layoutX="369.0" layoutY="52.0" prefHeight="200.0" prefWidth="372.0">
+                               <columns>
+                                 <TableColumn fx:id="upTableRoomNo" prefWidth="75.0" text="RoomNo">
+                                   <cellValueFactory><PropertyValueFactory property="room" /></cellValueFactory>
+                                 </TableColumn>
+                                 <TableColumn fx:id="upTableDate" prefWidth="75.0" text="Date">
+                                   <cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory>
+                                 </TableColumn>
+                                 <TableColumn fx:id="upTableAmount" prefWidth="75.0" text="Amount">
+                                   <cellValueFactory><PropertyValueFactory property="cost" /></cellValueFactory>
+                                 </TableColumn>
+                                 <TableColumn fx:id="upTableInvoice" prefWidth="75.0" text="Invoice">
+                                   <cellValueFactory><PropertyValueFactory property="invoice" /></cellValueFactory>
+                                 </TableColumn>
+                               </columns>
+                             </TableView>
+                             <TableView fx:id="tableUnpaid" layoutX="372.0" layoutY="344.0" prefHeight="200.0" prefWidth="367.0">
+                               <columns>
+                                 <TableColumn fx:id="pTableRoomNo" prefWidth="75.0" text="RoomNo">
+                                   <cellValueFactory><PropertyValueFactory property="room" /></cellValueFactory>
+                                 </TableColumn>
+                                 <TableColumn fx:id="pTableDate" prefWidth="75.0" text="Date">
+                                   <cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory>
+                                 </TableColumn>
+                                 <TableColumn fx:id="pTableAmount" prefWidth="75.0" text="Amount">
+                                   <cellValueFactory><PropertyValueFactory property="cost" /></cellValueFactory>
+                                 </TableColumn>
+                                 <TableColumn fx:id="pTableInvoice" prefWidth="75.0" text="Invoice">
+                                   <cellValueFactory><PropertyValueFactory property="invoice" /></cellValueFactory>
+                                 </TableColumn>
                                 </columns>
                               </TableView>
-                              <TableView layoutX="369.0" layoutY="331.0" prefHeight="200.0" prefWidth="411.0" fx:id="tablePaid">
-                                <columns>
-                                  <TableColumn fx:id="pTableRoomNo" prefWidth="75.0" text="Room Type" >
-                                    <cellValueFactory><PropertyValueFactory property="room" /></cellValueFactory>
-                                  </TableColumn>
-                                  <TableColumn prefWidth="127.0" text="Date" fx:id="pTableDate" >
-                                  <cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory>
-                                </TableColumn>
-                                    <TableColumn prefWidth="109.0" text="Amount" fx:id="pTableAmount" >
-                                      <cellValueFactory><PropertyValueFactory property="cost" /></cellValueFactory>
-                                    </TableColumn>
-                                    <TableColumn prefWidth="99.0" text="Invoice" fx:id="pTableInvoice" >
-                                  <cellValueFactory><PropertyValueFactory property="invoice" /></cellValueFactory>
-                                </TableColumn>
-                                </columns>
-                              </TableView>
+                              <Label layoutX="372.0" text="Paid">
+                                 <font>
+                                    <Font size="29.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="369.0" layoutY="292.0" text="Unpaid">
+                                 <font>
+                                    <Font size="28.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                     </content>

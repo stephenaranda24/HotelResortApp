@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
 import javax.xml.soap.Text;
 
 import javafx.event.ActionEvent;
@@ -57,6 +58,8 @@ public class PaymentScreenController implements Initializable {
 
   @FXML
   private Button payLater;
+  @FXML
+  private TextArea amount;
 
 
   int finalCardYear = 0;
@@ -89,6 +92,16 @@ public class PaymentScreenController implements Initializable {
 
     idSpace.setText(userID);
     orderNo.setText(String.valueOf(ClientScreenController.orderNo));
+    double amounts = 0;
+    try {
+      DatabaseManager db = new DatabaseManager();
+      String orderNO = orderNo.getText();
+      int orderNo1 = Integer.parseInt(orderNO);
+      amounts= db.orderNumberAmountr(orderNo1);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    amount.setText(String.valueOf(amounts));
 
   }
 
@@ -101,7 +114,7 @@ public class PaymentScreenController implements Initializable {
   @FXML
   void payLaterAction(ActionEvent event) {
     MainScreenController msc = new MainScreenController();
-    msc.loadScene(submitPayment,"ClientScreen.fxml","clientScreen");
+    msc.loadScene(payLater,"ClientScreen.fxml","clientScreen");
   }
 
 

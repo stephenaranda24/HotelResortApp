@@ -16,10 +16,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javax.xml.soap.Text;
 
 public class ClientScreenController implements Initializable {
 
@@ -223,33 +226,33 @@ public class ClientScreenController implements Initializable {
 		 * String startDate = startDat.getText(); String startMonths =
 		 * startMonth.getText(); String endDatee = endDate.getText(); String endMonths =
 		 * endMonth.getText(); String room = roomSelectCombo.getValue();
-		 * 
+		 *
 		 * String dateMonthStart = String.format("%s/%s/2019",startMonths,startDate);
 		 * String dateMonthend = String.format("%s/%s/2019",endMonths,endDatee);
 		 * System.out.println(dateMonthStart);
-		 * 
+		 *
 		 *//*
-			 * Format f = new SimpleDateFormat("MM/dd/yyyy"); String strDate =
-			 * f.format(dateMonthStart); System.out.println(strDate + " Alpha");
-			 *//*
-				 * Date startBookingDate = new Date(dateMonthStart); System.out.println(new
-				 * SimpleDateFormat("MM/dd/yyyy").format(startBookingDate)); Date endBookingDate
-				 * = new Date(dateMonthend); long totalDaysBooked = endBookingDate.getTime() -
-				 * startBookingDate.getTime(); totalDaysBooked = (long)
-				 * Math.ceil((double)totalDaysBooked/86400000); String dateBookedToDisplay =
-				 * startBookingDate + " - " +endBookingDate;
-				 * System.out.println(dateBookedToDisplay); System.out.
-				 * println("result sdfjosaekjfkjdskfndsjfndskjlfnkjdskjfbsdkjfsdkjfnkndsjllkjfns   "
-				 * + totalDaysBooked); ArrayList<String> dateList = new ArrayList<>(); for(int i
-				 * =0; i<totalDaysBooked;i++){ Calendar cal = Calendar.getInstance();
-				 * SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-				 * 
-				 * cal.setTime(startBookingDate);
-				 * 
-				 * cal.add(Calendar.DAY_OF_MONTH, i); Date addDate = cal.getTime();
-				 * System.out.println(addDate); String finalDateformat = sdf.format(addDate);
-				 * System.out.println(finalDateformat ); dateList.add(finalDateformat); }
-				 */
+		 * Format f = new SimpleDateFormat("MM/dd/yyyy"); String strDate =
+		 * f.format(dateMonthStart); System.out.println(strDate + " Alpha");
+		 *//*
+		 * Date startBookingDate = new Date(dateMonthStart); System.out.println(new
+		 * SimpleDateFormat("MM/dd/yyyy").format(startBookingDate)); Date endBookingDate
+		 * = new Date(dateMonthend); long totalDaysBooked = endBookingDate.getTime() -
+		 * startBookingDate.getTime(); totalDaysBooked = (long)
+		 * Math.ceil((double)totalDaysBooked/86400000); String dateBookedToDisplay =
+		 * startBookingDate + " - " +endBookingDate;
+		 * System.out.println(dateBookedToDisplay); System.out.
+		 * println("result sdfjosaekjfkjdskfndsjfndskjlfnkjdskjfbsdkjfsdkjfnkndsjllkjfns   "
+		 * + totalDaysBooked); ArrayList<String> dateList = new ArrayList<>(); for(int i
+		 * =0; i<totalDaysBooked;i++){ Calendar cal = Calendar.getInstance();
+		 * SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		 *
+		 * cal.setTime(startBookingDate);
+		 *
+		 * cal.add(Calendar.DAY_OF_MONTH, i); Date addDate = cal.getTime();
+		 * System.out.println(addDate); String finalDateformat = sdf.format(addDate);
+		 * System.out.println(finalDateformat ); dateList.add(finalDateformat); }
+		 */
 		// Object myObject[] =new String[4];
 		// myObject[0] = totalDaysBooked;
 		// myObject[1] = startBookingFDate;
@@ -269,8 +272,9 @@ public class ClientScreenController implements Initializable {
 
 		if (result != null) {
 			System.out.println(result + " Looking for result");
+			String fullName = db.nameOfTheCustomer(gettId);
 
-			db.pushDate(gettId, result, dateList, cost, dateToDisplay);
+			db.pushDate(gettId, result, dateList, cost, dateToDisplay, fullName, "No");
 			orderNo = db.orderNumber();
 			System.out.println("order no is " + orderNo);
 
@@ -281,40 +285,22 @@ public class ClientScreenController implements Initializable {
 		System.out.println(dateList);
 
 		msc.loadScene(submit, "PaymentScreen.fxml", "Payment Screen");
-
-		/*
-		 * try { Date date = formatter.parse(dateMonthStart); System.out.println(date+
-		 * "Alpha"); String enDate = "02/03/2019"; Date endDate =
-		 * formatter.parse(enDate); System.out.println(endDate+"test v2");
-		 * System.out.println(formatter.format(date)+"test"); long totalDaysBooked =
-		 * endDate.getTime() - date.getTime();
-		 * System.out.println(totalDaysBooked/86400000+"   020285555"); } catch
-		 * (ParseException e) { e.printStackTrace(); }
-		 */
 	}
+	public void paymentScreenRunning(ActionEvent actionEvent) throws SQLException {
+		int index = tableUnpaid.getSelectionModel().getSelectedIndex();
+/*
+		tableUnpaid.getSelectionModel().select(4);
+*/
+		CustomerBooking invoiceNo = tableUnpaid.getItems().get(index);
+		int newValue = invoiceNo.getInvoice();
+		System.out.println("Selected Value" + newValue);
+		MainScreenController msc = new MainScreenController();
+		orderNo = newValue;
+		msc.loadScene(submit, "PaymentScreen.fxml", "Payment Screen");
 
-	private void setTableForUnpaidBookings() {
-		ObservableList<CustomerBooking> unpaidBookings = FXCollections.observableArrayList(//
-				new CustomerBooking(0, Main.loggedInUser, "A", "11/19/19", 88.00, "no")); //
 
-		upTableRoomNo.setCellValueFactory(new PropertyValueFactory<CustomerBooking, String>("room"));
-		upTableDate.setCellValueFactory(new PropertyValueFactory<CustomerBooking, String>("date"));
-		upTableAmount.setCellValueFactory(new PropertyValueFactory<CustomerBooking, Double>("cost"));
-		upTableInvoice.setCellValueFactory(new PropertyValueFactory<CustomerBooking, Boolean>("paid"));
-		tableUnpaid.setItems(unpaidBookings);
+		
 
-	}
-
-	private void setTableForPaidBookings() {
-		// set table for paid bookings
-		ObservableList<CustomerBooking> paidBookings = FXCollections.observableArrayList(//
-				new CustomerBooking(0, Main.loggedInUser, "B", "10/19/19",88.00, "NO")); //
-
-		pTableRoomNo.setCellValueFactory(new PropertyValueFactory<CustomerBooking, String>("room"));
-		pTableDate.setCellValueFactory(new PropertyValueFactory<CustomerBooking, String>("date"));
-		pTableAmount.setCellValueFactory(new PropertyValueFactory<CustomerBooking, Double>("cost"));
-		pTableInvoice.setCellValueFactory(new PropertyValueFactory<CustomerBooking, Boolean>("paid"));
-		tablePaid.setItems(paidBookings);
 	}
 
 }
