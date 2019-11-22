@@ -1,6 +1,5 @@
 package sample;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +10,6 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Currency;
 import java.util.HashMap;
 import java.util.List;
 
@@ -423,8 +421,29 @@ public class DatabaseManager extends Main {
 		}
 		return null;
 	}
+	//Method for deleting the order
+	public void deleteOrder(int orderNo, String userName){
+		try{
+			String roomNo;
+			Statement stmt = this.con.createStatement();
+
+			ResultSet rs = null;
+			rs = stmt.executeQuery(String.format("Select * FROM INVOICENO where orderno = '%d'",orderNo));
+			while(rs.next()) {
+				roomNo = rs.getString("Roomname");
+				Statement stm = this.con.createStatement();
+				stm.executeUpdate(String.format("Delete from invoiceno where orderno = '%d'",orderNo));
+				stm.executeUpdate(String.format("Delete from %s where orderno = '%d'",userName,orderNo));
+				stm.executeUpdate(String.format("Delete from %s where orderno = '%d'",roomNo,orderNo));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	//method for getting the payment amount on the payment screen
-	public double paymentAmount (int orderNo){
+	/*public double paymentAmount (int orderNo){
 		double amount = 0;
 		try{
 			String query = "Select * from invoiceno where ORDERNO = ?";
@@ -446,14 +465,14 @@ public class DatabaseManager extends Main {
 		}
 
 		return 0;
-	}
-	public double orderNumberAmountr(int OrderNo) {
+	}*/
+	public double orderNumberAmountr(int orderNo) {
 		double amountOf = 0;
 		try {
 			Statement stmt = this.con.createStatement();
 
 			ResultSet rs = null;
-			rs = stmt.executeQuery(String.format("Select * FROM INVOICENO where orderno = '%d'",OrderNo));
+			rs = stmt.executeQuery(String.format("Select * FROM INVOICENO where orderno = '%d'",orderNo));
 			while (rs.next()) {
 				String orderNo1 = rs.getString("cost");
 				amountOf = Double.parseDouble(orderNo1);
@@ -539,6 +558,7 @@ public class DatabaseManager extends Main {
 			String dateToDisplay, String fullName, String checkedInStatus) {
 		try {
 			int orderNo = 0;
+			System.out.println(dateToDisplay+ "fasfdsfsf");
 
 			long timeStamp = System.currentTimeMillis();
 			String defaultPay = "NO";
@@ -564,8 +584,8 @@ public class DatabaseManager extends Main {
 			System.out.println(orderNo + " I finally pushed the order no");
 
 			stmt.executeUpdate(String.format(
-					"INSERT INTO %s (orderno, username, dateBooked, cost, displaydate,CHECKINSTATUS) VALUES ('%s','%s','%s','%f','%s')",
-					roomNo, orderNo, userName, dateBooked, cost, dateToDisplay,"NO"));
+					"INSERT INTO %s (orderno, username, dateBooked, cost, displaydate,CHECKINSTATUS) VALUES ('%s','%s','%s','%f','%s','NO')",
+					roomNo, orderNo, userName, dateBooked, cost, dateToDisplay));
 			stmt.executeUpdate(String.format(
 					"INSERT INTO %s (orderno, roomno, daysBooked, cost, displaydate) VALUES ('%d', '%s' ,'%s','%f','%s')",
 					userName, orderNo, roomNo, dateBooked, cost, dateToDisplay));

@@ -23,6 +23,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javax.xml.soap.Text;
+import org.h2.table.Table;
 
 public class ClientScreenController implements Initializable {
 
@@ -99,6 +100,10 @@ public class ClientScreenController implements Initializable {
 	TableColumn<CustomerBooking, Double> pTableAmount;
 	@FXML
 	TableColumn<CustomerBooking, Boolean> pTableInvoice;
+	@FXML
+	private Button deleteOrder;
+	@FXML
+	private Button payNow;
 
 
 	@FXML
@@ -182,6 +187,7 @@ public class ClientScreenController implements Initializable {
 	}
 
 	public void initialize(URL url, ResourceBundle resources) {
+
 
 		try {
 			DatabaseManager db = new DatabaseManager();
@@ -286,20 +292,50 @@ public class ClientScreenController implements Initializable {
 
 		msc.loadScene(submit, "PaymentScreen.fxml", "Payment Screen");
 	}
-	public void paymentScreenRunning(ActionEvent actionEvent) throws SQLException {
-		int index = tableUnpaid.getSelectionModel().getSelectedIndex();
-/*
-		tableUnpaid.getSelectionModel().select(4);
-*/
+	public int fetchOrder(TableView table){
+		int index = table.getSelectionModel().getSelectedIndex();
+
 		CustomerBooking invoiceNo = tableUnpaid.getItems().get(index);
 		int newValue = invoiceNo.getInvoice();
-		System.out.println("Selected Value" + newValue);
+		return newValue;
+
+	}
+	@FXML
+	public void paymentScreenRunning(ActionEvent actionEvent) throws SQLException {
 		MainScreenController msc = new MainScreenController();
-		orderNo = newValue;
-		msc.loadScene(submit, "PaymentScreen.fxml", "Payment Screen");
+		orderNo = fetchOrder(tableUnpaid);
+		msc.loadScene(payNow, "PaymentScreen.fxml", "Payment Screen");
+	}
+
+	@FXML
+	void deleteTheOrder(ActionEvent event) throws SQLException {
+
+	if(tableUnpaid.getSelectionModel().isEmpty()){
+		orderNo = fetchOrder(tablePaid);
+
+	}
+	else{
+		orderNo = fetchOrder(tableUnpaid);
+
+	}
+		System.out.println(orderNo+"this is the order");
+	DatabaseManager db = new DatabaseManager();
+	db.deleteOrder(orderNo,userId);
+		tableUnpaid.getSelectionModel().clearSelection();
+		tableUnpaid.getItems().clear();
+
+	paid =FXCollections.observableArrayList(db.BookingStatus(userId,"true"));
+	unpaid =FXCollections.observableArrayList(db.BookingStatus(userId,"false"));
+	tableUnpaid.setItems(unpaid);
+	tablePaid.setItems(paid);
 
 
-		
+
+
+
+
+
+
 
 	}
 

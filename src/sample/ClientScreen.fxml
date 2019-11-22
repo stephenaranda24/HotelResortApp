@@ -207,6 +207,7 @@
                                     <Font size="28.0" />
                                  </font>
                               </Label>
+                              <Button fx:id="deleteOrder" layoutX="237.0" layoutY="332.0" mnemonicParsing="false" onAction="#deleteTheOrder" text="Delete" />
                            </children>
                         </AnchorPane>
                     </content>
