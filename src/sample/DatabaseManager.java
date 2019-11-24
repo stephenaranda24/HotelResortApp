@@ -59,12 +59,12 @@ public class DatabaseManager extends Main {
 	 * @param userType
 	 * @param userID
 	 * @param pinOrPassword
-	 * @param type
+	 * @param verifyType
 	 * @return
 	 * @throws SQLException
 	 */
 	// password validation for changing the pin
-	public boolean verifyPasswordorPin(String userType, String userID, String pinOrPassword, String type)
+	public boolean verifyPasswordorPin(String userType, String userID, String pinOrPassword, String verifyType)
 			throws SQLException {
 		boolean passwordChanged = false;
 		String pinToVerify = null;
@@ -74,14 +74,16 @@ public class DatabaseManager extends Main {
 		try {
 			ResultSet rs = null;
 
+
 			rs = stmt.executeQuery(String.format("SELECT * FROM %s WHERE USERNAME = '%s'", userType, userID));
+
 			if (rs.next()) {
 
-				System.out.println("usimg this pinOrPassword:" + pinOrPassword);
-				if (type.equals("PIN")) {
-					int tempPinToVerify = rs.getInt("PIN");
+				System.out.println("using this pinOrPassword:" + pinOrPassword);
+				if (verifyType.equals("VERIFYPIN")) {
+					int tempPinToVerify = rs.getInt("VERIFYPIN");
 					pinToVerify = String.valueOf(tempPinToVerify);
-					typeChanged = type;
+					typeChanged = verifyType;
 					if (pinToVerify.equals(pinOrPassword)) {
 						System.out.println("Successfully " + typeChanged + " old verified");
 						passwordChanged = true;
@@ -91,9 +93,9 @@ public class DatabaseManager extends Main {
 						passwordChanged = false;
 						return false;
 					}
-				} else if (type.equals("PASSWORD")) {
+				} else if (verifyType.equals("PASSWORD")) {
 					pinToVerify = rs.getString("Password");
-					typeChanged = type;
+					typeChanged = verifyType;
 					System.out.println("The password extracted " + pinToVerify + " " + pinOrPassword);
 					if (pinToVerify.equals(pinOrPassword)) {
 						System.out.println("Successfully " + typeChanged + " old verified");
@@ -142,7 +144,7 @@ public class DatabaseManager extends Main {
 		return id;
 
 	}
-
+//Oener adding the user
 	public boolean addByOwner(String typeUser, String email, String userId, String password, int verifyPin) {
 		System.out.println("looking for error");
 
@@ -441,6 +443,46 @@ public class DatabaseManager extends Main {
 			e.printStackTrace();
 		}
 	}
+
+
+	// Password reset by owner
+	public void passwordReset( String userName, String type, String password){
+		try{
+			String query = "UPDATE ";
+
+				switch (type.toLowerCase()){
+					case "customer":
+						query += "customer ";
+						break;
+					case "desk_assistant":
+						query += "Desk_Assistant ";
+						break;
+					case "custodian":
+						query += "CUSTODIAN ";
+						break;
+					default:
+						query += "something ";
+						break;
+				}
+				query += "set password = ? where username = ?";
+
+
+
+			PreparedStatement stmt = con.prepareStatement(query);
+			stmt.setString(1, password);
+			stmt.setString(2,userName);
+			stmt.executeUpdate();
+
+
+
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	// Method for forget password
 
 	//method for getting the payment amount on the payment screen
 	/*public double paymentAmount (int orderNo){

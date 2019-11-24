@@ -75,10 +75,12 @@ public class ClientScreenController implements Initializable {
 	private PasswordField newPasswordVerify;
 	@FXML
 	private Button updatePin;
+
 	public static String userId;
 	public static int orderNo;
 	private ObservableList<CustomerBooking> paid;
 	private ObservableList<CustomerBooking> unpaid;
+
 
 	@FXML
 	TableView<CustomerBooking> tableUnpaid;
@@ -104,6 +106,7 @@ public class ClientScreenController implements Initializable {
 	private Button deleteOrder;
 	@FXML
 	private Button payNow;
+
 
 
 	@FXML
@@ -150,11 +153,9 @@ public class ClientScreenController implements Initializable {
 
 		if (password.equals(cPassword)) {
 			passwordMatched = dm.verifyPasswordorPin("Customer", userId, oPassword, "password");
-			if (passwordMatched = true) {
+			if (passwordMatched == true) {
 				dm.changePinOrPass("Customer", userId, "password", password);
 				System.out.println("password Changed");
-			} else {
-				passwordMatched = false;
 			}
 		} else {
 			Main.errorMessage("Password does not match");
@@ -172,12 +173,10 @@ public class ClientScreenController implements Initializable {
 		DatabaseManager dm = new DatabaseManager();
 
 		if (pin.equals(cPin)) {
-			pinMatched = dm.verifyPasswordorPin("Customer", userId, oPin, "verifypin");
-			if (pinMatched = true) {
-				dm.changePinOrPass("Customer", userId, "verifypin", pin);
+			pinMatched = dm.verifyPasswordorPin("Customer", userId, oPin, "VERIFYPIN");
+			if (pinMatched == true) {
+				dm.changePinOrPass("Customer", userId, "VERIFYPIN", pin);
 				System.out.println("pin Changed");
-			} else {
-				pinMatched = false;
 			}
 
 		} else {

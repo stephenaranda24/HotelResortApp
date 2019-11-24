@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -31,9 +32,16 @@ public class OwnerScreenController implements Initializable {
 
 	@FXML
 	private Button logout;
+	@FXML
+	private PasswordField pin_User;
+	@FXML
+	private TextField userName;
+
 
 	@FXML
 	private TextField fullName;
+	@FXML
+	private TextField userNameToVerify;
 
 	@FXML
 	private TextField TF_name;
@@ -43,6 +51,8 @@ public class OwnerScreenController implements Initializable {
 
 	@FXML
 	private TextField TF_password;
+	@FXML
+	private Button submitVerify;
 
 	@FXML
 	private TextField TF_cpassword;
@@ -55,6 +65,8 @@ public class OwnerScreenController implements Initializable {
 
 	@FXML
 	private ComboBox<String> CB_type;
+	@FXML
+	private ComboBox<String> CB_type1;
 
 	@FXML
 	private Button button_create;
@@ -90,12 +102,16 @@ public class OwnerScreenController implements Initializable {
 
 	@FXML
 	private TableColumn<?, ?> paymentStatus;
+
+
 	@FXML
 	private Label labelRoom1, labelRoom2, labelRoom3, labelRoom4, labelRoom5, //
 			labelRoom6, labelRoom7, labelRoom8;
 
 	boolean accountCreated = false;
 	private ObservableList<CustomerBooking> roomStatus;
+	public static String userTypeChangePassword;
+	public static String userNameForChangePassword;
 
 
 	public void setComboBoxText() {
@@ -103,10 +119,16 @@ public class OwnerScreenController implements Initializable {
 		CB_type.setPromptText("Select a role.");
 		CB_type.getItems().addAll("Desk_Assistant", "Custodian");
 	}
+	public void setComboBoxText2() {
+
+		CB_type1.setPromptText("Select a role.");
+		CB_type1.getItems().addAll("Desk_Assistant", "Custodian","Customer");
+	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle resources) {
 		setComboBoxText();
+		setComboBoxText2();
 		idSpace1.setText(Main.loggedInUser);
 		DatabaseManager db = null;
 		try {
@@ -186,6 +208,7 @@ public class OwnerScreenController implements Initializable {
 
 	}
 
+
 	/*private void setActivityTableView() {
 		ObservableList<CustomerBooking> bookings = FXCollections.observableArrayList(//
 				new CustomerBooking(10, "Jared12", "A", "11/19/19", false)); //
@@ -218,6 +241,31 @@ public class OwnerScreenController implements Initializable {
 		}
 	}
 
-	public void goToResetScreen(ActionEvent actionEvent) {
+	public void goToResetScreen(ActionEvent actionEvent) throws SQLException {
+			String username = userNameToVerify.getText();
+		String pin = pin_User.getText();
+
+		String type = CB_type1.getValue();
+
+		boolean verified;
+		DatabaseManager db = new DatabaseManager();
+		MainScreenController msc = new MainScreenController();
+		System.out.println(username);
+		System.out.println(type);
+		System.out.println(pin);
+
+		verified = db.verifyPasswordorPin(type,username,pin,"VERIFYPIN");
+		if(verified == true){
+			userTypeChangePassword = type;
+			System.out.println(userTypeChangePassword + "dsfsf");
+			userNameForChangePassword = username;
+			msc.loadScene(submitVerify,"ResetPasswordOwner.fxml","Password Reset");
+
+		}
+		else {
+			Main.errorMessage("Pin doesnt match");
+		}
+
+
 	}
 }
