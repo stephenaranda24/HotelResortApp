@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -600,7 +601,6 @@ public class DatabaseManager extends Main {
 			String dateToDisplay, String fullName, String checkedInStatus) {
 		try {
 			int orderNo = 0;
-			System.out.println(dateToDisplay+ "fasfdsfsf");
 
 			long timeStamp = System.currentTimeMillis();
 			String defaultPay = "NO";
@@ -653,6 +653,69 @@ public class DatabaseManager extends Main {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	//method for passing clean status from custodian to database
+	public void roomCheckedDatabase(String room, boolean status, String datePushed){
+		try{
+
+			String update = ("UPDATE ROOMSTATUS SET (cleaned, date) = ("+ status + " , '" + datePushed + "') where roomname = '"+room+"'");
+			PreparedStatement stmt = con.prepareStatement(update);
+			stmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	// method for checking if room is cleaned during intialization
+	public boolean roomValidationCleaned(String room, String dateToday){
+		try{
+			PreparedStatement stmt = con.prepareStatement(
+					String.format("Select * FROM ROOMSTATUS WHERE roomname = '%s'", room));
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				String date = rs.getString("date");
+				boolean checked = rs.getBoolean("CLEANED");
+
+				if((date.equals(dateToday)) && (checked == true)){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	//get the current date cleaned for each room
+	public String dateReturn(String room){
+		try{
+			PreparedStatement stmt = con.prepareStatement(
+					String.format("Select * FROM ROOMSTATUS WHERE ROOMNAME = '%s'", room));
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+
+				String dateDisplay = rs.getString("date");
+
+				return dateDisplay;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	//validate to check if the room was cleaned yesterday
+	public void custodianDateValidation(String date) throws SQLException {
+		try {
+			Statement stmt = this.con.createStatement();
+
+			stmt.executeUpdate(String.format("UPDATE ROOMSTATUS SET cleaned = false where date != '%s'", date));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void pushDateToUserTable(String userName, String roomNo, ArrayList<String> dateBooked) {

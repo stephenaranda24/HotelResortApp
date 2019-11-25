@@ -2,6 +2,10 @@ package sample;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import javafx.event.EventHandler;
@@ -34,6 +38,10 @@ public class MainScreenController implements Initializable {
   public void initialize(URL url, ResourceBundle resources) {
     button_signup.setOnMousePressed(new EventHandler<MouseEvent>() {
 
+
+
+
+
       public void handle(MouseEvent e) {
         loadScene(button_signup,"SignUpSample.fxml","Sign Up");
       }
@@ -47,6 +55,10 @@ public class MainScreenController implements Initializable {
         loadScene(button_login,"SignInSample.fxml","Log In Window");
       }
     });
+  }
+  public static LocalDate getLocalDate() {
+    System.out.println(LocalDate.now());
+    return LocalDate.now();
   }
   
   //Method use for calling a scene (Andre use it for every scene calling)******************

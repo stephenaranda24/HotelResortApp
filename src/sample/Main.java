@@ -1,5 +1,6 @@
 package sample;
 
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
 import javafx.application.Application;
@@ -7,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.h2.engine.Database;
 
 
 public class Main extends Application {
@@ -18,7 +20,14 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("MainScreenSample.fxml"));
+		System.out.println(LocalDate.now());
+		LocalDate todaysDate = LocalDate.now();
+		String datePushed = String.valueOf(todaysDate);
+		DatabaseManager db = new DatabaseManager();
+		db.custodianDateValidation(datePushed);
+
+
+		Parent root = FXMLLoader.load(getClass().getResource("CustodianScreen.fxml"));
 		primaryStage.setTitle("Main Menu");
 		primaryStage.setScene(new Scene(root, 900, 400));
 		primaryStage.show();
