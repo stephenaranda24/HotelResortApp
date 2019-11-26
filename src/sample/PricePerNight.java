@@ -9,6 +9,7 @@ public enum PricePerNight {
   PricePerNight(double value) {
     this.value = value;
   }
+
   public double getValue() {
     return value;
   }
