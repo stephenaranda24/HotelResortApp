@@ -687,6 +687,23 @@ public class DatabaseManager extends Main {
 		}
 		return null;
 	}
+	//method for returning the date of the room was cleaned
+/*  public String dateCleaned(String roomName){
+	  try {
+      PreparedStatement stmt = con.prepareStatement(String.format("Select * FROM ROOMSTATUS WHERE roomname = '%s'", roomName));
+      ResultSet rs = stmt.executeQuery();
+      while (rs.next()) {
+        String date = rs.getString("date");
+        return date;
+      }
+
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+	  return null;
+
+  }*/
 
 	//method for passing clean status from custodian to database
 	public void roomCheckedDatabase(String room, boolean status, String datePushed, String name){

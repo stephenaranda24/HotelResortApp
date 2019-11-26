@@ -2,7 +2,9 @@ package sample;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -13,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
@@ -108,6 +111,38 @@ public class ClientScreenController implements Initializable {
 	private Button deleteOrder;
 	@FXML
 	private Button payNow;
+	@FXML
+	private ComboBox<String> monthStart;
+
+	@FXML
+	private ComboBox<String> dateStart;
+
+	@FXML
+	private ComboBox<String> startYear;
+
+	@FXML
+	private ComboBox<String> monthEnd;
+
+	@FXML
+	private ComboBox<String> dateEnd;
+
+	@FXML
+	private ComboBox<String> endYear;
+	@FXML
+	private DatePicker startDatePicker;
+
+	@FXML
+	private DatePicker endDatePicker;
+	@FXML
+	private Button logoutButton;
+	@FXML
+	void logOut(ActionEvent event) {
+		Main.loggedInUser = null;
+		MainScreenController msc = new MainScreenController();
+		msc.loadScene(logoutButton,"MainScreenSample.fxml", "MainScreen");
+
+	}
+
 
 
 
@@ -227,7 +262,14 @@ public class ClientScreenController implements Initializable {
 		String username = gettId;
 		System.out.println("I got the id as " + gettId);
 		DateAndCostManager dc = new DateAndCostManager();
-		List newList = dc.dateCalc(roomSelectCombo, startDate, startMonth, endDate, endMonth);
+		String startDates = startDatePicker.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+		System.out.println(startDates);
+
+		String enddate = endDatePicker.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+		System.out.println(enddate);
+		List newList = dc.dateCalc(roomSelectCombo, startDates,enddate);
+
+		/*List newList = dc.dateCalc(roomSelectCombo, startDate, startMonth, endDate, endMonth);*/
 
 		/*
 		 * String startDate = startDat.getText(); String startMonths =

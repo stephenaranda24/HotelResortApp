@@ -109,28 +109,7 @@ public class OwnerScreenController implements Initializable {
 	private Label labelRoom1, labelRoom2, labelRoom3, labelRoom4, labelRoom5,
 			labelRoom6, labelRoom7, labelRoom8;
 	@FXML
-	private Label c101;
-
-	@FXML
-	private Label c102;
-
-	@FXML
-	private Label c103;
-
-	@FXML
-	private Label c104;
-
-	@FXML
-	private Label c105;
-
-	@FXML
-	private Label c106;
-
-	@FXML
-	private Label c107;
-
-	@FXML
-	private Label c108;
+	private Label c101, c102, c103, c104, c105, c106, c107,c108;
 
 	boolean accountCreated = false;
 	private ObservableList<CustomerBooking> roomStatus;
@@ -156,10 +135,13 @@ public class OwnerScreenController implements Initializable {
 		CustodianScreenController cs = new CustodianScreenController();
 		String [] roomArray = cs.roomArray;
 		Label [] roomLabelArray = {labelRoom1, labelRoom2, labelRoom3, labelRoom4, labelRoom5, labelRoom6, labelRoom7, labelRoom8};
+		Label [] dateCleanedArray ={c101, c102, c103, c104, c105, c106, c107,c108};
 		try {
 			DatabaseManager db = new DatabaseManager();
 			for (int i = 0; i < roomArray.length; i++){
 				boolean checked = db.roomValidationCleaned(roomArray[i],datePushed);
+				String tempDate = db.dateReturn(roomArray[i]);
+				dateCleanedArray[i].setText(tempDate);
 				if(checked == true){
 					roomLabelArray[i].setText("DONE");
 					roomLabelArray[i].setTextFill(Color.GREEN);

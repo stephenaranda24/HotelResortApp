@@ -84,7 +84,6 @@
 
                                  </columns>
                               </TableView>
-                              <Button layoutX="917.0" layoutY="395.0" mnemonicParsing="false" text="Submit" />
                               <GridPane layoutX="784.0" layoutY="55.0">
                                  <children>
                                     <Label text="Room A 101" GridPane.rowIndex="2" />
@@ -106,7 +105,7 @@
                                     <Label fx:id="labelRoom7" prefWidth="224.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                                     <Label fx:id="labelRoom8" prefWidth="224.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                                     <Label fx:id="labelRoom4" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                    <Label text="Cleaned By" underline="true" GridPane.columnIndex="2" />
+                                    <Label text="Cleaned Date" underline="true" GridPane.columnIndex="2" />
                                     <Label fx:id="c101" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                     <Label fx:id="c102" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                                     <Label fx:id="c103" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="4" />
