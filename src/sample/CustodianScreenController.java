@@ -25,6 +25,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 
 
 public class CustodianScreenController implements Initializable {
@@ -33,6 +34,8 @@ public class CustodianScreenController implements Initializable {
   LocalDate todaysDate = LocalDate.now();
   String datePushed = String.valueOf(todaysDate);
 
+  @FXML
+  private Label userId;
 
   @FXML
   private Button custodianSubmit;
@@ -60,6 +63,7 @@ public class CustodianScreenController implements Initializable {
 
   @FXML
   private CheckBox roomD108;
+  public static String custodianUserId;
 
   @FXML
   void custodianSubmit(ActionEvent event) {
@@ -69,11 +73,16 @@ public class CustodianScreenController implements Initializable {
       for (int i = 0; i < roomCheckBox.length; i++){
         boolean selectedClean = roomCheckBox[i].isSelected();
         if(selectedClean){
-          db.roomCheckedDatabase(roomArray[i],selectedClean,datePushed);
+          db.roomCheckedDatabase(roomArray[i],selectedClean,datePushed,custodianUserId);
+          System.out.println("using this");
+          System.out.println(selectedClean+"5555");
         }
         else{
           String date = db.dateReturn(roomArray[i]);
-          db.roomCheckedDatabase(roomArray[i],!selectedClean,date);
+          String markedBy = db.custodianNameReturn(roomArray[i]);
+          db.roomCheckedDatabase(roomArray[i],selectedClean, date,markedBy);
+          System.out.println("using that");
+          System.out.println(!selectedClean+ "66666");
 
         }
 
@@ -92,8 +101,12 @@ public class CustodianScreenController implements Initializable {
   public void initialize(URL url, ResourceBundle resources) {
 
 
+
     try {
       DatabaseManager db = new DatabaseManager();
+      custodianUserId = db.getTheName(Main.loggedInUser, "custodian");
+      System.out.println(custodianUserId+"000000");
+      userId.setText(custodianUserId);
       db.custodianDateValidation(datePushed);
 
       CheckBox [] roomCheckBox = {roomA101,roomA102, roomB103, roomB104, roomC105, roomC106, roomD107, roomD108};

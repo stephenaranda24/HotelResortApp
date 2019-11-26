@@ -58,7 +58,7 @@
                </font>
             </Label>
             <Label fx:id="idSpace" layoutX="746.0" layoutY="46.0" text="Label" />
-            <Text layoutX="642.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logged in as" />
+            <Text layoutX="599.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Making Payment for" />
             <Label fx:id="orderNo" layoutX="746.0" layoutY="70.0" text="Order No" />
             <Text layoutX="642.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OrderNo" />
             <Button fx:id="payLater" layoutX="255.0" layoutY="489.0" mnemonicParsing="false" onAction="#payLaterAction" prefHeight="25.0" prefWidth="303.0" text="PAY LATER">

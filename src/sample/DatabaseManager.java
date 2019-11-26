@@ -123,14 +123,14 @@ public class DatabaseManager extends Main {
 
 	}
 
-	public String getTheName(String email) {
+	public String getTheName(String email, String userType) {
 		String id = null;
 		try {
 			ResultSet rs = null;
 
 			Statement stmt = this.con.createStatement();
 
-			rs = stmt.executeQuery(String.format("SELECT * FROM CUSTOMER WHERE EMAIL = '%s'", email));
+			rs = stmt.executeQuery(String.format("SELECT * FROM "+userType+ " WHERE EMAIL = '%s'", email));
 			if (rs.next()) {
 
 				System.out.println("usimg this name:" + email);
@@ -348,38 +348,51 @@ public class DatabaseManager extends Main {
 		}
 		return null;
 	}
+	//get id from name
+	public String getCustomerUSerId(int orderNo) {
+		try {
+			String roomNo;
+			Statement stmt = this.con.createStatement();
 
+			ResultSet rs = null;
+			rs = stmt
+					.executeQuery(String.format("Select * FROM INVOICENO where orderno = '%d'", orderNo));
+			while (rs.next()) {
+				String userName = rs.getString("username");
+				return userName;
+			}
 
-  //method for displaying table information in customer screen
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+		//method for displaying table information in customer screen
 	public List<CustomerBooking> BookingStatus(String userName, String status){
-
-
-
 		try {
 
-			String query = "Select * from invoiceno where username = ? AND PAY = ";
+			String query = "Select * from invoiceno where username = ? AND ";
 			String queryFullName = "Select * from CUSTOMER where username = ?";
 
-		/*	System.out.println(userName+"Error");
+			System.out.println(userName+"Error");
 			switch (userName.toLowerCase()){
 				case "all":
-					query = "Select * from invoiceno where PAY = ";
+					query = "Select * from invoiceno ";
 					break;
 				default:
-					query += "null ";
 					break;
 			}
-*/
 
 			switch (status.toLowerCase()){
 				case "true":
-					query += "'yes'";
+					query += "PAY = 'YES'";
 					break;
 				case "false":
-					query += "'NO'";
+					query += "PAY = 'NO'";
 					break;
 				case "all":
-					query += "'yes' OR PAY = 'NO' ";
+					query = "Select * from invoiceno ";
 					break;
 
 				default:
@@ -392,10 +405,17 @@ public class DatabaseManager extends Main {
 			ArrayList<CustomerBooking> paymentStatus = new ArrayList<>();
 			PreparedStatement stmt2 = con.prepareStatement(queryFullName);
 			PreparedStatement stmt = con.prepareStatement(query);
-			stmt.setString(1,userName);
-			rs = stmt.executeQuery();
-			stmt2.setString(1,userName);
-			rsFullName = stmt2.executeQuery();
+			if (userName.equals("all")){
+				rs = stmt.executeQuery();
+			}else {
+				stmt.setString(1,userName);
+				System.out.println(stmt+"999999999999999999999999999999999999");
+				rs = stmt.executeQuery();
+				stmt2.setString(1,userName);
+				rsFullName = stmt2.executeQuery();
+
+			}
+
 
 			while(rs.next()) {
 				int invoice = rs.getInt("Orderno");
@@ -567,13 +587,26 @@ public class DatabaseManager extends Main {
 			this.sqlExceptionHandler(var6);
 		}
 	}
-
+//Update database about payment status
 	public void paidColumn(int orderNO) {
 		try {
 			Statement stmt = this.con.createStatement();
-			String paymentDone = "Yes";
+			String paymentDone = "YES";
 			ResultSet rs = null;
-			stmt.executeUpdate(String.format("UPDATE INVOICENO SET pay = 'yes' where orderno = '%d'", orderNO));
+			stmt.executeUpdate(String.format("UPDATE INVOICENO SET pay = 'YES' where orderno = '%d'", orderNO));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	//update table with checkin status
+	public void checkedIn(int orderNO, String roomName) {
+		try {
+			Statement stmt = this.con.createStatement();
+			String paymentDone = "YES";
+			ResultSet rs = null;
+			stmt.executeUpdate(String.format("UPDATE INVOICENO SET CHECKINSTATUS = 'YES' where orderno = '%d'", orderNO));
+			stmt.executeUpdate(String.format("UPDATE %s SET CHECKINSTATUS = 'YES' where orderno = '%d'",roomName, orderNO));
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -656,16 +689,36 @@ public class DatabaseManager extends Main {
 	}
 
 	//method for passing clean status from custodian to database
-	public void roomCheckedDatabase(String room, boolean status, String datePushed){
+	public void roomCheckedDatabase(String room, boolean status, String datePushed, String name){
 		try{
 
-			String update = ("UPDATE ROOMSTATUS SET (cleaned, date) = ("+ status + " , '" + datePushed + "') where roomname = '"+room+"'");
+			String update = ("UPDATE ROOMSTATUS SET (cleaned, date, MarkedBy) = ("+ status + " , '" + datePushed + "', '"+name +"') where roomname = '"+room+"'");
 			PreparedStatement stmt = con.prepareStatement(update);
 			stmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	//Method for retriving the username for the payment screen with order number
+	public String nameFetch(int order){
+		try{
+			PreparedStatement stmt = con.prepareStatement(
+					String.format("Select * FROM INVOICENO WHERE ROOMNAME = "+ order));
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+
+				String userName = rs.getString("username");
+
+				return userName;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+
 
 	// method for checking if room is cleaned during intialization
 	public boolean roomValidationCleaned(String room, String dateToday){
@@ -706,6 +759,23 @@ public class DatabaseManager extends Main {
 		}
 		return null;
 	}
+	public String custodianNameReturn(String room){
+		try{
+			PreparedStatement stmt = con.prepareStatement(
+					String.format("Select * FROM ROOMSTATUS WHERE ROOMNAME = '%s'", room));
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+
+				String markedBy = rs.getString("markedby");
+
+				return markedBy;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 
 	//validate to check if the room was cleaned yesterday
 	public void custodianDateValidation(String date) throws SQLException {

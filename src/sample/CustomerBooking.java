@@ -10,6 +10,7 @@ public class CustomerBooking {
 	private String paid;
 	private String checkinStatus;
 
+
 	/*
 	 * public CustomerBooking(String roomType, String date, boolean paid) { this(0,
 	 * Main.loggedInUser, roomType, date, paid); }

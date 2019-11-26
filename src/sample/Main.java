@@ -17,6 +17,7 @@ public class Main extends Application {
 	// static since only one user can be 
 	// logged-in at a time
 	public static String loggedInUser = null;
+	public static String Type = null;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -27,7 +28,7 @@ public class Main extends Application {
 		db.custodianDateValidation(datePushed);
 
 
-		Parent root = FXMLLoader.load(getClass().getResource("CustodianScreen.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("MainScreenSample.fxml"));
 		primaryStage.setTitle("Main Menu");
 		primaryStage.setScene(new Scene(root, 900, 400));
 		primaryStage.show();

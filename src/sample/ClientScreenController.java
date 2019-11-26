@@ -75,6 +75,8 @@ public class ClientScreenController implements Initializable {
 	private PasswordField newPasswordVerify;
 	@FXML
 	private Button updatePin;
+	@FXML
+	private Label type;
 
 	public static String userId;
 	public static int orderNo;
@@ -190,7 +192,7 @@ public class ClientScreenController implements Initializable {
 
 		try {
 			DatabaseManager db = new DatabaseManager();
-			userId = db.getTheName(Main.loggedInUser);
+			userId = db.getTheName(Main.loggedInUser, "Customer");
 			paid =FXCollections.observableArrayList(db.BookingStatus(userId,"true"));
 			System.out.println(userId+ "dsadasdada");
 			System.out.println(paid);
@@ -279,7 +281,7 @@ public class ClientScreenController implements Initializable {
 			System.out.println(result + " Looking for result");
 			String fullName = db.nameOfTheCustomer(gettId);
 
-			db.pushDate(gettId, result, dateList, cost, dateToDisplay, fullName, "No");
+			db.pushDate(gettId, result, dateList, cost, dateToDisplay, fullName, "NO");
 			orderNo = db.orderNumber();
 			System.out.println("order no is " + orderNo);
 
@@ -322,14 +324,14 @@ public class ClientScreenController implements Initializable {
 	db.deleteOrder(orderNo,userId);
 		tableUnpaid.getSelectionModel().clearSelection();
 		tableUnpaid.getItems().clear();
+		tablePaid.getSelectionModel().clearSelection();
+		tablePaid.getItems().clear();
+
 
 	paid =FXCollections.observableArrayList(db.BookingStatus(userId,"true"));
 	unpaid =FXCollections.observableArrayList(db.BookingStatus(userId,"false"));
 	tableUnpaid.setItems(unpaid);
 	tablePaid.setItems(paid);
-
-
-
 
 
 

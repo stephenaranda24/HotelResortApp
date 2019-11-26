@@ -73,6 +73,7 @@ public class SignInController implements Initializable {
 
 						if (verified == true && type == "Customer") {
 							Main.loggedInUser = username;
+							Main.Type = "ClientScreen";
 							msc.loadScene(button_login, "ClientScreen.fxml", "Main cScreen");
 						} else if (verified == true && type == "Owner") {
 							Main.loggedInUser = username;
@@ -80,6 +81,7 @@ public class SignInController implements Initializable {
 
 						} else if (verified == true && type == "Custodian") {
 							Main.loggedInUser = username;
+
 							msc.loadScene(button_login, "CustodianScreen.fxml", "Main cScreen");
 
 						} else if (verified == true && type == "Desk_Assistant") {

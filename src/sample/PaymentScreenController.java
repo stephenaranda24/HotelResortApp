@@ -1,5 +1,6 @@
 package sample;
 
+import java.lang.reflect.Type;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -60,6 +61,7 @@ public class PaymentScreenController implements Initializable {
   private Button payLater;
   @FXML
   private TextArea amount;
+  public String userfxmTitile;
 
 
   int finalCardYear = 0;
@@ -71,11 +73,12 @@ public class PaymentScreenController implements Initializable {
   String userID = null;
 
 
+
   @FXML
   void backFrompaymentAction(ActionEvent event) {
     {
       MainScreenController msc = new MainScreenController();
-      msc.loadScene(backFrompayment,"ClientScreen.fxml","clientScreen");
+      msc.loadScene(backFrompayment,userfxmTitile+".fxml","clientScreen");
     }
 
 
@@ -83,6 +86,10 @@ public class PaymentScreenController implements Initializable {
 
   @FXML
   public void initialize(URL url, ResourceBundle resources) {
+    userfxmTitile = Main.Type;
+    System.out.println(Main.Type + " TYPPPPPP");
+
+
 	
     MainScreenController msc = new MainScreenController();
 
@@ -114,7 +121,7 @@ public class PaymentScreenController implements Initializable {
   @FXML
   void payLaterAction(ActionEvent event) {
     MainScreenController msc = new MainScreenController();
-    msc.loadScene(payLater,"ClientScreen.fxml","clientScreen");
+    msc.loadScene(payLater,userfxmTitile+".fxml","clientScreen");
   }
 
 
@@ -161,7 +168,7 @@ public class PaymentScreenController implements Initializable {
     else {
     	Main.infoMessage("Card details not saved");
     }
-    msc.loadScene(submitPayment,"ClientScreen.fxml","clientScreen");
+    msc.loadScene(submitPayment,userfxmTitile+".fxml","clientScreen");
 
 
   }

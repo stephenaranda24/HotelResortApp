@@ -2,6 +2,7 @@ package sample;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -105,8 +106,31 @@ public class OwnerScreenController implements Initializable {
 
 
 	@FXML
-	private Label labelRoom1, labelRoom2, labelRoom3, labelRoom4, labelRoom5, //
+	private Label labelRoom1, labelRoom2, labelRoom3, labelRoom4, labelRoom5,
 			labelRoom6, labelRoom7, labelRoom8;
+	@FXML
+	private Label c101;
+
+	@FXML
+	private Label c102;
+
+	@FXML
+	private Label c103;
+
+	@FXML
+	private Label c104;
+
+	@FXML
+	private Label c105;
+
+	@FXML
+	private Label c106;
+
+	@FXML
+	private Label c107;
+
+	@FXML
+	private Label c108;
 
 	boolean accountCreated = false;
 	private ObservableList<CustomerBooking> roomStatus;
@@ -127,6 +151,30 @@ public class OwnerScreenController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resources) {
+		LocalDate todaysDate = LocalDate.now();
+		String datePushed = String.valueOf(todaysDate);
+		CustodianScreenController cs = new CustodianScreenController();
+		String [] roomArray = cs.roomArray;
+		Label [] roomLabelArray = {labelRoom1, labelRoom2, labelRoom3, labelRoom4, labelRoom5, labelRoom6, labelRoom7, labelRoom8};
+		try {
+			DatabaseManager db = new DatabaseManager();
+			for (int i = 0; i < roomArray.length; i++){
+				boolean checked = db.roomValidationCleaned(roomArray[i],datePushed);
+				if(checked == true){
+					roomLabelArray[i].setText("DONE");
+					roomLabelArray[i].setTextFill(Color.GREEN);
+				}
+				else{
+					roomLabelArray[i].setText("Not Cleaned");
+					roomLabelArray[i].setTextFill(Color.RED);
+				}
+
+
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		setComboBoxText();
 		setComboBoxText2();
 		idSpace1.setText(Main.loggedInUser);

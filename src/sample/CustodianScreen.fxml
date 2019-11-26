@@ -62,7 +62,7 @@
                                 </rowConstraints>
                               </GridPane>
                               <Label layoutX="436.0" layoutY="28.0" text="Logged in as:" />
-                              <Label layoutX="508.0" layoutY="28.0" text="null" />
+                              <Label fx:id="userId" layoutX="508.0" layoutY="28.0" text="null" />
                               <Label layoutX="241.0" layoutY="14.0" prefHeight="44.0" prefWidth="118.0" text="Custodian Screen">
                                  <font>
                                     <Font name="System Bold" size="14.0" />

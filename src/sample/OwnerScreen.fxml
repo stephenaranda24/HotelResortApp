@@ -96,7 +96,7 @@
                                     <Label text="Room D 107" GridPane.rowIndex="8" />
                                     <Label text="Room D 108" GridPane.rowIndex="9" />
                                     <Label text="Room Number" underline="true" />
-                                    <Label text="Status" underline="true" GridPane.columnIndex="1" />
+                                    <Label text="Cleaned Status" underline="true" GridPane.columnIndex="1" />
                                     <Label fx:id="labelRoom1" prefWidth="356.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <Label fx:id="labelRoom2" prefWidth="224.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     <Label fx:id="labelRoom3" prefWidth="224.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -106,8 +106,18 @@
                                     <Label fx:id="labelRoom7" prefWidth="224.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                                     <Label fx:id="labelRoom8" prefWidth="224.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                                     <Label fx:id="labelRoom4" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <Label text="Cleaned By" underline="true" GridPane.columnIndex="2" />
+                                    <Label fx:id="c101" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Label fx:id="c102" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                    <Label fx:id="c103" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                    <Label fx:id="c104" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                    <Label fx:id="c105" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                    <Label fx:id="c106" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                                    <Label fx:id="c107" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                                    <Label fx:id="c108" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="9" />
                                  </children>
                                  <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                  </columnConstraints>
