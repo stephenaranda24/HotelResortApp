@@ -31,17 +31,13 @@
                     <Button layoutX="5.0" layoutY="2.0" mnemonicParsing="false" onAction="#logOut" text="Logout" fx:id="logoutButton" />
                     <GridPane layoutX="24.0" layoutY="63.0" prefHeight="563.0" prefWidth="516.0">
                       <children>
-                        <ImageView GridPane.columnIndex="1" GridPane.rowIndex="3" fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView GridPane.columnIndex="1" fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView GridPane.columnIndex="1" GridPane.rowIndex="1" fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView GridPane.columnIndex="1" GridPane.rowIndex="2" fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fitHeight="96.0" fitWidth="96.0" fx:id="roomAIView">
+                        <ImageView GridPane.columnIndex="1" fitHeight="120.0" fitWidth="140.0" fx:id="roomAIView">
                         </ImageView>
-                        <ImageView GridPane.rowIndex="1" fitHeight="96.0" fitWidth="96.0" fx:id="roomBIView">
+                        <ImageView GridPane.columnIndex="1" GridPane.rowIndex="1" fitHeight="120.0" fitWidth="140.0" fx:id="roomBIView">
                         </ImageView>
-                        <ImageView GridPane.rowIndex="3" fitHeight="96.0" fitWidth="96.0" fx:id="roomCIView">
+                        <ImageView GridPane.columnIndex="1" GridPane.rowIndex="3" fitHeight="120.0" fitWidth="140.0" fx:id="roomCIView">
                         </ImageView>
-                        <ImageView GridPane.rowIndex="2" fitHeight="96.0" fitWidth="96.0" fx:id="roomDIView">
+                        <ImageView GridPane.columnIndex="1" GridPane.rowIndex="2" fitHeight="120.0" fitWidth="140.0" fx:id="roomDIView">
                         </ImageView>
                         <Label GridPane.columnIndex="2" GridPane.rowIndex="2" prefHeight="130.0" prefWidth="164.0" text="1 bed" wrapText="true" />
                         <Label GridPane.columnIndex="2" GridPane.rowIndex="1" prefHeight="130.0" prefWidth="164.0" text="3 beds&#10;" wrapText="true" />

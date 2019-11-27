@@ -41,8 +41,14 @@
                                     <Label prefHeight="17.0" prefWidth="68.0" text="Room A 102" GridPane.rowIndex="2" />
                                     <Label text="Room D 107" GridPane.rowIndex="7" />
                                     <Label text="Room D 108" GridPane.rowIndex="8" />
-                                    <Label text="Room Number" underline="true" />
-                                    <Label text="Room Cleaned" underline="true" GridPane.columnIndex="1" />
+                                    <Label text="Room Number" underline="true">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font></Label>
+                                    <Label GridPane.columnIndex="1" text="Room Cleaned" underline="true">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font></Label>
                                  </children>
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
