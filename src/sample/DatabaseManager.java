@@ -36,7 +36,8 @@ public class DatabaseManager extends Main {
 	public DatabaseManager() throws SQLException {
 		// "jdbc:h2:C:\\Users\\shafi\\IdeaProjects\\HotelResortApp\\res\\ResortData"
 		this.con = DriverManager
-				.getConnection("jdbc:h2:C:\\Users\\shafi\\IdeaProjects\\HotelResortApp\\res\\ResortData");
+				.getConnection("jdbc:h2:C:\\Users\\Romanov\\eclipse-workspace\\HotelResortApp-master\\res\\ResortData");
+		//"jdbc:h2:C:\\Users\\shafi\\IdeaProjects\\HotelResortApp\\res\\ResortData"
 
 	}
 

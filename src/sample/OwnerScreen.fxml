@@ -26,7 +26,7 @@
                      <content>
                         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="992.0" prefWidth="1545.0">
                            <children>
-                              <Button layoutX="126.0" layoutY="270.0" mnemonicParsing="false" text="Back" />
+                              <Button fx:id="back" layoutX="126.0" layoutY="270.0" mnemonicParsing="false" text="Back" />
                               <Label fx:id="idSpace1" layoutX="1229.0" layoutY="6.0" text="Null" />
                               <Label layoutX="1148.0" layoutY="6.0" text="Logged in as:" />
                               <Button fx:id="logout" layoutX="802.0" layoutY="480.0" mnemonicParsing="false" text="Logout" />

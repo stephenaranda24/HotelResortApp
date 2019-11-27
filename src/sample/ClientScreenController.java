@@ -25,6 +25,9 @@ import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 import javax.xml.soap.Text;
 import org.h2.table.Table;
 
@@ -47,7 +50,7 @@ public class ClientScreenController implements Initializable {
 	@FXML
 	private TextArea idSpace;
 	@FXML
-	private Label idSpace1;
+	private Label userLabel, typeLabel;
 	@FXML
 	private Label idSpace11;
 	@FXML
@@ -136,8 +139,14 @@ public class ClientScreenController implements Initializable {
 	@FXML
 	private Button logoutButton;
 	@FXML
+	private ImageView roomAIView, roomBIView, roomCIView, roomDIView;
+	@FXML
+	private Label roomALabel;
+	
+	@FXML
 	void logOut(ActionEvent event) {
 		Main.loggedInUser = null;
+		Main.Type = null;
 		MainScreenController msc = new MainScreenController();
 		msc.loadScene(logoutButton,"MainScreenSample.fxml", "MainScreen");
 
@@ -223,8 +232,6 @@ public class ClientScreenController implements Initializable {
 	}
 
 	public void initialize(URL url, ResourceBundle resources) {
-
-
 		try {
 			DatabaseManager db = new DatabaseManager();
 			userId = db.getTheName(Main.loggedInUser, "Customer");
@@ -240,10 +247,16 @@ public class ClientScreenController implements Initializable {
 			e.printStackTrace();
 		}
 
-		idSpace1.setText(userId);
+		userLabel.setText(userId);
 		idSpace11.setText(userId);
+		typeLabel.setText(Main.Type);
 		setRoomSelectCombo();
-
+		
+		roomAIView.setImage(new Image("/sample/Room A.jpg"));
+		roomBIView.setImage(new Image("/sample/Room B.jpg"));
+		roomCIView.setImage(new Image("/sample/Room C.jpg"));
+		roomDIView.setImage(new Image("/sample/Room D.jpg"));
+	//	roomAImageView.setY(740);
 
 
 	}
@@ -258,7 +271,7 @@ public class ClientScreenController implements Initializable {
 	void submitDate(ActionEvent event) throws SQLException {
 		MainScreenController msc = new MainScreenController();
 
-		String gettId = idSpace1.getText();
+		String gettId = userLabel.getText();
 		String username = gettId;
 		System.out.println("I got the id as " + gettId);
 		DateAndCostManager dc = new DateAndCostManager();

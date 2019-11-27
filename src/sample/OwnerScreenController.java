@@ -34,10 +34,11 @@ public class OwnerScreenController implements Initializable {
 	@FXML
 	private Button logout;
 	@FXML
+	private Button back;
+	@FXML
 	private PasswordField pin_User;
 	@FXML
 	private TextField userName;
-
 
 	@FXML
 	private TextField fullName;
@@ -104,28 +105,26 @@ public class OwnerScreenController implements Initializable {
 	@FXML
 	private TableColumn<?, ?> paymentStatus;
 
-
 	@FXML
-	private Label labelRoom1, labelRoom2, labelRoom3, labelRoom4, labelRoom5,
-			labelRoom6, labelRoom7, labelRoom8;
+	private Label labelRoom1, labelRoom2, labelRoom3, labelRoom4, labelRoom5, labelRoom6, labelRoom7, labelRoom8;
 	@FXML
-	private Label c101, c102, c103, c104, c105, c106, c107,c108;
+	private Label c101, c102, c103, c104, c105, c106, c107, c108;
 
 	boolean accountCreated = false;
 	private ObservableList<CustomerBooking> roomStatus;
 	public static String userTypeChangePassword;
 	public static String userNameForChangePassword;
 
-
 	public void setComboBoxText() {
 
 		CB_type.setPromptText("Select a role.");
 		CB_type.getItems().addAll("Desk_Assistant", "Custodian");
 	}
+
 	public void setComboBoxText2() {
 
 		CB_type1.setPromptText("Select a role.");
-		CB_type1.getItems().addAll("Desk_Assistant", "Custodian","Customer");
+		CB_type1.getItems().addAll("Desk_Assistant", "Custodian", "Customer");
 	}
 
 	@Override
@@ -133,25 +132,23 @@ public class OwnerScreenController implements Initializable {
 		LocalDate todaysDate = LocalDate.now();
 		String datePushed = String.valueOf(todaysDate);
 		CustodianScreenController cs = new CustodianScreenController();
-		String [] roomArray = cs.roomArray;
-		Label [] roomLabelArray = {labelRoom1, labelRoom2, labelRoom3, labelRoom4, labelRoom5, labelRoom6, labelRoom7, labelRoom8};
-		Label [] dateCleanedArray ={c101, c102, c103, c104, c105, c106, c107,c108};
+		String[] roomArray = cs.roomArray;
+		Label[] roomLabelArray = { labelRoom1, labelRoom2, labelRoom3, labelRoom4, labelRoom5, labelRoom6, labelRoom7,
+				labelRoom8 };
+		Label[] dateCleanedArray = { c101, c102, c103, c104, c105, c106, c107, c108 };
 		try {
 			DatabaseManager db = new DatabaseManager();
-			for (int i = 0; i < roomArray.length; i++){
-				boolean checked = db.roomValidationCleaned(roomArray[i],datePushed);
+			for (int i = 0; i < roomArray.length; i++) {
+				boolean checked = db.roomValidationCleaned(roomArray[i], datePushed);
 				String tempDate = db.dateReturn(roomArray[i]);
 				dateCleanedArray[i].setText(tempDate);
-				if(checked == true){
+				if (checked == true) {
 					roomLabelArray[i].setText("DONE");
 					roomLabelArray[i].setTextFill(Color.GREEN);
-				}
-				else{
+				} else {
 					roomLabelArray[i].setText("Not Cleaned");
 					roomLabelArray[i].setTextFill(Color.RED);
 				}
-
-
 
 			}
 		} catch (SQLException e) {
@@ -166,11 +163,10 @@ public class OwnerScreenController implements Initializable {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		roomStatus =FXCollections.observableArrayList(db.BookingStatus("all","all"));
+		roomStatus = FXCollections.observableArrayList(db.BookingStatus("all", "all"));
 		tableActivity.setItems(roomStatus);
 
-
-		//setRoomStatus();
+		// setRoomStatus();
 		TF_name.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent e) {
@@ -182,8 +178,6 @@ public class OwnerScreenController implements Initializable {
 			public void handle(MouseEvent e) {
 				MainScreenController msc = new MainScreenController();
 				try {
-
-					
 
 					String userName = TF_name.getText();
 					String email = TF_email.getText();
@@ -212,7 +206,7 @@ public class OwnerScreenController implements Initializable {
 						} else {
 							Main.infoMessage("Please complete the required fields");
 						}
-						
+
 						int pintoVerifyInInt = Integer.parseInt(pintoVerify);
 						DatabaseManager db = new DatabaseManager();
 
@@ -236,21 +230,44 @@ public class OwnerScreenController implements Initializable {
 
 		});
 
+		logOut();
+		backButton();
 	}
 
+	private void logOut() {
+		logout.setOnMousePressed(new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent e) {
+				Main.logOutUser(logout);
+			}
+		});
+	}
+	
 
-	/*private void setActivityTableView() {
-		ObservableList<CustomerBooking> bookings = FXCollections.observableArrayList(//
-				new CustomerBooking(10, "Jared12", "A", "11/19/19", false)); //
+	private void backButton() {
+		back.setOnMousePressed(new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent e) {
+				MainScreenController msc = new MainScreenController();
+				msc.loadScene(back,"MainScreenSample.fxml", "MainScreen");
+			}
+		});
+	}
 
-		tableInvoice.setCellValueFactory(new PropertyValueFactory<CustomerBooking, Integer>("invoice"));
-		tableName.setCellValueFactory(new PropertyValueFactory<CustomerBooking, String>("cname"));
-		tableRoom.setCellValueFactory(new PropertyValueFactory<CustomerBooking, String>("room"));
-		tableDate.setCellValueFactory(new PropertyValueFactory<CustomerBooking, String>("date"));
-		tableCost.setCellValueFactory(new PropertyValueFactory<CustomerBooking, Double>("cost"));
-		tablePaid.setCellValueFactory(new PropertyValueFactory<CustomerBooking, Boolean>("paid"));
-		tableActivity.setItems(bookings);
-	}*/
+	/*
+	 * private void setActivityTableView() { ObservableList<CustomerBooking>
+	 * bookings = FXCollections.observableArrayList(// new CustomerBooking(10,
+	 * "Jared12", "A", "11/19/19", false)); //
+	 * 
+	 * tableInvoice.setCellValueFactory(new PropertyValueFactory<CustomerBooking,
+	 * Integer>("invoice")); tableName.setCellValueFactory(new
+	 * PropertyValueFactory<CustomerBooking, String>("cname"));
+	 * tableRoom.setCellValueFactory(new PropertyValueFactory<CustomerBooking,
+	 * String>("room")); tableDate.setCellValueFactory(new
+	 * PropertyValueFactory<CustomerBooking, String>("date"));
+	 * tableCost.setCellValueFactory(new PropertyValueFactory<CustomerBooking,
+	 * Double>("cost")); tablePaid.setCellValueFactory(new
+	 * PropertyValueFactory<CustomerBooking, Boolean>("paid"));
+	 * tableActivity.setItems(bookings); }
+	 */
 
 	private void setRoomStatus() {
 		Label[] roomStatus = { labelRoom1, labelRoom2, labelRoom3, labelRoom4, //
@@ -259,7 +276,7 @@ public class OwnerScreenController implements Initializable {
 		for (int i = 0; i < 8; i++) {
 			Label status = roomStatus[i];
 			String randomStatus = "Cleaned";
-			if (random.nextBoolean()) 
+			if (random.nextBoolean())
 				randomStatus = "Maintenance Required";
 			if (randomStatus.equals("Cleaned")) {
 				status.setText(randomStatus);
@@ -272,7 +289,7 @@ public class OwnerScreenController implements Initializable {
 	}
 
 	public void goToResetScreen(ActionEvent actionEvent) throws SQLException {
-			String username = userNameToVerify.getText();
+		String username = userNameToVerify.getText();
 		String pin = pin_User.getText();
 
 		String type = CB_type1.getValue();
@@ -284,18 +301,16 @@ public class OwnerScreenController implements Initializable {
 		System.out.println(type);
 		System.out.println(pin);
 
-		verified = db.verifyPasswordorPin(type,username,pin,"VERIFYPIN");
-		if(verified == true){
+		verified = db.verifyPasswordorPin(type, username, pin, "VERIFYPIN");
+		if (verified == true) {
 			userTypeChangePassword = type;
 			System.out.println(userTypeChangePassword + "dsfsf");
 			userNameForChangePassword = username;
-			msc.loadScene(submitVerify,"ResetPasswordOwner.fxml","Password Reset");
+			msc.loadScene(submitVerify, "ResetPasswordOwner.fxml", "Password Reset");
 
-		}
-		else {
+		} else {
 			Main.errorMessage("Pin doesnt match");
 		}
-
 
 	}
 }
