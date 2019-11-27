@@ -39,9 +39,9 @@ public class SignInController implements Initializable {
 		loginButtonPressed();
 		forgotButtonPressed();
 		backButtonPressed();
-		TF_username.setText("alpha@bravo.com");
-		PF_password.setText("hotel");
-		CB_type.setValue("Owner");
+		TF_username.setText("jared12"); //alpha@bravo.com
+		PF_password.setText("4");//hotel
+		CB_type.setValue("Customer");//Owner
 		
 	}
 
@@ -73,10 +73,11 @@ public class SignInController implements Initializable {
 
 						if (verified == true && type == "Customer") {
 							Main.loggedInUser = username;
-							Main.Type = "ClientScreen";
+							Main.Type = "Customer";
 							msc.loadScene(button_login, "ClientScreen.fxml", "Main cScreen");
 						} else if (verified == true && type == "Owner") {
 							Main.loggedInUser = username;
+							Main.Type = "Owner";
 							msc.loadScene(button_login, "OwnerScreen.fxml", "Main cScreen");
 
 						} else if (verified == true && type == "Custodian") {

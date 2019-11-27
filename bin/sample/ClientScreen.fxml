@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -27,34 +28,7 @@
                      <content>
                         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="1106.0" prefWidth="1541.0">
                            <children>
-                              <Button fx:id="submit" layoutX="485.0" layoutY="376.0" mnemonicParsing="false" onAction="#submitDate" text="Submit" />
-                              <Button layoutX="59.0" layoutY="388.0" mnemonicParsing="false" text="Logout" />
-                              <GridPane layoutX="86.0" layoutY="89.0" prefHeight="270.0" prefWidth="587.0">
-                                 <children>
-                                    <Label text="Check-in Month" />
-                                    <ComboBox fx:id="roomSelectCombo" prefWidth="150.0" GridPane.rowIndex="5" />
-                                    <Label text="Check-Out Month" GridPane.rowIndex="2" />
-                                    <Label text="Check-Out Day" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Label text="Check-In Day" GridPane.columnIndex="1" />
-                                    <Label prefHeight="0.0" prefWidth="86.0" text="Room" GridPane.rowIndex="4" />
-                                    <TextField fx:id="startDate" maxWidth="-Infinity" prefHeight="25.0" prefWidth="163.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField fx:id="endMonth" maxWidth="-Infinity" prefHeight="25.0" prefWidth="171.0" GridPane.rowIndex="3" />
-                                    <TextField fx:id="startMonth" maxWidth="-Infinity" prefHeight="25.0" prefWidth="170.0" GridPane.rowIndex="1" />
-                                    <TextField fx:id="endDate" maxWidth="-Infinity" prefHeight="25.0" prefWidth="164.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                 </children>
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                              </GridPane>
+                              <Button fx:id="logoutButton" layoutX="59.0" layoutY="388.0" mnemonicParsing="false" onAction="#logOut" text="Logout" />
                               <GridPane layoutX="782.0" layoutY="71.0" prefHeight="431.0" prefWidth="556.0">
                                  <children>
                                     <ImageView fitHeight="118.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -64,15 +38,26 @@
                                     <Label prefHeight="130.0" prefWidth="164.0" text="1 bed" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                                     <Label prefHeight="130.0" prefWidth="164.0" text="3 beds&#10;" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                     <Label prefHeight="130.0" prefWidth="164.0" text="2 beds&#10;" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                    <Label text="Price:" GridPane.columnIndex="3" />
-                                    <Label text="Price:" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                                    <Label text="Price:" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                    <Label text="Price:" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                    <Label fx:id="roomALabel" text="Price: $39.99" GridPane.columnIndex="3" />
+                                    <Label fx:id="roomBLabel" text="Price: $49.99" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <Label fx:id="roomCLabel" text="Price: $79.99" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                    <Label fx:id="roomDLabel" text="Price: $89.99" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                                     <Label prefHeight="130.0" prefWidth="164.0" text="4 beds&#10;" wrapText="true" GridPane.columnIndex="2" />
                                     <Label text="Room A" />
+                                  	<ImageView fx:id="roomAIView" fitWidth="96.0" fitHeight="96.0">
+									</ImageView>
                                     <Label text="Room B" GridPane.rowIndex="1" />
+                                    <ImageView fx:id="roomBIView" GridPane.rowIndex="1" fitWidth="96.0" fitHeight="96.0">
+									</ImageView>
+                                    
                                     <Label text="Room C" GridPane.rowIndex="2" />
+                                    <ImageView fx:id="roomCIView" GridPane.rowIndex="2" fitWidth="96.0" fitHeight="96.0">
+									</ImageView>
+                                    
                                     <Label text="Room D" GridPane.rowIndex="3" />
+                                    <ImageView fx:id="roomDIView" GridPane.rowIndex="3" fitWidth="96.0" fitHeight="96.0">
+									</ImageView>
+                                    
                                  </children>
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.0" minWidth="10.0" prefWidth="170.0" />
@@ -87,13 +72,37 @@
                                     <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="113.33331298828125" vgrow="SOMETIMES" />
                                  </rowConstraints>
                               </GridPane>
-                              <Label layoutX="718.0" layoutY="27.0" text="Logged in as:" />
-                              <Label fx:id="idSpace1" layoutX="825.0" layoutY="16.0" text="Null" />
+                              <Label layoutX="718.0" layoutY="27.0" text="Logged in as: " />
+                              <Label fx:id="userLabel" layoutX="799.0" layoutY="27.0" prefWidth="213.0" text="null" />
                               <Label layoutX="185.0" layoutY="22.0" text="Select Room and Date">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
+                              <Label fx:id="typeLabel" layoutX="796.0" layoutY="49.0" text="null" />
+                              <Label layoutX="718.0" layoutY="49.0" text="Type:" />
+                              <GridPane layoutX="162.0" layoutY="179.0" prefHeight="163.0" prefWidth="381.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <DatePicker fx:id="endDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <DatePicker fx:id="startDatePicker" GridPane.rowIndex="3" />
+                                    <Label text="FROM" GridPane.rowIndex="2" />
+                                    <Label text="TO" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Button fx:id="submit" mnemonicParsing="false" onAction="#submitDate" text="Submit" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <ComboBox fx:id="roomSelectCombo" prefWidth="150.0" GridPane.rowIndex="1" />
+                                    <Label text="Room Type" />
+                                 </children>
+                              </GridPane>
                            </children>
                         </AnchorPane>
                      </content>
@@ -162,24 +171,51 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="tempButton" layoutX="741.0" layoutY="257.0" mnemonicParsing="false" onAction="#tempButton" text="Pay" />
-                              <Label fx:id="tempLabel" layoutX="517.0" layoutY="257.0" text="These bookings are currently unpaid." />
-                              <TableView layoutX="369.0" layoutY="52.0" prefHeight="200.0" prefWidth="412.0" fx:id="tableUnpaid">
-                                <columns>
-                                  <TableColumn fx:id="upTableRoomNo" prefWidth="75.0" text="Room Type" />
-                                  <TableColumn prefWidth="127.0" text="Date" fx:id="upTableDate" />
-                                    <TableColumn prefWidth="102.0" text="Amount" fx:id="upTableAmount" />
-                                    <TableColumn prefWidth="109.0" text="Invoice" fx:id="upTableInvoice" />
+                              <Button fx:id="payNow" layoutX="205.0" layoutY="258.0" mnemonicParsing="false" onAction="#paymentScreenRunning" text="Pay Now" />
+                              <Label fx:id="tempLabel" layoutX="61.0" layoutY="64.0" text="10255530" />
+                             <TableView fx:id="tablePaid" layoutX="369.0" layoutY="52.0" prefHeight="200.0" prefWidth="372.0">
+                               <columns>
+                                 <TableColumn fx:id="upTableRoomNo" prefWidth="75.0" text="RoomNo">
+                                   <cellValueFactory><PropertyValueFactory property="room" /></cellValueFactory>
+                                 </TableColumn>
+                                 <TableColumn fx:id="upTableDate" prefWidth="75.0" text="Date">
+                                   <cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory>
+                                 </TableColumn>
+                                 <TableColumn fx:id="upTableAmount" prefWidth="75.0" text="Amount">
+                                   <cellValueFactory><PropertyValueFactory property="cost" /></cellValueFactory>
+                                 </TableColumn>
+                                 <TableColumn fx:id="upTableInvoice" prefWidth="75.0" text="Invoice">
+                                   <cellValueFactory><PropertyValueFactory property="invoice" /></cellValueFactory>
+                                 </TableColumn>
+                               </columns>
+                             </TableView>
+                             <TableView fx:id="tableUnpaid" layoutX="372.0" layoutY="344.0" prefHeight="200.0" prefWidth="367.0">
+                               <columns>
+                                 <TableColumn fx:id="pTableRoomNo" prefWidth="75.0" text="RoomNo">
+                                   <cellValueFactory><PropertyValueFactory property="room" /></cellValueFactory>
+                                 </TableColumn>
+                                 <TableColumn fx:id="pTableDate" prefWidth="75.0" text="Date">
+                                   <cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory>
+                                 </TableColumn>
+                                 <TableColumn fx:id="pTableAmount" prefWidth="75.0" text="Amount">
+                                   <cellValueFactory><PropertyValueFactory property="cost" /></cellValueFactory>
+                                 </TableColumn>
+                                 <TableColumn fx:id="pTableInvoice" prefWidth="75.0" text="Invoice">
+                                   <cellValueFactory><PropertyValueFactory property="invoice" /></cellValueFactory>
+                                 </TableColumn>
                                 </columns>
                               </TableView>
-                              <TableView layoutX="369.0" layoutY="331.0" prefHeight="200.0" prefWidth="411.0" fx:id="tablePaid">
-                                <columns>
-                                  <TableColumn fx:id="pTableRoomNo" prefWidth="75.0" text="Room Type" />
-                                  <TableColumn prefWidth="127.0" text="Date" fx:id="pTableDate" />
-                                    <TableColumn prefWidth="109.0" text="Amount" fx:id="pTableAmount" />
-                                    <TableColumn prefWidth="99.0" text="Invoice" fx:id="pTableInvoice" />
-                                </columns>
-                              </TableView>
+                              <Label layoutX="372.0" text="Paid">
+                                 <font>
+                                    <Font size="29.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="369.0" layoutY="292.0" text="Unpaid">
+                                 <font>
+                                    <Font size="28.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="deleteOrder" layoutX="237.0" layoutY="332.0" mnemonicParsing="false" onAction="#deleteTheOrder" text="Delete" />
                            </children>
                         </AnchorPane>
                     </content>
