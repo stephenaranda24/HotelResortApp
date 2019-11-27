@@ -20,27 +20,27 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                             <TableView fx:id="tableActivity" layoutX="14.0" layoutY="7.0" prefHeight="583.0" prefWidth="650.0">
+                             <TableView layoutX="14.0" layoutY="7.0" prefHeight="583.0" prefWidth="736.0" fx:id="tableActivity">
                                <columns>
-                                 <TableColumn fx:id="invoiceID" prefWidth="107.22219848632812" text="Invoice No">
+                                 <TableColumn prefWidth="77.00003051757812" text="Invoice No" fx:id="invoiceID">
                                    <cellValueFactory><PropertyValueFactory property="invoice" /></cellValueFactory>
                                  </TableColumn>
-                                 <TableColumn fx:id="fullNametoDisplay" prefWidth="118.66668701171875" text="Full Name">
+                                 <TableColumn prefWidth="121.0" text="Full Name" fx:id="fullNametoDisplay">
                                    <cellValueFactory><PropertyValueFactory property="cname" /></cellValueFactory>
                                  </TableColumn>
-                                 <TableColumn fx:id="roomNo" prefWidth="72.888916015625" text="Room Number">
+                                 <TableColumn prefWidth="91.0" text="Room Number" fx:id="roomNo">
                                    <cellValueFactory><PropertyValueFactory property="room" /></cellValueFactory>
                                  </TableColumn>
-                                 <TableColumn fx:id="dateToDisplay" prefWidth="99.111083984375" text="Stay Date">
+                                 <TableColumn prefWidth="164.0" text="Stay Date" fx:id="dateToDisplay">
                                    <cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory>
                                  </TableColumn>
-                                 <TableColumn fx:id="amount" prefWidth="89.5555419921875" text="Amount">
+                                 <TableColumn prefWidth="92.0" text="Amount" fx:id="amount">
                                    <cellValueFactory><PropertyValueFactory property="cost" /></cellValueFactory>
                                  </TableColumn>
-                                 <TableColumn fx:id="paymentStatus" prefWidth="67.888916015625" text="Payment Status">
+                                 <TableColumn prefWidth="103.0" text="Payment Status" fx:id="paymentStatus">
                                    <cellValueFactory><PropertyValueFactory property="paid" /></cellValueFactory>
                                  </TableColumn>
-                                 <TableColumn fx:id="checkInStatus" prefWidth="90.11114501953125" text="CheckinStatus">
+                                 <TableColumn prefWidth="87.0" text="CheckinStatus" fx:id="checkInStatus">
                                    <cellValueFactory><PropertyValueFactory property="checkinStatus" /></cellValueFactory>
                                  </TableColumn>
                                </columns>

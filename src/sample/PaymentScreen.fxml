@@ -33,7 +33,7 @@
                   <TextField fx:id="expYear" maxWidth="-Infinity" prefHeight="25.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <TextField fx:id="cardCvv" maxWidth="-Infinity" prefHeight="25.0" prefWidth="155.0" GridPane.rowIndex="7" />
                   <TextField fx:id="bilingZipCode" maxWidth="-Infinity" prefHeight="25.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <ComboBox fx:id="cardType" prefWidth="150.0" GridPane.rowIndex="1" />
+                  <ComboBox GridPane.rowIndex="1" prefHeight="25.0" prefWidth="191.0" fx:id="cardType" />
                   <Label text="The payment amount for to complete your booking is" />
                   <TextArea fx:id="amount" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                </children>
