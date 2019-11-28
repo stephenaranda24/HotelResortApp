@@ -33,6 +33,11 @@ public class SignInController implements Initializable {
 	@FXML
 	private TextArea idSpace;
 
+	/**
+	 *
+	 * {@inheritDoc}
+	 * initialize the scene with the value in combobox
+	 * */
 	@Override
 	public void initialize(URL url, ResourceBundle resources) {
 		setComboBoxText();
@@ -41,15 +46,31 @@ public class SignInController implements Initializable {
 		backButtonPressed();
 		TF_username.setText("jared12"); //alpha@bravo.com
 		PF_password.setText("4");//hotel
-		CB_type.setValue("Customer");//Owner
+
 		
 	}
 
+	/**
+	 * items adding in combo box
+	 * Owner as Admin
+	 * Customer as Guest
+	 * Front_Desk As Desk_Assistant
+	 * HouseKeeping as Custodian
+	 */
 	private void setComboBoxText() {
 		CB_type.setPromptText("Select a role.");
-		CB_type.getItems().addAll("Owner", "Customer", "Desk_Assistant", "Custodian");
+		CB_type.getItems().addAll("Admin", "Guest", "Front Desk", "House Keeping");
 	}
 
+	/**
+	 * Action for login button
+	 * It get the value from the text field and check if the values are empty?
+	 * If the values are not empty then it go to database table for the right user type and
+	 * look if the name exist or not. It is done thorugh the method
+	 * LogInAccount( String email, String password ,String role) from the Database Manager
+	 * If it exist then it check for the password from the table's password column, if it validates
+	 * true then it will open correct type of users screen
+	 */
 	private void loginButtonPressed() {
 		button_login.setOnMousePressed(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent e) {
@@ -59,25 +80,38 @@ public class SignInController implements Initializable {
 					// retrieves sign-in fields
 					String username = TF_username.getText();
 					String password = PF_password.getText();
-					String type = CB_type.getValue();
+					String role = CB_type.getValue();
+					String type;
+					switch (role.toLowerCase()){
+						case "admin":
+							type = "Owner";
+							break;
+						case "guest":
+							type = "Customer";
+							break;
+						case "front desk":
+							type = "Desk_Assistant";
+							break;
+						case "house keeping":
+							type = "CUSTODIAN";
+							break;
+						default:
+							type = "something ";
+							break;
+					}
+					// checks that required fields are not empty
 					boolean fieldsCompleted = !username.equals("") && !password.equals("") //
 							&& !type.equals(null);
-					// checks that required fields are not empty
 					if (fieldsCompleted) {
-						System.out.println("Username: " + username);
-						System.out.println("Password: " + password);
-						System.out.println("Type: " + type);
 						db.startDatabase(username, password, type);
 						boolean verified = db.LogInAccount(username, password, type);
-						// "Owner", "Customer", "Desk_Assistant", "Custodian"
-
 						if (verified == true && type == "Customer") {
 							Main.loggedInUser = username;
-							Main.Type = "Customer";
+							Main.Type ="ClientScreen";
 							msc.loadScene(button_login, "ClientScreen.fxml", "Main cScreen");
 						} else if (verified == true && type == "Owner") {
 							Main.loggedInUser = username;
-							Main.Type = "Owner";
+							Main.Type = "OwnerScreen";
 							msc.loadScene(button_login, "OwnerScreen.fxml", "Main cScreen");
 
 						} else if (verified == true && type == "Custodian") {
@@ -88,6 +122,7 @@ public class SignInController implements Initializable {
 						} else if (verified == true && type == "Desk_Assistant") {
 							Main.loggedInUser = username;
 							msc.loadScene(button_login, "DeskAssistantScreen.fxml", "Main cScreen");
+							Main.Type = "DeskAssistantScreen";
 
 						} else {
 							Main.errorMessage("Password or Username is incorrect");
@@ -104,10 +139,15 @@ public class SignInController implements Initializable {
 		});
 	}
 
+	/**
+	 * Forget Password Screen Message
+	 */
+
 	private void forgotButtonPressed() {
 		button_forgot.setOnMousePressed(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
-				System.out.println("(Forgot Pressed)");
+				Main.infoMessage("Please call at 1-800-000-0000 and provide your pin to reset the Password"
+				+ "\nWe strongly suggest you to change your pin and password once you get the temporary password for re-login");
 				// go to forgot username screen
 
 			}
@@ -119,8 +159,6 @@ public class SignInController implements Initializable {
 
 		button_back.setOnMousePressed(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
-				System.out.println("(Back Pressed)");
-
 				MainScreenController msc = new MainScreenController();
 				msc.loadScene(button_back, "MainScreenSample.fxml", "Main Screen");
 			}

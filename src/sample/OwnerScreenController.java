@@ -127,6 +127,7 @@ public class OwnerScreenController implements Initializable {
 		CB_type1.getItems().addAll("Desk_Assistant", "Custodian", "Customer");
 	}
 
+	/** {@inheritDoc} */
 	@Override
 	public void initialize(URL url, ResourceBundle resources) {
 		LocalDate todaysDate = LocalDate.now();
@@ -170,7 +171,7 @@ public class OwnerScreenController implements Initializable {
 		TF_name.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent e) {
-				System.out.println("Name: ");
+
 			}
 		});
 
@@ -194,22 +195,14 @@ public class OwnerScreenController implements Initializable {
 								&& !password.equals("") && !cpassword.equals("") && !fullNameText.equals("")
 								&& !pintoVerify.equals("") && !pintoVerifyC.equals("");
 						if (fieldsCompleted) {
-
-							System.out.println("UserName: " + userName);
-							System.out.println("Email: " + email);
-							System.out.println("Password: " + password);
-							System.out.println("C Password: " + cpassword);
-							System.out.println("Full Name: " + fullNameText);
-							/* do database stuff here */
-							System.out.println("Account sucessfully created.");
 							accountCreated = true;
 						} else {
 							Main.infoMessage("Please complete the required fields");
 						}
 
 						int pintoVerifyInInt = Integer.parseInt(pintoVerify);
+						Main.infoMessage("Account sucessfully created.");
 						DatabaseManager db = new DatabaseManager();
-
 						db.addByOwner(type, email, userName, password, pintoVerifyInInt);
 
 					} else {
@@ -288,6 +281,7 @@ public class OwnerScreenController implements Initializable {
 		}
 	}
 
+
 	public void goToResetScreen(ActionEvent actionEvent) throws SQLException {
 		String username = userNameToVerify.getText();
 		String pin = pin_User.getText();
@@ -297,14 +291,9 @@ public class OwnerScreenController implements Initializable {
 		boolean verified;
 		DatabaseManager db = new DatabaseManager();
 		MainScreenController msc = new MainScreenController();
-		System.out.println(username);
-		System.out.println(type);
-		System.out.println(pin);
-
 		verified = db.verifyPasswordorPin(type, username, pin, "VERIFYPIN");
 		if (verified == true) {
 			userTypeChangePassword = type;
-			System.out.println(userTypeChangePassword + "dsfsf");
 			userNameForChangePassword = username;
 			msc.loadScene(submitVerify, "ResetPasswordOwner.fxml", "Password Reset");
 

@@ -31,6 +31,9 @@ import javafx.scene.image.ImageView;
 import javax.xml.soap.Text;
 import org.h2.table.Table;
 
+/**
+ *
+ */
 public class ClientScreenController implements Initializable {
 
 	@FXML
@@ -180,10 +183,6 @@ public class ClientScreenController implements Initializable {
 			tableUnpaid.getItems().remove(selection);
 		}
 
-		/*
-		 * ClientScreenController.orderNo = Integer.parseInt(tempLabel.getText());
-		 * System.out.println(ClientScreenController.orderNo + "if it works");
-		 */
 
 	}
 
@@ -201,7 +200,6 @@ public class ClientScreenController implements Initializable {
 			passwordMatched = dm.verifyPasswordorPin("Customer", userId, oPassword, "password");
 			if (passwordMatched == true) {
 				dm.changePinOrPass("Customer", userId, "password", password);
-				System.out.println("password Changed");
 			}
 		} else {
 			Main.errorMessage("Password does not match");
@@ -222,7 +220,7 @@ public class ClientScreenController implements Initializable {
 			pinMatched = dm.verifyPasswordorPin("Customer", userId, oPin, "VERIFYPIN");
 			if (pinMatched == true) {
 				dm.changePinOrPass("Customer", userId, "VERIFYPIN", pin);
-				System.out.println("pin Changed");
+
 			}
 
 		} else {
@@ -231,13 +229,12 @@ public class ClientScreenController implements Initializable {
 
 	}
 
+	/** {@inheritDoc} */
 	public void initialize(URL url, ResourceBundle resources) {
 		try {
 			DatabaseManager db = new DatabaseManager();
 			userId = db.getTheName(Main.loggedInUser, "Customer");
 			paid =FXCollections.observableArrayList(db.BookingStatus(userId,"true"));
-			System.out.println(userId+ "dsadasdada");
-			System.out.println(paid);
 			unpaid =FXCollections.observableArrayList(db.BookingStatus(userId,"false"));
 			tableUnpaid.setItems(unpaid);
 			tablePaid.setItems(paid);
@@ -273,84 +270,48 @@ public class ClientScreenController implements Initializable {
 
 		String gettId = userLabel.getText();
 		String username = gettId;
-		System.out.println("I got the id as " + gettId);
+
 		DateAndCostManager dc = new DateAndCostManager();
-		String startDates = startDatePicker.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
-		System.out.println(startDates);
+		String startDates = startDatePicker.getValue()
+				.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
 
 		String enddate = endDatePicker.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
-		System.out.println(enddate);
-		List newList = dc.dateCalc(roomSelectCombo, startDates,enddate);
+		List newList = dc.dateCalc(roomSelectCombo, startDates, enddate);
 
-		/*List newList = dc.dateCalc(roomSelectCombo, startDate, startMonth, endDate, endMonth);*/
-
-		/*
-		 * String startDate = startDat.getText(); String startMonths =
-		 * startMonth.getText(); String endDatee = endDate.getText(); String endMonths =
-		 * endMonth.getText(); String room = roomSelectCombo.getValue();
-		 *
-		 * String dateMonthStart = String.format("%s/%s/2019",startMonths,startDate);
-		 * String dateMonthend = String.format("%s/%s/2019",endMonths,endDatee);
-		 * System.out.println(dateMonthStart);
-		 *
-		 *//*
-		 * Format f = new SimpleDateFormat("MM/dd/yyyy"); String strDate =
-		 * f.format(dateMonthStart); System.out.println(strDate + " Alpha");
-		 *//*
-		 * Date startBookingDate = new Date(dateMonthStart); System.out.println(new
-		 * SimpleDateFormat("MM/dd/yyyy").format(startBookingDate)); Date endBookingDate
-		 * = new Date(dateMonthend); long totalDaysBooked = endBookingDate.getTime() -
-		 * startBookingDate.getTime(); totalDaysBooked = (long)
-		 * Math.ceil((double)totalDaysBooked/86400000); String dateBookedToDisplay =
-		 * startBookingDate + " - " +endBookingDate;
-		 * System.out.println(dateBookedToDisplay); System.out.
-		 * println("result sdfjosaekjfkjdskfndsjfndskjlfnkjdskjfbsdkjfsdkjfnkndsjllkjfns   "
-		 * + totalDaysBooked); ArrayList<String> dateList = new ArrayList<>(); for(int i
-		 * =0; i<totalDaysBooked;i++){ Calendar cal = Calendar.getInstance();
-		 * SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-		 *
-		 * cal.setTime(startBookingDate);
-		 *
-		 * cal.add(Calendar.DAY_OF_MONTH, i); Date addDate = cal.getTime();
-		 * System.out.println(addDate); String finalDateformat = sdf.format(addDate);
-		 * System.out.println(finalDateformat ); dateList.add(finalDateformat); }
-		 */
-		// Object myObject[] =new String[4];
-		// myObject[0] = totalDaysBooked;
-		// myObject[1] = startBookingFDate;
-		// myObject[2] = endBookingFDate;
-		// myObject[3] = bookingCost;
-		// myObject[4] = dateList;
-
-		DatabaseManager db = new DatabaseManager();
-		ArrayList<String> dateList = (ArrayList<String>) newList.get(4);
-		System.out.println(dateList + "LOOKINGOUT");
-		double cost = (double) newList.get(3);
-		System.out.println(dateList + "LOOKINGOUT" + cost);
-		String dateToDisplay = (String) newList.get(5);
-		System.out.println("The booking was between " + dateToDisplay);
-
-		String result = db.pushDateToRoom(roomSelectCombo.getValue(), gettId, dateList);
-
-		if (result != null) {
-			System.out.println(result + " Looking for result");
-			String fullName = db.nameOfTheCustomer(gettId);
-
-			db.pushDate(gettId, result, dateList, cost, dateToDisplay, fullName, "NO");
-			orderNo = db.orderNumber();
-			System.out.println("order no is " + orderNo);
-
+		if (newList.get(0).equals("null")) {
+			Main.errorMessage("Please pick the correct date again");
 		} else {
-			Main.infoMessage("Sorry the rooms selected are not available for those dates");
+
+			DatabaseManager db = new DatabaseManager();
+			ArrayList<String> dateList = (ArrayList<String>) newList.get(4);
+			double cost = (double) newList.get(3);
+			String dateToDisplay = (String) newList.get(5);
+
+			String result = db.pushDateToRoom(roomSelectCombo.getValue(), gettId, dateList);
+
+			if (result != null) {
+				String fullName = db.nameOfTheCustomer(gettId);
+
+				db.pushDate(gettId, result, dateList, cost, dateToDisplay, fullName, "NO");
+				orderNo = db.orderNumber();
+				Main.infoMessage("Thank you for making the reservation"
+						+ "\nYour booking has been confirmed"
+						+ "\nYour booking number is " + orderNo
+						+ "\nPeriod of Stay " + dateToDisplay
+						+ "\nThe cost of the booking is $" + cost
+						+ "\nYou will rediredted to the Payment Screen"
+						+ "\nYou may skip the payment by using pay later option"
+						+ "\n Additional information will be provided on Payment Scree");
+				msc.loadScene(submit, "PaymentScreen.fxml", "Payment Screen");
+			} else {
+				Main.infoMessage("Sorry the rooms selected are not available for those dates");
+			}
+
+
 		}
-
-		System.out.println(dateList);
-
-		msc.loadScene(submit, "PaymentScreen.fxml", "Payment Screen");
 	}
 	public int fetchOrder(TableView table){
 		int index = table.getSelectionModel().getSelectedIndex();
-
 		CustomerBooking invoiceNo = tableUnpaid.getItems().get(index);
 		int newValue = invoiceNo.getInvoice();
 		return newValue;
@@ -363,6 +324,7 @@ public class ClientScreenController implements Initializable {
 		msc.loadScene(payNow, "PaymentScreen.fxml", "Payment Screen");
 	}
 
+
 	@FXML
 	void deleteTheOrder(ActionEvent event) throws SQLException {
 
@@ -372,26 +334,17 @@ public class ClientScreenController implements Initializable {
 	}
 	else{
 		orderNo = fetchOrder(tableUnpaid);
-
 	}
-		System.out.println(orderNo+"this is the order");
 	DatabaseManager db = new DatabaseManager();
 	db.deleteOrder(orderNo,userId);
-		tableUnpaid.getSelectionModel().clearSelection();
-		tableUnpaid.getItems().clear();
-		tablePaid.getSelectionModel().clearSelection();
-		tablePaid.getItems().clear();
-
-
+	tableUnpaid.getSelectionModel().clearSelection();
+	tableUnpaid.getItems().clear();
+	tablePaid.getSelectionModel().clearSelection();
+	tablePaid.getItems().clear();
 	paid =FXCollections.observableArrayList(db.BookingStatus(userId,"true"));
 	unpaid =FXCollections.observableArrayList(db.BookingStatus(userId,"false"));
 	tableUnpaid.setItems(unpaid);
 	tablePaid.setItems(paid);
-
-
-
-
-
 
 	}
 

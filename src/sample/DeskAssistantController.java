@@ -53,7 +53,6 @@ public class DeskAssistantController implements Initializable {
   void acceptPaymentAction(ActionEvent event) throws SQLException {
     MainScreenController msc = new MainScreenController();
     int index = tableActivity.getSelectionModel().getSelectedIndex();
-
     CustomerBooking invoiceNo = tableActivity.getItems().get(index);
     int newValue = invoiceNo.getInvoice();
     String paymentStatus = invoiceNo.getPaid();
@@ -117,6 +116,7 @@ public class DeskAssistantController implements Initializable {
 
 
   }
+  /** {@inheritDoc} */
   @Override
   public void initialize(URL url, ResourceBundle resources) {
     DatabaseManager db = null;

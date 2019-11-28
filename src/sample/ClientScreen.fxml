@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" prefHeight="930.0" prefWidth="1210.0" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="sample.ClientScreenController">
+<ScrollPane maxHeight="-Infinity" prefHeight="930.0" prefWidth="1210.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ClientScreenController">
   <content>
     <AnchorPane layoutX="1.0" layoutY="1.0" minHeight="0.0" minWidth="0.0" prefHeight="1074.0" prefWidth="1950.0">
       <children>
@@ -28,31 +28,31 @@
               <content>
                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="1106.0" prefWidth="1541.0">
                   <children>
-                    <Button layoutX="5.0" layoutY="2.0" mnemonicParsing="false" onAction="#logOut" text="Logout" fx:id="logoutButton" />
+                    <Button fx:id="logoutButton" layoutX="5.0" layoutY="2.0" mnemonicParsing="false" onAction="#logOut" text="Logout" />
                     <GridPane layoutX="24.0" layoutY="63.0" prefHeight="563.0" prefWidth="516.0">
                       <children>
-                        <ImageView GridPane.columnIndex="1" fitHeight="120.0" fitWidth="140.0" fx:id="roomAIView">
+                        <ImageView fx:id="roomAIView" fitHeight="120.0" fitWidth="140.0" GridPane.columnIndex="1">
                         </ImageView>
-                        <ImageView GridPane.columnIndex="1" GridPane.rowIndex="1" fitHeight="120.0" fitWidth="140.0" fx:id="roomBIView">
+                        <ImageView fx:id="roomBIView" fitHeight="120.0" fitWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                         </ImageView>
-                        <ImageView GridPane.columnIndex="1" GridPane.rowIndex="3" fitHeight="120.0" fitWidth="140.0" fx:id="roomCIView">
+                        <ImageView fx:id="roomCIView" fitHeight="120.0" fitWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                         </ImageView>
-                        <ImageView GridPane.columnIndex="1" GridPane.rowIndex="2" fitHeight="120.0" fitWidth="140.0" fx:id="roomDIView">
+                        <ImageView fx:id="roomDIView" fitHeight="120.0" fitWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                         </ImageView>
-                        <Label GridPane.columnIndex="2" GridPane.rowIndex="2" prefHeight="130.0" prefWidth="164.0" text="1 bed" wrapText="true" />
-                        <Label GridPane.columnIndex="2" GridPane.rowIndex="1" prefHeight="130.0" prefWidth="164.0" text="3 beds&#10;" wrapText="true" />
-                        <Label GridPane.columnIndex="2" GridPane.rowIndex="3" prefHeight="130.0" prefWidth="164.0" text="2 beds&#10;" wrapText="true" />
-                        <Label GridPane.columnIndex="3" text="Price: $39.99" fx:id="roomALabel" />
-                        <Label GridPane.columnIndex="3" GridPane.rowIndex="1" text="Price: $49.99" fx:id="roomBLabel" />
-                        <Label GridPane.columnIndex="3" GridPane.rowIndex="3" text="Price: $79.99" fx:id="roomCLabel" />
-                        <Label GridPane.columnIndex="3" GridPane.rowIndex="2" text="Price: $89.99" fx:id="roomDLabel" />
-                        <Label GridPane.columnIndex="2" prefHeight="130.0" prefWidth="164.0" text="4 beds&#10;" wrapText="true" />
+                        <Label prefHeight="130.0" prefWidth="164.0" text="1 bed" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Label prefHeight="130.0" prefWidth="164.0" text="3 beds&#10;" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Label prefHeight="130.0" prefWidth="164.0" text="2 beds&#10;" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <Label fx:id="roomALabel" text="Price: $39.99" GridPane.columnIndex="3" />
+                        <Label fx:id="roomBLabel" text="Price: $49.99" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <Label fx:id="roomCLabel" text="Price: $79.99" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <Label fx:id="roomDLabel" text="Price: $89.99" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <Label prefHeight="130.0" prefWidth="164.0" text="4 beds&#10;" wrapText="true" GridPane.columnIndex="2" />
 
                         <Label text="Room A" />
-                        <Label GridPane.rowIndex="1" text="Room B" />
+                        <Label text="Room B" GridPane.rowIndex="1" />
 
-                        <Label GridPane.rowIndex="3" text="Room C" />
-                        <Label GridPane.rowIndex="2" text="Room D" />
+                        <Label text="Room C" GridPane.rowIndex="3" />
+                        <Label text="Room D" GridPane.rowIndex="2" />
 
                       </children>
                       <columnConstraints>
@@ -70,15 +70,15 @@
                     </GridPane>
                     <GridPane layoutX="636.0" layoutY="121.0" prefHeight="280.0" prefWidth="469.0">
                       <children>
-                        <Button GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="7" mnemonicParsing="false" onAction="#submitDate" text="Submit" fx:id="submit" />
-                        <ComboBox GridPane.rowIndex="2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="26.0" prefWidth="174.0" fx:id="roomSelectCombo" />
-                        <DatePicker GridPane.rowIndex="6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="21.0" prefWidth="174.0" fx:id="endDatePicker" />
-                        <DatePicker GridPane.rowIndex="4" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="21.0" prefWidth="174.0" fx:id="startDatePicker" />
-                        <Label GridPane.rowIndex="3" text="FROM">
+                        <Button fx:id="submit" mnemonicParsing="false" onAction="#submitDate" text="Submit" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="7" />
+                        <ComboBox fx:id="roomSelectCombo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="26.0" prefWidth="174.0" GridPane.rowIndex="2" />
+                        <DatePicker fx:id="endDatePicker" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="21.0" prefWidth="174.0" GridPane.rowIndex="6" />
+                        <DatePicker fx:id="startDatePicker" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="21.0" prefWidth="174.0" GridPane.rowIndex="4" />
+                        <Label text="FROM" GridPane.rowIndex="3">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font></Label>
-                        <Label GridPane.rowIndex="5" text="TO">
+                        <Label text="TO" GridPane.rowIndex="5">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font></Label>
@@ -105,14 +105,14 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       </rowConstraints>
                     </GridPane>
-                    <Label layoutX="799.0" layoutY="27.0" prefWidth="213.0" text="null" fx:id="userLabel" />
+                    <Label fx:id="userLabel" layoutX="799.0" layoutY="27.0" prefWidth="213.0" text="null" />
                     <Label layoutX="58.0" layoutY="27.0" text="Select Room and Date">
                       <font>
                         <Font size="18.0" />
                       </font>
                     </Label>
-                    <Label layoutX="796.0" layoutY="49.0" text="null" fx:id="typeLabel" />
-                    <Label layoutX="718.0" layoutY="49.0" text="Type:" />
+                    <Label fx:id="typeLabel" layoutX="796.0" layoutY="49.0" text="null" visible="false" />
+                    <Label layoutX="718.0" layoutY="49.0" text="Type:" visible="false" />
                     <Label layoutX="718.0" layoutY="27.0" text="Logged in as: " />
                   </children>
                 </AnchorPane>
@@ -122,17 +122,17 @@
               <content>
                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="1097.0" prefWidth="1541.0">
                   <children>
-                    <Button layoutX="312.0" layoutY="332.0" mnemonicParsing="false" onAction="#updatePasswordAction" text="Update Password" fx:id="updatePassword" />
+                    <Button fx:id="updatePassword" layoutX="312.0" layoutY="332.0" mnemonicParsing="false" onAction="#updatePasswordAction" text="Update Password" />
                     <Button layoutX="562.0" layoutY="960.0" mnemonicParsing="false" text="Update" />
-                    <Button layoutX="644.0" layoutY="326.0" mnemonicParsing="false" onAction="#updatePin" text="Update Pin" fx:id="updatePin" />
+                    <Button fx:id="updatePin" layoutX="644.0" layoutY="326.0" mnemonicParsing="false" onAction="#updatePin" text="Update Pin" />
                     <GridPane layoutX="37.0" layoutY="61.0" prefHeight="277.0" prefWidth="351.0">
                       <children>
                         <Label text="Old Password" />
-                        <Label GridPane.rowIndex="1" text="New Password" />
-                        <Label GridPane.rowIndex="2" text="Confirm New Password" />
-                        <PasswordField GridPane.columnIndex="1" fx:id="oldPassword" />
-                        <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="newPassword" />
-                        <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="newPasswordVerify" />
+                        <Label text="New Password" GridPane.rowIndex="1" />
+                        <Label text="Confirm New Password" GridPane.rowIndex="2" />
+                        <PasswordField fx:id="oldPassword" GridPane.columnIndex="1" />
+                        <PasswordField fx:id="newPassword" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <PasswordField fx:id="newPasswordVerify" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                       </children>
                       <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -147,11 +147,11 @@
                     <GridPane layoutX="450.0" layoutY="54.0" prefHeight="273.0" prefWidth="269.0">
                       <children>
                         <Label text="Old Pin" />
-                        <Label GridPane.rowIndex="1" text="New Pin" />
-                        <Label GridPane.rowIndex="2" text="Confirm Pin" />
-                        <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="newPin" />
-                        <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="newPinVerify" />
-                        <PasswordField GridPane.columnIndex="1" fx:id="oldPin" />
+                        <Label text="New Pin" GridPane.rowIndex="1" />
+                        <Label text="Confirm Pin" GridPane.rowIndex="2" />
+                        <PasswordField fx:id="newPin" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <PasswordField fx:id="newPinVerify" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <PasswordField fx:id="oldPin" GridPane.columnIndex="1" />
                       </children>
                       <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -164,7 +164,7 @@
                       </rowConstraints>
                     </GridPane>
                     <Label layoutX="599.0" layoutY="18.0" text="Logged in as:" />
-                    <Label layoutX="682.0" layoutY="18.0" text="Null" fx:id="idSpace11" />
+                    <Label fx:id="idSpace11" layoutX="682.0" layoutY="18.0" text="Null" />
                     <Label layoutX="27.0" layoutY="23.0" text="Change Password">
                       <font>
                         <Font name="System Bold" size="18.0" />
@@ -182,8 +182,8 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                   <children>
-                    <Button layoutX="537.0" layoutY="388.0" mnemonicParsing="false" onAction="#paymentScreenRunning" text="Pay Booking Now (Paid)" fx:id="payNow" />
-                    <Button layoutX="537.0" layoutY="455.0" mnemonicParsing="false" onAction="#deleteTheOrder" text="Delete Booking (Paid/Unpaid)" fx:id="deleteOrder" />
+                    <Button fx:id="payNow" layoutX="537.0" layoutY="388.0" mnemonicParsing="false" onAction="#paymentScreenRunning" text="Pay Booking Now (Paid)" />
+                    <Button fx:id="deleteOrder" layoutX="537.0" layoutY="455.0" mnemonicParsing="false" onAction="#deleteTheOrder" text="Delete Booking (Paid/Unpaid)" />
                     <Label layoutX="46.0" layoutY="7.0" text="Paid">
                       <font>
                         <Font size="29.0" />
@@ -194,35 +194,35 @@
                         <Font size="28.0" />
                       </font>
                     </Label>
-                    <Label layoutX="1025.0" layoutY="58.0" text="10255530" fx:id="tempLabel" />
-                    <TableView layoutX="40.0" layoutY="507.0" prefHeight="358.0" prefWidth="429.0" fx:id="tableUnpaid">
+                    <Label fx:id="tempLabel" layoutX="1025.0" layoutY="58.0" text="10255530" />
+                    <TableView fx:id="tableUnpaid" layoutX="40.0" layoutY="507.0" prefHeight="358.0" prefWidth="429.0">
                       <columns>
-                        <TableColumn prefWidth="63.0" text="RoomNo" fx:id="pTableRoomNo">
+                        <TableColumn fx:id="pTableRoomNo" prefWidth="63.0" text="RoomNo">
                           <cellValueFactory><PropertyValueFactory property="room" /></cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="203.0" text="Date" fx:id="pTableDate">
+                        <TableColumn fx:id="pTableDate" prefWidth="203.0" text="Date">
                           <cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="83.0" text="Amount" fx:id="pTableAmount">
+                        <TableColumn fx:id="pTableAmount" prefWidth="83.0" text="Amount">
                           <cellValueFactory><PropertyValueFactory property="cost" /></cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="79.0" text="Invoice" fx:id="pTableInvoice">
+                        <TableColumn fx:id="pTableInvoice" prefWidth="79.0" text="Invoice">
                           <cellValueFactory><PropertyValueFactory property="invoice" /></cellValueFactory>
                         </TableColumn>
                       </columns>
                     </TableView>
-                    <TableView layoutX="40.0" layoutY="55.0" prefHeight="358.0" prefWidth="429.0" fx:id="tablePaid">
+                    <TableView fx:id="tablePaid" layoutX="40.0" layoutY="55.0" prefHeight="358.0" prefWidth="429.0">
                       <columns>
-                        <TableColumn prefWidth="62.999969482421875" text="RoomNo" fx:id="upTableRoomNo">
+                        <TableColumn fx:id="upTableRoomNo" prefWidth="62.999969482421875" text="RoomNo">
                           <cellValueFactory><PropertyValueFactory property="room" /></cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="183.00003051757812" text="Date" fx:id="upTableDate">
+                        <TableColumn fx:id="upTableDate" prefWidth="183.00003051757812" text="Date">
                           <cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="99.0" text="Amount" fx:id="upTableAmount">
+                        <TableColumn fx:id="upTableAmount" prefWidth="99.0" text="Amount">
                           <cellValueFactory><PropertyValueFactory property="cost" /></cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="84.0" text="Invoice" fx:id="upTableInvoice">
+                        <TableColumn fx:id="upTableInvoice" prefWidth="84.0" text="Invoice">
                           <cellValueFactory><PropertyValueFactory property="invoice" /></cellValueFactory>
                         </TableColumn>
                       </columns>

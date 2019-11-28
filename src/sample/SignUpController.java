@@ -79,7 +79,6 @@ public class SignUpController extends MainScreenController implements Initializa
         } else {
           state.setDisable(false);
         }
-        System.out.println(countries.getValue());
 
       }
     });
@@ -91,7 +90,7 @@ public class SignUpController extends MainScreenController implements Initializa
     TF_name.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent e) {
-        System.out.println("Name: ");
+
       }
     });
 
@@ -119,14 +118,6 @@ public class SignUpController extends MainScreenController implements Initializa
                 && !password.equals("") && !cpassword.equals("")
                 && !fullNameText.equals("") && !pintoVerify.equals("") && !pintoVerifyC.equals("");
             if (fieldsCompleted) {
-
-              System.out.println("UserName: " + userName);
-              System.out.println("Email: " + email);
-              System.out.println("Password: " + password);
-              System.out.println("C Password: " + cpassword);
-              System.out.println("Full Name: " + fullNameText);
-              /* do database stuff here*/
-              System.out.println("Account sucessfully created.");
               accountCreated = true;
             } else {
               Main.infoMessage("Please complete the required fields");
@@ -139,6 +130,7 @@ public class SignUpController extends MainScreenController implements Initializa
                 password, pintoVerifyInInt, streetAddress, cityAddress, stateName, zipCodes,
                 countryName);
             if (nameDoesnotExist == true) {
+              Main.infoMessage("Account sucessfully created.");
               db.createCustomerTable(userName);
               db.saveEmailCardTable(userName, email);
 

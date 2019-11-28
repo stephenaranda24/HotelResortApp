@@ -21,6 +21,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+/**
+ *
+ */
 public class PaymentScreenController implements Initializable {
 
   @FXML
@@ -60,7 +63,7 @@ public class PaymentScreenController implements Initializable {
   @FXML
   private Button payLater;
   @FXML
-  private TextArea amount;
+  private TextField amount;
   public String userfxmTitile;
 
 
@@ -84,17 +87,17 @@ public class PaymentScreenController implements Initializable {
 
   }
 
+  /** {@inheritDoc} */
   @FXML
   public void initialize(URL url, ResourceBundle resources) {
     userfxmTitile = Main.Type;
-    System.out.println(Main.Type + " TYPPPPPP");
+
 
 
 	
     MainScreenController msc = new MainScreenController();
 
-    setComboBoxText();  
-    System.out.println("Logged User:" + Main.loggedInUser);
+    setComboBoxText();
     userID = Main.loggedInUser;
 
     idSpace.setText(userID);
@@ -108,32 +111,45 @@ public class PaymentScreenController implements Initializable {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    amount.setText(String.valueOf(amounts));
+    String displayAmount = (String.valueOf(amounts));
+    amount.setText("$"+displayAmount);
 
   }
 
 
-
+  /**
+   * Combo Box for selecting the card type
+   */
   private void setComboBoxText() {
     cardType.setPromptText("Select a type of card.");
     cardType.getItems().addAll("VISA", "MasterCard", "Discover", "Amex");
   }
+
+  /**
+   * Pop
+   * @param event
+   */
   @FXML
   void payLaterAction(ActionEvent event) {
     MainScreenController msc = new MainScreenController();
+    Main.infoMessage("You can re-login any time and make the payment by selecting from the unpaid table screen"
+        + "\nAlso you can pay before you in front desk before you check in"
+        + "\nThank you for choosing our Resort");
     msc.loadScene(payLater,userfxmTitile+".fxml","clientScreen");
   }
 
 
-
+  /**
+   * @param event It takes the card info and validates it, If validation is successfull then
+   *              the information is saved as payed booking
+   * @throws SQLException
+   */
   @FXML
   void submitPaymentSuccessfull(ActionEvent event) throws SQLException {
     boolean cardWorked = false;
     MainScreenController msc = new MainScreenController();
     String tempCardSelection = cardType.getValue();
-    System.out.println("Card escalated "+ tempCardSelection);
     String tempCardNumber = cardNumber.getText();
-    System.out.println("card number "  +tempCardNumber);
     DatabaseManager dm = new DatabaseManager();
     String tempCVV = cardCvv.getText();
     String tempZipCode = bilingZipCode.getText();
@@ -147,7 +163,7 @@ public class PaymentScreenController implements Initializable {
     int expMonth = Integer.parseInt(tempGetMonth);
     boolean dateMonthConditionMet = monthAndYearValidation(expMonth,expYear);
     if (dateMonthConditionMet == true){
-      System.out.println("Pushing the datemet condition");
+
       List <String>newList = cardNumber(tempCardSelection,tempCardNumber,tempCVV,tempZipCode);
       finalCardNum =Long.parseLong(newList.get(1));
       finalCvv = Integer.parseInt(newList.get(2));
@@ -161,9 +177,9 @@ public class PaymentScreenController implements Initializable {
 
     saveCardToFile = saveCardValidation();
     if (saveCardToFile == true){
-      System.out.println("The tick mark pressed ");
+
       dm.saveCardInfo(userID,finalCardType,finalCardNum,finalCardMonth,finalCardYear,finalCvv,finalZipCode);
-      System.out.println("Card Saved123");
+
     }
     else {
     	Main.infoMessage("Card details not saved");
@@ -188,7 +204,7 @@ public class PaymentScreenController implements Initializable {
       if(lengthOfCard == 15 && (lengthCvv == 4) && (lengthZipCOde == 5)  )
 
       {//begin of 15 long credit card check
-        System.out.println("Card :-)");
+
         cardNumberR = valCardNumber;
         cvcR = cvv;
         zipCodeR = zipCode;
@@ -200,8 +216,6 @@ public class PaymentScreenController implements Initializable {
     else{
       if(lengthOfCard == 16 && (lengthCvv == 3) && (lengthZipCOde == 5) )
       {
-        System.out.println("Card :-)");
-        System.out.println("Card :-)");
         cardNumberR = valCardNumber;
         cvcR = cvv;
         zipCodeR = zipCode;
@@ -224,14 +238,12 @@ public class PaymentScreenController implements Initializable {
       finalCardMonth = month;
       finalCardYear = year;
       yearMonthmet = true;
-      System.out.println("Year okkk");
     }
     else if(presentYear == year){
       int currentMonth = Calendar.getInstance().get(Calendar.MONTH)+1;
       if(month >= currentMonth){
         finalCardMonth = month;
         finalCardYear = year;
-        System.out.println("Year okkk");
         yearMonthmet = true;
       }
       else{

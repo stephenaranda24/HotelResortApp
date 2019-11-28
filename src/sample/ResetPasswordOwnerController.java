@@ -49,7 +49,6 @@ public class ResetPasswordOwnerController implements Initializable {
       String reTypePass = passwordChange_Verify.getText();
 
       if (password.equals(reTypePass)){
-        System.out.println("pppppppppppppppp" + user_id.getText() + tempUserType + password);
         db.passwordReset(user_id.getText(),tempUserType,password);
         msc.loadScene(resetButton,"OwnerScreen.fxml","Owner");
 

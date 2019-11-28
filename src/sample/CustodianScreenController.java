@@ -74,15 +74,13 @@ public class CustodianScreenController implements Initializable {
         boolean selectedClean = roomCheckBox[i].isSelected();
         if(selectedClean){
           db.roomCheckedDatabase(roomArray[i],selectedClean,datePushed,custodianUserId);
-          System.out.println("using this");
-          System.out.println(selectedClean+"5555");
+         
         }
         else{
           String date = db.dateReturn(roomArray[i]);
           String markedBy = db.custodianNameReturn(roomArray[i]);
           db.roomCheckedDatabase(roomArray[i],selectedClean, date,markedBy);
-          System.out.println("using that");
-          System.out.println(!selectedClean+ "66666");
+          
 
         }
 
@@ -105,7 +103,6 @@ public class CustodianScreenController implements Initializable {
     try {
       DatabaseManager db = new DatabaseManager();
       custodianUserId = db.getTheName(Main.loggedInUser, "custodian");
-      System.out.println(custodianUserId+"000000");
       userId.setText(custodianUserId);
       db.custodianDateValidation(datePushed);
 

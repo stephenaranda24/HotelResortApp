@@ -15,57 +15,76 @@ public class DateAndCostManager {
 
   final double TAXRATE = 0.065;
 
+  /**
+   * Setter for property 'roomSelectCombo'.
+   *
+   * @param roomSelectCombo Value to set for property 'roomSelectCombo'.
+   */
   public void setRoomSelectCombo(ComboBox<String> roomSelectCombo) {
     roomSelectCombo.setPromptText("Select a room.");
     roomSelectCombo.getItems().addAll("A", "B", "C", "D");
   }
+  /**
+   * Setter for property 'dateCombox30'.
+   *
+   * @param combobox Value to set for property 'dateCombox30'.
+   */
+  public void setDateCombox30(ComboBox<String> combobox){
+    combobox.setPromptText("Date");
+    combobox.getItems().addAll("1", "2", "3", "4","5","6","7","8","9","10",
+        "11", "12", "13", "14","15","16","17","18","19","20",
+        "21", "22", "23", "24","25","26","27","28","29","30");
 
-  public List<Serializable> dateCalc(ComboBox<String> roomSelectCombo, TextField startDate,
-      TextField startMonth, TextField endDate, TextField endMonth) {
+  }
+  /**
+   * Setter for property 'dateCombox31'.
+   *
+   * @param combobox Value to set for property 'dateCombox31'.
+   */
+  public void setDateCombox31(ComboBox<String> combobox){
+    combobox.setPromptText("Date");
+    combobox.getItems().addAll("1", "2", "3", "4","5","6","7","8","9","10",
+        "11", "12", "13", "14","15","16","17","18","19","20",
+        "21", "22", "23", "24","25","26","27","28","29","30");
 
-    String startBookingDate = startDate.getText();
-    String startBookingMonths = startMonth.getText();
-    String endBookingDate = endDate.getText();
-    String endBookingMonths = endMonth.getText();
-    String room = roomSelectCombo.getValue();
-
-    String dateMonthStart = String.format("%s/%s/2019", startBookingMonths, startBookingDate);
-    String dateMonthEnd = String.format("%s/%s/2019", endBookingMonths, endBookingDate);
-    System.out.println(dateMonthStart);
-
-  /* Format f = new SimpleDateFormat("MM/dd/yyyy");
-   String strDate = f.format(dateMonthStart);
-   System.out.println(strDate + " Alpha");*/
-    Date startBookingFDate = new Date(dateMonthStart);
-    System.out.println(new SimpleDateFormat("MM/dd/yyyy").format(startBookingFDate));
-    Date endBookingFDate = new Date(dateMonthEnd);
-    long totalDaysBooked = endBookingFDate.getTime() - startBookingFDate.getTime();
-    totalDaysBooked = (long) Math.ceil((double) totalDaysBooked / 86400000);
-    String dateBookedToDisplay = startBookingFDate + " - " + endBookingFDate;
-    System.out.println(dateBookedToDisplay);
-    System.out.println("result sdfjosaekjfkjdskfndsjfndskjlfnkjdskjfbsdkjfsdkjfnkndsjllkjfns   "
-        + totalDaysBooked);
-    double roomsCost = PricePerNight.valueOf(room).getValue();
-    Double bookingCost = totalDaysBooked * roomsCost + (totalDaysBooked * roomsCost * TAXRATE);
-    ArrayList<String> dateList = new ArrayList<>();
-    for (int i = 0; i < totalDaysBooked; i++) {
-      Calendar cal = Calendar.getInstance();
-      SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-
-      cal.setTime(startBookingFDate);
-
-      cal.add(Calendar.DAY_OF_MONTH, i);
-      Date addDate = cal.getTime();
-      System.out.println(addDate);
-      String finalDateformat = sdf.format(addDate);
-      System.out.println(finalDateformat);
-      dateList.add(finalDateformat);
-    }
-    String dateToDisplay = String.format(dateMonthStart) + " - " + String.format(dateMonthEnd);
-
-    return Arrays.asList(totalDaysBooked, startBookingFDate, endBookingFDate, bookingCost, dateList,
-        dateToDisplay);
   }
 
+
+
+  public List<Serializable> dateCalc(ComboBox<String> roomSelectCombo, String startDate,
+      String ending) {
+    String room = roomSelectCombo.getValue();
+    startDate = String.format(startDate);
+    ending = String.format(ending);
+    Date startBookingFDate = new Date(startDate);
+    Date endBookingFDate = new Date(ending);
+    long totalDaysBooked = endBookingFDate.getTime() - startBookingFDate.getTime();
+    totalDaysBooked = (long) Math.ceil((double) totalDaysBooked / 86400000);
+    if (totalDaysBooked < 1) {
+      Main.errorMessage("Check Out date must be greater than check in date");
+    } else {
+      String dateBookedToDisplay = startBookingFDate + " - " + endBookingFDate;
+      double roomsCost = PricePerNight.valueOf(room).getValue();
+      Double bookingCost = totalDaysBooked * roomsCost + (totalDaysBooked * roomsCost * TAXRATE);
+      bookingCost = Math.round(bookingCost * 100) / 100.00;
+      ArrayList<String> dateList = new ArrayList<>();
+      for (int i = 0; i < totalDaysBooked; i++) {
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        cal.setTime(startBookingFDate);
+        cal.add(Calendar.DAY_OF_MONTH, i);
+        Date addDate = cal.getTime();
+        String finalDateformat = sdf.format(addDate);
+        dateList.add(finalDateformat);
+      }
+      String dateToDisplay = String.format(startDate) + " - " + String.format(ending);
+
+      return Arrays
+          .asList(totalDaysBooked, startBookingFDate, endBookingFDate, bookingCost, dateList,
+              dateToDisplay);
+    }
+    return  Arrays
+        .asList("null");
+  }
 
 }

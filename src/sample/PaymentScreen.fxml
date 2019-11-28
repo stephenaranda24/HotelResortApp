@@ -5,7 +5,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -33,9 +32,9 @@
                   <TextField fx:id="expYear" maxWidth="-Infinity" prefHeight="25.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <TextField fx:id="cardCvv" maxWidth="-Infinity" prefHeight="25.0" prefWidth="155.0" GridPane.rowIndex="7" />
                   <TextField fx:id="bilingZipCode" maxWidth="-Infinity" prefHeight="25.0" prefWidth="155.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <ComboBox GridPane.rowIndex="1" prefHeight="25.0" prefWidth="191.0" fx:id="cardType" />
+                  <ComboBox fx:id="cardType" prefHeight="25.0" prefWidth="191.0" GridPane.rowIndex="1" />
                   <Label text="The payment amount to complete your booking is" />
-                  <TextArea fx:id="amount" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                  <TextField fx:id="amount" GridPane.columnIndex="1" />
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="321.3333435058594" minWidth="10.0" prefWidth="321.3333435058594" />
