@@ -87,7 +87,9 @@ public class PaymentScreenController implements Initializable {
 
   }
 
-  /** {@inheritDoc} */
+  /** {@inheritDoc}
+   * Initilize
+   * */
   @FXML
   public void initialize(URL url, ResourceBundle resources) {
     userfxmTitile = Main.Type;
