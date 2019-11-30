@@ -86,7 +86,7 @@ public class PaymentScreenController implements Initializable {
   void backFrompaymentAction(ActionEvent event) {
     {
       MainScreenController msc = new MainScreenController();
-      msc.loadScene(backFrompayment,userfxmTitile+".fxml","clientScreen");
+      msc.loadScene(backFrompayment,userfxmTitile+".fxml",userfxmTitile);
     }
 
 
@@ -135,7 +135,7 @@ public class PaymentScreenController implements Initializable {
     Main.infoMessage("You can re-login any time and make the payment by selecting from the unpaid table screen"
         + "\nAlso you can pay before you in front desk before you check in"
         + "\nThank you for choosing our Resort");
-    msc.loadScene(payLater,userfxmTitile+".fxml","clientScreen");
+    msc.loadScene(payLater,userfxmTitile+".fxml",userfxmTitile);
   }
   @FXML
   void savedMethodChecked(ActionEvent event) {
@@ -228,7 +228,7 @@ public class PaymentScreenController implements Initializable {
           Main.infoMessage("Card details not saved");
         }
 
-        msc.loadScene(submitPayment, userfxmTitile + ".fxml", "clientScreen");
+        msc.loadScene(submitPayment, userfxmTitile + ".fxml", userfxmTitile);
 
       }
       else {

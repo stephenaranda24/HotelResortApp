@@ -70,7 +70,7 @@ public class CustodianScreenController implements Initializable {
   void logOut(ActionEvent event) {
     Main.loggedInUser = null;
     MainScreenController msc = new MainScreenController();
-    msc.loadScene(logoutButton, "MainScreenSample.fxml", "Password Reset");
+    msc.loadScene(logoutButton, "MainScreenSample.fxml", "Main Screen");
 
   }
 

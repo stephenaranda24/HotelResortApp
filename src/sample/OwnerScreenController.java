@@ -243,7 +243,7 @@ public class OwnerScreenController implements Initializable {
 	void logoutMethod(ActionEvent event) {
 		Main.loggedInUser = null;
 		MainScreenController msc = new MainScreenController();
-		msc.loadScene(logout, "MainScreenSample.fxml", "Password Reset");
+		msc.loadScene(logout, "MainScreenSample.fxml", "Main Screen ");
 
 
 
