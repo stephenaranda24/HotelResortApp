@@ -223,26 +223,21 @@ public class OwnerScreenController implements Initializable {
 
 		});
 
-		logOut();
-		backButton();
+
 	}
 
-	private void logOut() {
-		logout.setOnMousePressed(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent e) {
-				Main.logOutUser(logout);
-			}
-		});
-	}
-	
 
-	private void backButton() {
-		back.setOnMousePressed(new EventHandler<MouseEvent>() {
-			public void handle(MouseEvent e) {
-				MainScreenController msc = new MainScreenController();
-				msc.loadScene(back,"MainScreenSample.fxml", "MainScreen");
-			}
-		});
+
+
+
+	@FXML
+	void logoutMethod(ActionEvent event) {
+		Main.loggedInUser = null;
+		MainScreenController msc = new MainScreenController();
+		msc.loadScene(logout, "MainScreenSample.fxml", "Password Reset");
+
+
+
 	}
 
 	/*

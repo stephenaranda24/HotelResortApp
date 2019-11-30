@@ -82,24 +82,28 @@ public class DatabaseManager extends Main {
 		PreparedStatement stmt = con.prepareStatement(query);
 		ResultSet rs;
 		rs = stmt.executeQuery();
-		if(rs.next()){
+
+
+		while (rs.next()){
 			String cardtype = rs.getString("cardtype");
 			long cardNumber = rs.getLong("cardNumber");
 			int month = rs.getInt("month");
 			int year = rs.getInt("year");
 			int cvv = rs.getInt("cvv");
 			int billingZip = rs.getInt("billingzipcode");
+			System.out.println("LLLLLLLLLLLLLLLLLLLLLLLLLLLL");
 
 			return Arrays
 					.asList(cardtype,cardNumber, month, year, cvv, billingZip);
 		}
-		else
+		/*else
 		{
 			Main.errorMessage("There are no saved card on file");
-		}
-		return  Arrays
-				.asList("null");
+			return  Arrays
+					.asList("null");
+		}*/
 
+return null;
 
 
 	}

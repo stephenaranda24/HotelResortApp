@@ -35,7 +35,7 @@
                   <ComboBox fx:id="cardType" prefHeight="25.0" prefWidth="191.0" GridPane.rowIndex="1" />
                   <Label text="The payment amount to complete your booking is" />
                   <TextField fx:id="amount" GridPane.columnIndex="1" />
-                  <CheckBox fx:id="savedMethod" mnemonicParsing="false" onAction="#savedMethodChecked" text="CheckBox" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <CheckBox fx:id="savedMethod" mnemonicParsing="false" onAction="#savedMethodChecked" text="Used the save payment method" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="321.3333435058594" minWidth="10.0" prefWidth="321.3333435058594" />

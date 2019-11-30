@@ -60,6 +60,7 @@ public class DeskAssistantController implements Initializable {
     String customer = invoiceNo.getCname();
     DatabaseManager db = new DatabaseManager();
     String customerId = db.getCustomerUSerId(newValue);
+    Main.tempName = customerId;
     userIdAlt = Main.loggedInUser;
     Main.loggedInUser = customerId;
 

@@ -145,7 +145,10 @@ public class PaymentScreenController implements Initializable {
       System.out.println(userId);
       List cardList = db.cardInfo(userId);
       System.out.println(cardList);
-      if(cardList.get(0).equals("null")){
+      int checkTempButton = (int) cardList.get(2);
+      System.out.println(checkTempButton);
+      if(checkTempButton == 0){
+        System.out.println();
         Main.errorMessage("There are no saved card");
         savedMethod.setSelected(false);
 
@@ -153,7 +156,7 @@ public class PaymentScreenController implements Initializable {
       }
       else {
         String cardTypeString = (String) cardList.get(0);
-        cardType.setPromptText(cardTypeString);
+        cardType.setValue(cardTypeString);
         long cardNumberTemp = (long) cardList.get(1);
         int expMonthTemp = (int) cardList.get(2);
         int expYearTemp = (int) cardList.get(3);
@@ -164,6 +167,7 @@ public class PaymentScreenController implements Initializable {
         expYear.setText(String.valueOf(expYearTemp));
         cardCvv.setText(String.valueOf(cardCvvTemp));
         bilingZipCode.setText(String.valueOf(bilingZipCodeTemp));
+        savedMethod.setSelected(false);
       }
 
 
@@ -190,40 +194,46 @@ public class PaymentScreenController implements Initializable {
       String tempCVV = cardCvv.getText();
       String tempZipCode = bilingZipCode.getText();
       String tempGetMonth = expMonth.getText();
-      String tempGetYear = expYear.getText();
-      String tempYear = String.format("20%s", tempGetYear);
+      String tempYear = expYear.getText();
+
       long cardNumber = Long.parseLong(tempCardNumber);
       int cvv = Integer.parseInt(tempCVV);
       int zipCode = Integer.parseInt(tempZipCode);
       int expYear = Integer.parseInt(tempYear);
       int expMonth = Integer.parseInt(tempGetMonth);
       boolean dateMonthConditionMet = monthAndYearValidation(expMonth, expYear);
-      if (dateMonthConditionMet == true) {
+    System.out.println(dateMonthConditionMet);
+      if ((dateMonthConditionMet == true) ) {
+        tempCardSelection = cardType.getValue();
 
+        System.out.println(tempCardNumber);
+        System.out.println(tempCardSelection +" " + tempCVV+tempZipCode);
         List<String> newList = cardNumber(tempCardSelection, tempCardNumber, tempCVV, tempZipCode);
         finalCardNum = Long.parseLong(newList.get(1));
         finalCvv = Integer.parseInt(newList.get(2));
         finalCardType = newList.get(0);
         finalZipCode = Integer.parseInt(newList.get(3));
+
+        dm.paidColumn(ClientScreenController.orderNo);
+
+        boolean saveCardToFile = false;
+
+        saveCardToFile = saveCardValidation();
+        if (saveCardToFile == true) {
+
+          dm.saveCardInfo(userID, finalCardType, finalCardNum, finalCardMonth, finalCardYear,
+              finalCvv, finalZipCode);
+
+        } else {
+          Main.infoMessage("Card details not saved");
+        }
+
+        msc.loadScene(submitPayment, userfxmTitile + ".fxml", "clientScreen");
+
       }
-
-      dm.paidColumn(ClientScreenController.orderNo);
-
-      boolean saveCardToFile = false;
-
-      saveCardToFile = saveCardValidation();
-      if (saveCardToFile == true) {
-
-        dm.saveCardInfo(userID, finalCardType, finalCardNum, finalCardMonth, finalCardYear,
-            finalCvv, finalZipCode);
-
-      } else {
-        Main.infoMessage("Card details not saved");
+      else {
+        Main.errorMessage("Information entered are not correct");
       }
-
-    msc.loadScene(submitPayment,userfxmTitile+".fxml","clientScreen");
-
-
   }
   public List<String> cardNumber(String cardSelection, String valCardNumber, String cvv, String zipCode){
 
@@ -235,8 +245,6 @@ public class PaymentScreenController implements Initializable {
     String cardNumberR = null;
     String cvcR = null;
     String zipCodeR = null;
-
-
     if (cardSelection.equals("Amex")){
       if(lengthOfCard == 15 && (lengthCvv == 4) && (lengthZipCOde == 5)  )
 
@@ -270,6 +278,7 @@ public class PaymentScreenController implements Initializable {
 
   public boolean monthAndYearValidation(int month, int year){
     boolean yearMonthmet = false;
+    year = 2000 + year;
     int presentYear = Calendar.getInstance().get(Calendar.YEAR);
     if(year>presentYear && month>0 && month<13){
       finalCardMonth = month;

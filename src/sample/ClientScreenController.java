@@ -199,9 +199,21 @@ public class ClientScreenController implements Initializable {
 		DatabaseManager dm = new DatabaseManager();
 
 		if (password.equals(cPassword)) {
-			passwordMatched = dm.verifyPasswordorPin("Customer", userId, oPassword, "password");
+			passwordMatched = dm.verifyPasswordorPin("Customer", userId, oPassword, "PASSWORD");
 			if (passwordMatched == true) {
-				dm.changePinOrPass("Customer", userId, "password", password);
+				dm.changePinOrPass("Customer", userId, "PASSWORD", password);
+				Main.infoMessage("Password Changed");
+				oldPassword.clear();
+				newPassword.clear();
+				newPasswordVerify.clear();
+
+
+			}
+			else {
+				Main.errorMessage("Old Password does not match please re-enter");
+				oldPassword.clear();
+				newPassword.clear();
+				newPasswordVerify.clear();
 			}
 		} else {
 			Main.errorMessage("Password does not match");
@@ -222,7 +234,16 @@ public class ClientScreenController implements Initializable {
 			pinMatched = dm.verifyPasswordorPin("Customer", userId, oPin, "VERIFYPIN");
 			if (pinMatched == true) {
 				dm.changePinOrPass("Customer", userId, "VERIFYPIN", pin);
-
+				Main.infoMessage("Pin Changed");
+				oldPin.clear();
+				newPin.clear();
+				newPinVerify.clear();
+			}
+			else {
+				Main.errorMessage("Old Password does not match please re-enter");
+				oldPin.clear();
+				newPin.clear();
+				newPinVerify.clear();
 			}
 
 		} else {

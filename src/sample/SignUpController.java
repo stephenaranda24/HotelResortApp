@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -40,19 +41,21 @@ public class SignUpController extends MainScreenController implements Initializa
   private TextField TF_email;
 
   @FXML
-  private TextField TF_password;
+  private PasswordField TF_password;
 
   @FXML
-  private TextField TF_cpassword;
+  private PasswordField  TF_cpassword;
 
   @FXML
   private TextField city;
+  @FXML
+  private Button button_back;
 
   @FXML
-  private TextField pin;
+  private PasswordField  pin;
 
   @FXML
-  private TextField confirmPin;
+  private PasswordField  confirmPin;
 
   @FXML
   private ComboBox<String> countries;
@@ -87,6 +90,7 @@ public class SignUpController extends MainScreenController implements Initializa
   @Override
   public void initialize(URL url, ResourceBundle resources) {
     setComboBoxText();
+    backButtonPressed();
     TF_name.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent e) {
@@ -157,6 +161,16 @@ public class SignUpController extends MainScreenController implements Initializa
         }
       }
 
+    });
+
+  }
+  void backButtonPressed() {
+
+    button_back.setOnMousePressed(new EventHandler<MouseEvent>() {
+      public void handle(MouseEvent event) {
+        MainScreenController msc = new MainScreenController();
+        msc.loadScene(button_back, "MainScreenSample.fxml", "Main Screen");
+      }
     });
 
   }
