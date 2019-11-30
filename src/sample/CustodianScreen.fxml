@@ -21,7 +21,6 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <Button layoutX="14.0" layoutY="24.0" mnemonicParsing="false" text="Logout" />
                               <GridPane layoutX="150.0" layoutY="66.0">
                                 <children>
                                     <Button fx:id="custodianSubmit" mnemonicParsing="false" onAction="#custodianSubmit" text="Submit" GridPane.columnIndex="2" GridPane.rowIndex="8" />
@@ -45,7 +44,7 @@
                                        <font>
                                           <Font size="13.0" />
                                        </font></Label>
-                                    <Label GridPane.columnIndex="1" text="Room Cleaned" underline="true">
+                                    <Label text="Room Cleaned" underline="true" GridPane.columnIndex="1">
                                        <font>
                                           <Font size="13.0" />
                                        </font></Label>
@@ -74,6 +73,7 @@
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
+                              <Button fx:id="logoutButton" layoutX="14.0" layoutY="23.0" mnemonicParsing="false" onAction="#logOut" text="Logout" />
                            </children>
                 </AnchorPane>
               </content>

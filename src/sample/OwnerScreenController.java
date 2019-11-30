@@ -216,7 +216,16 @@ public class OwnerScreenController implements Initializable {
 					Main.infoMessage("Please complete all the required fields");
 
 				} else {
-					msc.loadScene(button_create, "MainScreenSample.fxml", "Main Screen--Login Please");
+					TF_name.clear();
+					TF_email.clear();
+					TF_password.clear();
+					TF_cpassword.clear();
+					fullName.clear();
+          CB_type.setPromptText("Select a role.");
+
+					pin.clear();
+					confirmPin.clear();
+
 					accountCreated = false;
 				}
 			}

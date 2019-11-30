@@ -43,11 +43,20 @@ public class DeskAssistantController implements Initializable {
 
   @FXML
   private Label idSpace1;
+  @FXML
+  private Button logoutButton;
 
   @FXML
   private TableColumn<?, ?> checkInStatus;
   private ObservableList<CustomerBooking> roomStatus;
   public static String userIdAlt = "NONE";
+  @FXML
+  void logOut(ActionEvent event) {
+    Main.loggedInUser = null;
+    MainScreenController msc = new MainScreenController();
+    msc.loadScene(logoutButton, "MainScreenSample.fxml", "Password Reset");
+
+  }
 
   @FXML
   void acceptPaymentAction(ActionEvent event) throws SQLException {

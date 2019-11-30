@@ -116,14 +116,14 @@ public class SignInController implements Initializable {
 							Main.Type = "OwnerScreen";
 							msc.loadScene(button_login, "OwnerScreen.fxml", "Main cScreen");
 
-						} else if (verified == true && type == "Custodian") {
+						} else if (verified == true && type == "CUSTODIAN") {
 							Main.loggedInUser = username;
 
-							msc.loadScene(button_login, "CustodianScreen.fxml", "Main cScreen");
+							msc.loadScene(button_login, "CustodianScreen.fxml", "Custodian Screen");
 
 						} else if (verified == true && type == "Desk_Assistant") {
 							Main.loggedInUser = username;
-							msc.loadScene(button_login, "DeskAssistantScreen.fxml", "Main cScreen");
+							msc.loadScene(button_login, "DeskAssistantScreen.fxml", "Desk Assistant Screen");
 							Main.Type = "DeskAssistantScreen";
 
 						} else {

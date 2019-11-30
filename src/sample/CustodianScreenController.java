@@ -33,6 +33,8 @@ public class CustodianScreenController implements Initializable {
       "ROOMC106","ROOMD107","ROOMD108"};
   LocalDate todaysDate = LocalDate.now();
   String datePushed = String.valueOf(todaysDate);
+  @FXML
+  private Button logoutButton;
 
   @FXML
   private Label userId;
@@ -64,6 +66,14 @@ public class CustodianScreenController implements Initializable {
   @FXML
   private CheckBox roomD108;
   public static String custodianUserId;
+  @FXML
+  void logOut(ActionEvent event) {
+    Main.loggedInUser = null;
+    MainScreenController msc = new MainScreenController();
+    msc.loadScene(logoutButton, "MainScreenSample.fxml", "Password Reset");
+
+  }
+
 
   @FXML
   void custodianSubmit(ActionEvent event) {
