@@ -24,6 +24,7 @@ public class Main extends Application {
 	// logged-in at a time
 	public static String loggedInUser = null;
 	public static String Type = null;
+	public static String tempName = null;
 
 	/** {@inheritDoc} */
 	@Override

@@ -22,7 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /**
- *
+ *Payment Controller class
  */
 public class PaymentScreenController implements Initializable {
 
@@ -42,6 +42,8 @@ public class PaymentScreenController implements Initializable {
 
   @FXML
   private TextField expMonth;
+  @FXML
+  private CheckBox savedMethod;
 
   @FXML
   private TextField expYear;
@@ -76,7 +78,10 @@ public class PaymentScreenController implements Initializable {
   String userID = null;
 
 
-
+  /**
+   * This method allows to go back the logged in user account
+   * @param event
+   */
   @FXML
   void backFrompaymentAction(ActionEvent event) {
     {
@@ -90,18 +95,11 @@ public class PaymentScreenController implements Initializable {
   /** {@inheritDoc}
    * Initilize
    * */
-  @FXML
   public void initialize(URL url, ResourceBundle resources) {
     userfxmTitile = Main.Type;
-
-
-
-	
     MainScreenController msc = new MainScreenController();
-
     setComboBoxText();
-    userID = Main.loggedInUser;
-
+    userID = Main.tempName;
     idSpace.setText(userID);
     orderNo.setText(String.valueOf(ClientScreenController.orderNo));
     double amounts = 0;
@@ -139,6 +137,42 @@ public class PaymentScreenController implements Initializable {
         + "\nThank you for choosing our Resort");
     msc.loadScene(payLater,userfxmTitile+".fxml","clientScreen");
   }
+  @FXML
+  void savedMethodChecked(ActionEvent event) {
+    try {
+      DatabaseManager db = new DatabaseManager();
+      String userId = idSpace.getText();
+      System.out.println(userId);
+      List cardList = db.cardInfo(userId);
+      System.out.println(cardList);
+      if(cardList.get(0).equals("null")){
+        Main.errorMessage("There are no saved card");
+        savedMethod.setSelected(false);
+
+
+      }
+      else {
+        String cardTypeString = (String) cardList.get(0);
+        cardType.setPromptText(cardTypeString);
+        long cardNumberTemp = (long) cardList.get(1);
+        int expMonthTemp = (int) cardList.get(2);
+        int expYearTemp = (int) cardList.get(3);
+        int cardCvvTemp = (int) cardList.get(4);
+        int bilingZipCodeTemp = (int) cardList.get(5);
+        cardNumber.setText(String.valueOf(cardNumberTemp));
+        expMonth.setText(String.valueOf(expMonthTemp));
+        expYear.setText(String.valueOf(expYearTemp));
+        cardCvv.setText(String.valueOf(cardCvvTemp));
+        bilingZipCode.setText(String.valueOf(bilingZipCodeTemp));
+      }
+
+
+  } catch (SQLException e) {
+    e.printStackTrace();
+  }
+
+
+  }
 
 
   /**
@@ -148,44 +182,45 @@ public class PaymentScreenController implements Initializable {
    */
   @FXML
   void submitPaymentSuccessfull(ActionEvent event) throws SQLException {
-    boolean cardWorked = false;
-    MainScreenController msc = new MainScreenController();
-    String tempCardSelection = cardType.getValue();
-    String tempCardNumber = cardNumber.getText();
-    DatabaseManager dm = new DatabaseManager();
-    String tempCVV = cardCvv.getText();
-    String tempZipCode = bilingZipCode.getText();
-    String tempGetMonth = expMonth.getText();
-    String tempGetYear = expYear.getText();
-    String tempYear = String.format("20%s",tempGetYear);
-    long cardNumber = Long.parseLong(tempCardNumber);
-    int cvv = Integer.parseInt(tempCVV);
-    int zipCode = Integer.parseInt(tempZipCode);
-    int expYear = Integer.parseInt(tempYear);
-    int expMonth = Integer.parseInt(tempGetMonth);
-    boolean dateMonthConditionMet = monthAndYearValidation(expMonth,expYear);
-    if (dateMonthConditionMet == true){
+      boolean cardWorked = false;
+      MainScreenController msc = new MainScreenController();
+      String tempCardSelection = cardType.getValue();
+      String tempCardNumber = cardNumber.getText();
+      DatabaseManager dm = new DatabaseManager();
+      String tempCVV = cardCvv.getText();
+      String tempZipCode = bilingZipCode.getText();
+      String tempGetMonth = expMonth.getText();
+      String tempGetYear = expYear.getText();
+      String tempYear = String.format("20%s", tempGetYear);
+      long cardNumber = Long.parseLong(tempCardNumber);
+      int cvv = Integer.parseInt(tempCVV);
+      int zipCode = Integer.parseInt(tempZipCode);
+      int expYear = Integer.parseInt(tempYear);
+      int expMonth = Integer.parseInt(tempGetMonth);
+      boolean dateMonthConditionMet = monthAndYearValidation(expMonth, expYear);
+      if (dateMonthConditionMet == true) {
 
-      List <String>newList = cardNumber(tempCardSelection,tempCardNumber,tempCVV,tempZipCode);
-      finalCardNum =Long.parseLong(newList.get(1));
-      finalCvv = Integer.parseInt(newList.get(2));
-      finalCardType = newList.get(0);
-      finalZipCode = Integer.parseInt(newList.get(3));
-    }
+        List<String> newList = cardNumber(tempCardSelection, tempCardNumber, tempCVV, tempZipCode);
+        finalCardNum = Long.parseLong(newList.get(1));
+        finalCvv = Integer.parseInt(newList.get(2));
+        finalCardType = newList.get(0);
+        finalZipCode = Integer.parseInt(newList.get(3));
+      }
 
-    dm.paidColumn(ClientScreenController.orderNo);
+      dm.paidColumn(ClientScreenController.orderNo);
 
-    boolean saveCardToFile = false;
+      boolean saveCardToFile = false;
 
-    saveCardToFile = saveCardValidation();
-    if (saveCardToFile == true){
+      saveCardToFile = saveCardValidation();
+      if (saveCardToFile == true) {
 
-      dm.saveCardInfo(userID,finalCardType,finalCardNum,finalCardMonth,finalCardYear,finalCvv,finalZipCode);
+        dm.saveCardInfo(userID, finalCardType, finalCardNum, finalCardMonth, finalCardYear,
+            finalCvv, finalZipCode);
 
-    }
-    else {
-    	Main.infoMessage("Card details not saved");
-    }
+      } else {
+        Main.infoMessage("Card details not saved");
+      }
+
     msc.loadScene(submitPayment,userfxmTitile+".fxml","clientScreen");
 
 

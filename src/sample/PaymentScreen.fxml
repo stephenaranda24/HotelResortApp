@@ -15,7 +15,7 @@
 
 <ScrollPane prefHeight="645.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PaymentScreenController">
    <content>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="692.0" prefWidth="899.0">
+      <AnchorPane fx:id="savedPayment" minHeight="0.0" minWidth="0.0" prefHeight="692.0" prefWidth="899.0">
          <children>
             <Button fx:id="backFrompayment" layoutX="23.0" layoutY="29.0" mnemonicParsing="false" onAction="#backFrompaymentAction" text="Back" />
             <Button fx:id="submitPayment" layoutX="626.0" layoutY="440.0" mnemonicParsing="false" onAction="#submitPaymentSuccessfull" text="Submit" />
@@ -35,6 +35,7 @@
                   <ComboBox fx:id="cardType" prefHeight="25.0" prefWidth="191.0" GridPane.rowIndex="1" />
                   <Label text="The payment amount to complete your booking is" />
                   <TextField fx:id="amount" GridPane.columnIndex="1" />
+                  <CheckBox fx:id="savedMethod" mnemonicParsing="false" onAction="#savedMethodChecked" text="CheckBox" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="321.3333435058594" minWidth="10.0" prefWidth="321.3333435058594" />
@@ -57,7 +58,7 @@
                </font>
             </Label>
             <Label fx:id="idSpace" layoutX="746.0" layoutY="46.0" text="Label" />
-            <Text layoutX="599.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Making Payment for" />
+            <Text layoutX="599.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Making payment for" />
             <Label fx:id="orderNo" layoutX="746.0" layoutY="70.0" text="Order No" />
             <Text layoutX="642.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OrderNo" />
             <Button fx:id="payLater" layoutX="255.0" layoutY="489.0" mnemonicParsing="false" onAction="#payLaterAction" prefHeight="25.0" prefWidth="303.0" text="PAY LATER">

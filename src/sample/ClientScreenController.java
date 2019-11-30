@@ -158,6 +158,7 @@ public class ClientScreenController implements Initializable {
 
 
 
+
 	@FXML
 	void tempButton(ActionEvent event) {
 		MainScreenController msc = new MainScreenController();
@@ -190,6 +191,7 @@ public class ClientScreenController implements Initializable {
 	void updatePasswordAction(ActionEvent event) throws SQLException {
 		boolean passwordMatched = false;
 		String userId = idSpace11.getText();
+
 		String oPassword = oldPassword.getText();
 		String password = newPassword.getText();
 		String cPassword = newPasswordVerify.getText();
@@ -234,6 +236,7 @@ public class ClientScreenController implements Initializable {
 		try {
 			DatabaseManager db = new DatabaseManager();
 			userId = db.getTheName(Main.loggedInUser, "Customer");
+			Main.tempName = userId;
 			paid =FXCollections.observableArrayList(db.BookingStatus(userId,"true"));
 			unpaid =FXCollections.observableArrayList(db.BookingStatus(userId,"false"));
 			tableUnpaid.setItems(unpaid);
@@ -312,7 +315,16 @@ public class ClientScreenController implements Initializable {
 	}
 	public int fetchOrder(TableView table){
 		int index = table.getSelectionModel().getSelectedIndex();
-		CustomerBooking invoiceNo = tableUnpaid.getItems().get(index);
+		System.out.println(index+ "DASADSADSADADADasd");
+		CustomerBooking invoiceNo;
+		if(table == tableUnpaid){
+			invoiceNo = tableUnpaid.getItems().get(index);
+		}
+		else {
+			invoiceNo = tablePaid.getItems().get(index);
+		}
+
+		System.out.println();
 		int newValue = invoiceNo.getInvoice();
 		return newValue;
 
