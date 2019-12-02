@@ -145,6 +145,7 @@ public class ClientScreenController implements Initializable {
 	private ImageView roomAIView, roomBIView, roomCIView, roomDIView;
 	@FXML
 	private Label roomALabel;
+	public static String tableName;
 	
 	@FXML
 	void logOut(ActionEvent event) {
@@ -336,25 +337,34 @@ public class ClientScreenController implements Initializable {
 	}
 	public int fetchOrder(TableView table){
 		int index = table.getSelectionModel().getSelectedIndex();
-		System.out.println(index+ "DASADSADSADADADasd");
 		CustomerBooking invoiceNo;
-		if(table == tableUnpaid){
-			invoiceNo = tableUnpaid.getItems().get(index);
-		}
-		else {
-			invoiceNo = tablePaid.getItems().get(index);
-		}
 
-		System.out.println();
-		int newValue = invoiceNo.getInvoice();
-		return newValue;
+
+			if (table == tableUnpaid) {
+				invoiceNo = tableUnpaid.getItems().get(index);
+				tableName = "yes";
+				System.out.println("Yess");
+			} else {
+				invoiceNo = tablePaid.getItems().get(index);
+				tableName = null;
+			}
+
+			System.out.println();
+			int newValue = invoiceNo.getInvoice();
+			return newValue;
 
 	}
 	@FXML
 	public void paymentScreenRunning(ActionEvent actionEvent) throws SQLException {
 		MainScreenController msc = new MainScreenController();
-		orderNo = fetchOrder(tableUnpaid);
-		msc.loadScene(payNow, "PaymentScreen.fxml", "Payment Screen");
+
+		if (tableUnpaid.getSelectionModel().isEmpty()) {
+			Main.errorMessage("this booking is already paid");
+		} else {
+			orderNo = fetchOrder(tableUnpaid);
+
+			msc.loadScene(payNow, "PaymentScreen.fxml", "Payment Screen");
+		}
 	}
 
 
