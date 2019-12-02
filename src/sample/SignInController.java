@@ -83,6 +83,7 @@ public class SignInController implements Initializable {
 					String password = PF_password.getText();
 					String role = CB_type.getValue();
 					String type;
+
 					switch (role.toLowerCase()){
 						case "admin":
 							type = "Owner";
@@ -157,6 +158,9 @@ public class SignInController implements Initializable {
 		});
 	}
 
+	/**
+	 * Back button  method
+	 */
 	void backButtonPressed() {
 
 		button_back.setOnMousePressed(new EventHandler<MouseEvent>() {

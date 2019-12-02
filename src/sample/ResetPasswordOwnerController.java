@@ -30,6 +30,10 @@ public class ResetPasswordOwnerController implements Initializable {
 
 
 
+  /**
+   *  {@inheritDoc}
+   * initiliaze the scene
+   * */
   public void initialize(URL url, ResourceBundle resources) {
    tempUser = OwnerScreenController.userNameForChangePassword;
 
@@ -38,6 +42,11 @@ public class ResetPasswordOwnerController implements Initializable {
 
   }
 
+  /**
+   * Change Password method
+   *
+   * @param event
+   */
   @FXML
   void changePassword_Action(ActionEvent event) {
     try {

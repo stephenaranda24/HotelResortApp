@@ -1,5 +1,8 @@
 package sample;
 
+/**
+ * State list enum
+ */
 public enum State {
   AK,
   AL,

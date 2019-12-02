@@ -16,6 +16,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 
+/**
+ *
+ */
 public class SignUpController extends MainScreenController implements Initializable {
 
   private Stage stage;
@@ -61,10 +64,10 @@ public class SignUpController extends MainScreenController implements Initializa
   private ComboBox<String> countries;
   @FXML
   private TextField phoneNumber;
-
-
   boolean accountCreated = false;
 
+  //Method for setting up the combo box from the enum for state list, and
+  //country list to initialize the combo box
   public void setComboBoxText() {
     countries.setPromptText("Select a country.");
     for (int i = 0; i < Country.values().length; i++) {
@@ -87,6 +90,9 @@ public class SignUpController extends MainScreenController implements Initializa
     });
   }
 
+  /**
+   * initilialize
+   * */
   @Override
   public void initialize(URL url, ResourceBundle resources) {
     setComboBoxText();
@@ -97,12 +103,13 @@ public class SignUpController extends MainScreenController implements Initializa
 
       }
     });
-
+/**
+ * Getting value from textfield and send it to the database
+ */
     button_create.setOnMousePressed(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent e) {
         MainScreenController msc = new MainScreenController();
         try {
-
           String userName = TF_name.getText();
           String email = TF_email.getText();
           String password = TF_password.getText();
@@ -116,7 +123,6 @@ public class SignUpController extends MainScreenController implements Initializa
           String stateName = state.getValue();
           String countryName = countries.getValue();
           String phonenumber = phoneNumber.getText();
-
           if (password.equals(cpassword) && pintoVerify.equals(pintoVerifyC)) {
             boolean fieldsCompleted = !userName.equals("") && !email.equals("") //
                 && !password.equals("") && !cpassword.equals("")
@@ -129,7 +135,6 @@ public class SignUpController extends MainScreenController implements Initializa
             DatabaseManager db = new DatabaseManager();
             int pintoVerifyInInt = Integer.parseInt(pintoVerify);
             int zipCodes = Integer.parseInt(zipcode);
-
             boolean nameDoesnotExist = db.AddCustomer(fullNameText, userName, email, phonenumber,
                 password, pintoVerifyInInt, streetAddress, cityAddress, stateName, zipCodes,
                 countryName);
@@ -162,10 +167,11 @@ public class SignUpController extends MainScreenController implements Initializa
       }
 
     });
-
   }
+  /**
+   * Back button  method
+   */
   void backButtonPressed() {
-
     button_back.setOnMousePressed(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent event) {
         MainScreenController msc = new MainScreenController();
