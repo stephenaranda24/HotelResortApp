@@ -22,7 +22,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /**
- *Payment Controller class
+ * This method implements all the actions done on the Payment Screen
+ *
+ * @version 1.0
+ * @ Romanov Andre
+ * @ Shafi Mushfique
+ * @ Stephen Aranda
+ * @since 2019-09-21
  */
 public class PaymentScreenController implements Initializable {
 
@@ -80,21 +86,22 @@ public class PaymentScreenController implements Initializable {
 
   /**
    * This method allows to go back the logged in user account
+   *
    * @param event
    */
   @FXML
   void backFrompaymentAction(ActionEvent event) {
     {
       MainScreenController msc = new MainScreenController();
-      msc.loadScene(backFrompayment,userfxmTitile+".fxml",userfxmTitile);
+      msc.loadScene(backFrompayment, userfxmTitile + ".fxml", userfxmTitile);
     }
 
 
   }
 
-  /** {@inheritDoc}
-   * Initilize
-   * */
+  /**
+   * {@inheritDoc} Initilize
+   */
   public void initialize(URL url, ResourceBundle resources) {
     userfxmTitile = Main.Type;
     MainScreenController msc = new MainScreenController();
@@ -107,12 +114,12 @@ public class PaymentScreenController implements Initializable {
       DatabaseManager db = new DatabaseManager();
       String orderNO = orderNo.getText();
       int orderNo1 = Integer.parseInt(orderNO);
-      amounts= db.orderNumberAmountr(orderNo1);
+      amounts = db.orderNumberAmountr(orderNo1);
     } catch (SQLException e) {
       e.printStackTrace();
     }
     String displayAmount = (String.valueOf(amounts));
-    amount.setText("$"+displayAmount);
+    amount.setText("$" + displayAmount);
 
   }
 
@@ -127,16 +134,19 @@ public class PaymentScreenController implements Initializable {
 
   /**
    * Pop
+   *
    * @param event
    */
   @FXML
   void payLaterAction(ActionEvent event) {
     MainScreenController msc = new MainScreenController();
-    Main.infoMessage("You can re-login any time and make the payment by selecting from the unpaid table screen"
-        + "\nAlso you can pay before you in front desk before you check in"
-        + "\nThank you for choosing our Resort");
-    msc.loadScene(payLater,userfxmTitile+".fxml",userfxmTitile);
+    Main.infoMessage(
+        "You can re-login any time and make the payment by selecting from the unpaid table screen"
+            + "\nAlso you can pay before you in front desk before you check in"
+            + "\nThank you for choosing our Resort");
+    msc.loadScene(payLater, userfxmTitile + ".fxml", userfxmTitile);
   }
+
   @FXML
   void savedMethodChecked(ActionEvent event) {
     try {
@@ -147,14 +157,13 @@ public class PaymentScreenController implements Initializable {
       System.out.println(cardList);
       int checkTempButton = (int) cardList.get(2);
       System.out.println(checkTempButton);
-      if(checkTempButton == 0){
+      if (checkTempButton == 0) {
         System.out.println();
         Main.errorMessage("There are no saved card");
         savedMethod.setSelected(false);
 
 
-      }
-      else {
+      } else {
         String cardTypeString = (String) cardList.get(0);
         cardType.setValue(cardTypeString);
         long cardNumberTemp = (long) cardList.get(1);
@@ -171,72 +180,72 @@ public class PaymentScreenController implements Initializable {
       }
 
 
-  } catch (SQLException e) {
-    e.printStackTrace();
-  }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
 
 
   }
 
 
   /**
-   * @param event It takes the card info and validates it, If validation is successfull then
-   *              the information is saved as payed booking
+   * @param event It takes the card info and validates it, If validation is successfull then the
+   *              information is saved as payed booking
    * @throws SQLException
    */
   @FXML
   void submitPaymentSuccessfull(ActionEvent event) throws SQLException {
-      boolean cardWorked = false;
-      MainScreenController msc = new MainScreenController();
-      String tempCardSelection = cardType.getValue();
-      String tempCardNumber = cardNumber.getText();
-      DatabaseManager dm = new DatabaseManager();
-      String tempCVV = cardCvv.getText();
-      String tempZipCode = bilingZipCode.getText();
-      String tempGetMonth = expMonth.getText();
-      String tempYear = expYear.getText();
+    boolean cardWorked = false;
+    MainScreenController msc = new MainScreenController();
+    String tempCardSelection = cardType.getValue();
+    String tempCardNumber = cardNumber.getText();
+    DatabaseManager dm = new DatabaseManager();
+    String tempCVV = cardCvv.getText();
+    String tempZipCode = bilingZipCode.getText();
+    String tempGetMonth = expMonth.getText();
+    String tempYear = expYear.getText();
 
-      long cardNumber = Long.parseLong(tempCardNumber);
-      int cvv = Integer.parseInt(tempCVV);
-      int zipCode = Integer.parseInt(tempZipCode);
-      int expYear = Integer.parseInt(tempYear);
-      int expMonth = Integer.parseInt(tempGetMonth);
-      boolean dateMonthConditionMet = monthAndYearValidation(expMonth, expYear);
+    long cardNumber = Long.parseLong(tempCardNumber);
+    int cvv = Integer.parseInt(tempCVV);
+    int zipCode = Integer.parseInt(tempZipCode);
+    int expYear = Integer.parseInt(tempYear);
+    int expMonth = Integer.parseInt(tempGetMonth);
+    boolean dateMonthConditionMet = monthAndYearValidation(expMonth, expYear);
     System.out.println(dateMonthConditionMet);
-      if ((dateMonthConditionMet == true) ) {
-        tempCardSelection = cardType.getValue();
+    if ((dateMonthConditionMet == true)) {
+      tempCardSelection = cardType.getValue();
 
-        System.out.println(tempCardNumber);
-        System.out.println(tempCardSelection +" " + tempCVV+tempZipCode);
-        List<String> newList = cardNumber(tempCardSelection, tempCardNumber, tempCVV, tempZipCode);
-        finalCardNum = Long.parseLong(newList.get(1));
-        finalCvv = Integer.parseInt(newList.get(2));
-        finalCardType = newList.get(0);
-        finalZipCode = Integer.parseInt(newList.get(3));
+      System.out.println(tempCardNumber);
+      System.out.println(tempCardSelection + " " + tempCVV + tempZipCode);
+      List<String> newList = cardNumber(tempCardSelection, tempCardNumber, tempCVV, tempZipCode);
+      finalCardNum = Long.parseLong(newList.get(1));
+      finalCvv = Integer.parseInt(newList.get(2));
+      finalCardType = newList.get(0);
+      finalZipCode = Integer.parseInt(newList.get(3));
 
-        dm.paidColumn(ClientScreenController.orderNo);
+      dm.paidColumn(ClientScreenController.orderNo);
 
-        boolean saveCardToFile = false;
+      boolean saveCardToFile = false;
 
-        saveCardToFile = saveCardValidation();
-        if (saveCardToFile == true) {
+      saveCardToFile = saveCardValidation();
+      if (saveCardToFile == true) {
 
-          dm.saveCardInfo(userID, finalCardType, finalCardNum, finalCardMonth, finalCardYear,
-              finalCvv, finalZipCode);
+        dm.saveCardInfo(userID, finalCardType, finalCardNum, finalCardMonth, finalCardYear,
+            finalCvv, finalZipCode);
 
-        } else {
-          Main.infoMessage("Card details not saved");
-        }
-
-        msc.loadScene(submitPayment, userfxmTitile + ".fxml", userfxmTitile);
-
+      } else {
+        Main.infoMessage("Card details not saved");
       }
-      else {
-        Main.errorMessage("Information entered are not correct");
-      }
+
+      msc.loadScene(submitPayment, userfxmTitile + ".fxml", userfxmTitile);
+
+    } else {
+      Main.errorMessage("Information entered are not correct");
+    }
   }
-  public List<String> cardNumber(String cardSelection, String valCardNumber, String cvv, String zipCode){
 
+  public List<String> cardNumber(String cardSelection, String valCardNumber, String cvv,
+      String zipCode) {
 
     int lengthOfCard = valCardNumber.length();
     int lengthCvv = cvv.length();
@@ -245,67 +254,59 @@ public class PaymentScreenController implements Initializable {
     String cardNumberR = null;
     String cvcR = null;
     String zipCodeR = null;
-    if (cardSelection.equals("Amex")){
-      if(lengthOfCard == 15 && (lengthCvv == 4) && (lengthZipCOde == 5)  )
-
-      {//begin of 15 long credit card check
+    if (cardSelection.equals("Amex")) {
+      if (lengthOfCard == 15 && (lengthCvv == 4) && (lengthZipCOde
+          == 5)) {//begin of 15 long credit card check
 
         cardNumberR = valCardNumber;
         cvcR = cvv;
         zipCodeR = zipCode;
       }//end of 15 long credit card check
-      else{
+      else {
+        Main.infoMessage("Please be sure that card details are the correct length");
+      }
+    } else {
+      if (lengthOfCard == 16 && (lengthCvv == 3) && (lengthZipCOde == 5)) {
+        cardNumberR = valCardNumber;
+        cvcR = cvv;
+        zipCodeR = zipCode;
+
+      }//end of 15 long credit card check
+      else {
         Main.infoMessage("Please be sure that card details are the correct length");
       }
     }
-    else{
-      if(lengthOfCard == 16 && (lengthCvv == 3) && (lengthZipCOde == 5) )
-      {
-        cardNumberR = valCardNumber;
-        cvcR = cvv;
-        zipCodeR = zipCode;
+    return Arrays.asList(cardSelection, cardNumberR, cvcR, zipCodeR);
+  }
 
-      }//end of 15 long credit card check
-      else{
-          Main.infoMessage("Please be sure that card details are the correct length");
-      }
-    }
-    return Arrays.asList(cardSelection, cardNumberR,cvcR, zipCodeR);
-    }
+  //https://www.dreamincode.net/forums/topic/269950-finding-the-length-of-a-long-data-type/
 
-
-    //https://www.dreamincode.net/forums/topic/269950-finding-the-length-of-a-long-data-type/
-
-  public boolean monthAndYearValidation(int month, int year){
+  public boolean monthAndYearValidation(int month, int year) {
     boolean yearMonthmet = false;
     year = 2000 + year;
     int presentYear = Calendar.getInstance().get(Calendar.YEAR);
-    if(year>presentYear && month>0 && month<13){
+    if (year > presentYear && month > 0 && month < 13) {
       finalCardMonth = month;
       finalCardYear = year;
       yearMonthmet = true;
-    }
-    else if(presentYear == year){
-      int currentMonth = Calendar.getInstance().get(Calendar.MONTH)+1;
-      if(month >= currentMonth){
+    } else if (presentYear == year) {
+      int currentMonth = Calendar.getInstance().get(Calendar.MONTH) + 1;
+      if (month >= currentMonth) {
         finalCardMonth = month;
         finalCardYear = year;
         yearMonthmet = true;
+      } else {
+        Main.errorMessage("The card detailed entered is expired");
       }
-      else{
-    	Main.errorMessage("The card detailed entered is expired");
-      }
+    } else {
+      Main.errorMessage("The card detailed entered is expired");
     }
-    else{
-       	Main.errorMessage("The card detailed entered is expired");
-            }
     return yearMonthmet;
   }
-  public boolean saveCardValidation(){
+
+  public boolean saveCardValidation() {
     return saveCard.isSelected();
   }
-
-
 
 
 }

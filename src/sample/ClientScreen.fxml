@@ -18,211 +18,282 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" prefHeight="930.0" prefWidth="1210.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ClientScreenController">
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" prefHeight="930.0"
+  prefWidth="1210.0" xmlns="http://javafx.com/javafx/8.0.171"
+  fx:controller="sample.ClientScreenController">
   <content>
-    <AnchorPane layoutX="1.0" layoutY="1.0" minHeight="0.0" minWidth="0.0" prefHeight="1074.0" prefWidth="1950.0">
+    <AnchorPane layoutX="1.0" layoutY="1.0" minHeight="0.0" minWidth="0.0" prefHeight="1074.0"
+      prefWidth="1950.0">
       <children>
-        <TabPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1138.0" prefWidth="1541.0" tabClosingPolicy="UNAVAILABLE">
+        <TabPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+          prefHeight="1138.0" prefWidth="1541.0" tabClosingPolicy="UNAVAILABLE">
           <tabs>
             <Tab text="Book Room">
               <content>
-                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="1106.0" prefWidth="1541.0">
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0"
+                  minWidth="0.0" prefHeight="1106.0" prefWidth="1541.0">
                   <children>
-                    <Button fx:id="logoutButton" layoutX="5.0" layoutY="2.0" mnemonicParsing="false" onAction="#logOut" text="Logout" />
+                    <Button layoutX="5.0" layoutY="2.0" mnemonicParsing="false" onAction="#logOut"
+                      text="Logout" fx:id="logoutButton"/>
                     <GridPane layoutX="24.0" layoutY="63.0" prefHeight="563.0" prefWidth="516.0">
                       <children>
-                        <ImageView fx:id="roomAIView" fitHeight="120.0" fitWidth="140.0" GridPane.columnIndex="1">
+                        <ImageView GridPane.columnIndex="1" fitHeight="120.0" fitWidth="140.0"
+                          fx:id="roomAIView">
                         </ImageView>
-                        <ImageView fx:id="roomBIView" fitHeight="120.0" fitWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <ImageView GridPane.columnIndex="1" GridPane.rowIndex="1" fitHeight="120.0"
+                          fitWidth="140.0" fx:id="roomBIView">
                         </ImageView>
-                        <ImageView fx:id="roomCIView" fitHeight="120.0" fitWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <ImageView GridPane.columnIndex="1" GridPane.rowIndex="3" fitHeight="120.0"
+                          fitWidth="140.0" fx:id="roomCIView">
                         </ImageView>
-                        <ImageView fx:id="roomDIView" fitHeight="120.0" fitWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <ImageView GridPane.columnIndex="1" GridPane.rowIndex="2" fitHeight="120.0"
+                          fitWidth="140.0" fx:id="roomDIView">
                         </ImageView>
-                        <Label prefHeight="130.0" prefWidth="164.0" text="1 bed" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                        <Label prefHeight="130.0" prefWidth="164.0" text="3 beds&#10;" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <Label prefHeight="130.0" prefWidth="164.0" text="2 beds&#10;" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <Label fx:id="roomALabel" text="Price: $39.99" GridPane.columnIndex="3" />
-                        <Label fx:id="roomBLabel" text="Price: $49.99" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <Label fx:id="roomCLabel" text="Price: $79.99" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                        <Label fx:id="roomDLabel" text="Price: $89.99" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                        <Label prefHeight="130.0" prefWidth="164.0" text="4 beds&#10;" wrapText="true" GridPane.columnIndex="2" />
+                        <Label GridPane.columnIndex="2" GridPane.rowIndex="3" prefHeight="130.0" prefWidth="164.0"
+                          text="1 bed" wrapText="true"/>
+                        <Label GridPane.columnIndex="2" GridPane.rowIndex="1" prefHeight="130.0"
+                          prefWidth="164.0" text="3 beds&#10;" wrapText="true"/>
+                        <Label GridPane.columnIndex="2" GridPane.rowIndex="2" prefHeight="130.0"
+                          prefWidth="164.0" text="2 beds&#10;" wrapText="true"/>
+                        <Label GridPane.columnIndex="3" text="Price: $39.99" fx:id="roomALabel"/>
+                        <Label GridPane.columnIndex="3" GridPane.rowIndex="1" text="Price: $49.99"
+                          fx:id="roomBLabel"/>
+                        <Label GridPane.columnIndex="3" GridPane.rowIndex="2" text="Price: $79.99"
+                          fx:id="roomCLabel"/>
+                        <Label GridPane.columnIndex="3" GridPane.rowIndex="3" text="Price: $89.99"
+                          fx:id="roomDLabel"/>
+                        <Label GridPane.columnIndex="2" prefHeight="130.0" prefWidth="164.0"
+                          text="4 beds&#10;" wrapText="true"/>
 
-                        <Label text="Room A" />
-                        <Label text="Room B" GridPane.rowIndex="1" />
+                        <Label text="Room A"/>
+                        <Label GridPane.rowIndex="1" text="Room B"/>
 
-                        <Label text="Room C" GridPane.rowIndex="2" />
-                        <Label text="Room D" GridPane.rowIndex="3" />
+                        <Label GridPane.rowIndex="2" text="Room C"/>
+                        <Label GridPane.rowIndex="3" text="Room D"/>
 
                       </children>
                       <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.0" minWidth="10.0" prefWidth="170.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0" prefWidth="269.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.0" minWidth="10.0"
+                          prefWidth="170.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0"
+                          prefWidth="269.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0"
+                          prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0"
+                          prefWidth="100.0"/>
                       </columnConstraints>
                       <rowConstraints>
-                        <RowConstraints maxHeight="156.0" minHeight="10.0" prefHeight="125.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="193.0" minHeight="10.0" prefHeight="131.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="136.0" minHeight="10.0" prefHeight="113.33331298828125" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="136.0" minHeight="0.0" prefHeight="89.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="156.0" minHeight="10.0" prefHeight="125.0"
+                          vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="193.0" minHeight="10.0" prefHeight="131.0"
+                          vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="136.0" minHeight="10.0"
+                          prefHeight="113.33331298828125" vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="136.0" minHeight="0.0" prefHeight="89.0"
+                          vgrow="SOMETIMES"/>
                       </rowConstraints>
                     </GridPane>
                     <GridPane layoutX="636.0" layoutY="121.0" prefHeight="280.0" prefWidth="469.0">
                       <children>
-                        <Button fx:id="submit" mnemonicParsing="false" onAction="#submitDate" text="Submit" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="7" />
-                        <ComboBox fx:id="roomSelectCombo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="26.0" prefWidth="174.0" GridPane.rowIndex="2" />
-                        <DatePicker fx:id="endDatePicker" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="21.0" prefWidth="174.0" GridPane.rowIndex="6" />
-                        <DatePicker fx:id="startDatePicker" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="21.0" prefWidth="174.0" GridPane.rowIndex="4" />
+                        <Button GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="7"
+                          mnemonicParsing="false" onAction="#submitDate" text="Submit"
+                          fx:id="submit"/>
+                        <ComboBox GridPane.rowIndex="2" maxHeight="-Infinity" maxWidth="-Infinity"
+                          minHeight="-Infinity" prefHeight="26.0" prefWidth="174.0"
+                          fx:id="roomSelectCombo"/>
+                        <DatePicker GridPane.rowIndex="6" maxHeight="-Infinity" maxWidth="-Infinity"
+                          minHeight="-Infinity" minWidth="-Infinity" prefHeight="21.0"
+                          prefWidth="174.0" fx:id="endDatePicker"/>
+                        <DatePicker GridPane.rowIndex="4" maxHeight="-Infinity"
+                          maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                          prefHeight="21.0" prefWidth="174.0" fx:id="startDatePicker"/>
                         <Label text="FROM" GridPane.rowIndex="3">
-                                       <font>
-                                          <Font name="System Bold" size="12.0" />
-                                       </font></Label>
+                          <font>
+                            <Font name="System Bold" size="12.0"/>
+                          </font>
+                        </Label>
                         <Label text="TO" GridPane.rowIndex="5">
-                                       <font>
-                                          <Font name="System Bold" size="12.0" />
-                                       </font></Label>
+                          <font>
+                            <Font name="System Bold" size="12.0"/>
+                          </font>
+                        </Label>
                         <Label text="Room Type">
-                                       <font>
-                                          <Font name="System Bold" size="12.0" />
-                                       </font></Label>
+                          <font>
+                            <Font name="System Bold" size="12.0"/>
+                          </font>
+                        </Label>
                       </children>
                       <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                       </columnConstraints>
                       <rowConstraints>
-                        <RowConstraints maxHeight="32.0" minHeight="9.0" prefHeight="32.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="23.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="32.0" minHeight="9.0" prefHeight="32.0"
+                          vgrow="SOMETIMES"/>
+                        <RowConstraints maxHeight="23.0" minHeight="0.0" prefHeight="0.0"
+                          vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                       </rowConstraints>
                     </GridPane>
-                    <Label fx:id="userLabel" layoutX="799.0" layoutY="27.0" prefWidth="213.0" text="null" />
+                    <Label layoutX="799.0" layoutY="27.0" prefWidth="213.0" text="null"
+                      fx:id="userLabel"/>
                     <Label layoutX="58.0" layoutY="27.0" text="Select Room and Date">
                       <font>
-                        <Font size="18.0" />
+                        <Font size="18.0"/>
                       </font>
                     </Label>
-                    <Label fx:id="typeLabel" layoutX="796.0" layoutY="49.0" text="null" visible="false" />
-                    <Label layoutX="718.0" layoutY="49.0" text="Type:" visible="false" />
-                    <Label layoutX="718.0" layoutY="27.0" text="Logged in as: " />
+                    <Label layoutX="796.0" layoutY="49.0" text="null" visible="false"
+                      fx:id="typeLabel"/>
+                    <Label layoutX="718.0" layoutY="49.0" text="Type:" visible="false"/>
+                    <Label layoutX="718.0" layoutY="27.0" text="Logged in as: "/>
                   </children>
                 </AnchorPane>
               </content>
             </Tab>
             <Tab text="Account Setting">
               <content>
-                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="1097.0" prefWidth="1541.0">
+                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0"
+                  minWidth="0.0" prefHeight="1097.0" prefWidth="1541.0">
                   <children>
-                    <Button fx:id="updatePassword" layoutX="312.0" layoutY="332.0" mnemonicParsing="false" onAction="#updatePasswordAction" text="Update Password" />
-                    <Button layoutX="562.0" layoutY="960.0" mnemonicParsing="false" text="Update" />
-                    <Button fx:id="updatePin" layoutX="644.0" layoutY="326.0" mnemonicParsing="false" onAction="#updatePin" text="Update Pin" />
+                    <Button layoutX="312.0" layoutY="332.0" mnemonicParsing="false"
+                      onAction="#updatePasswordAction" text="Update Password"
+                      fx:id="updatePassword"/>
+                    <Button layoutX="562.0" layoutY="960.0" mnemonicParsing="false" text="Update"/>
+                    <Button layoutX="644.0" layoutY="326.0" mnemonicParsing="false"
+                      onAction="#updatePin" text="Update Pin" fx:id="updatePin"/>
                     <GridPane layoutX="37.0" layoutY="61.0" prefHeight="277.0" prefWidth="351.0">
                       <children>
-                        <Label text="Old Password" />
-                        <Label text="New Password" GridPane.rowIndex="1" />
-                        <Label text="Confirm New Password" GridPane.rowIndex="2" />
-                        <PasswordField fx:id="oldPassword" GridPane.columnIndex="1" />
-                        <PasswordField fx:id="newPassword" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <PasswordField fx:id="newPasswordVerify" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="Old Password"/>
+                        <Label GridPane.rowIndex="1" text="New Password"/>
+                        <Label GridPane.rowIndex="2" text="Confirm New Password"/>
+                        <PasswordField GridPane.columnIndex="1" fx:id="oldPassword"/>
+                        <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1"
+                          fx:id="newPassword"/>
+                        <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="2"
+                          fx:id="newPasswordVerify"/>
                       </children>
                       <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                       </columnConstraints>
                       <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                       </rowConstraints>
                     </GridPane>
                     <GridPane layoutX="450.0" layoutY="54.0" prefHeight="273.0" prefWidth="269.0">
                       <children>
-                        <Label text="Old Pin" />
-                        <Label text="New Pin" GridPane.rowIndex="1" />
-                        <Label text="Confirm Pin" GridPane.rowIndex="2" />
-                        <PasswordField fx:id="newPin" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <PasswordField fx:id="newPinVerify" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <PasswordField fx:id="oldPin" GridPane.columnIndex="1" />
+                        <Label text="Old Pin"/>
+                        <Label GridPane.rowIndex="1" text="New Pin"/>
+                        <Label GridPane.rowIndex="2" text="Confirm Pin"/>
+                        <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1"
+                          fx:id="newPin"/>
+                        <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="2"
+                          fx:id="newPinVerify"/>
+                        <PasswordField GridPane.columnIndex="1" fx:id="oldPin"/>
                       </children>
                       <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                       </columnConstraints>
                       <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                       </rowConstraints>
                     </GridPane>
-                    <Label layoutX="599.0" layoutY="18.0" text="Logged in as:" />
-                    <Label fx:id="idSpace11" layoutX="682.0" layoutY="18.0" text="Null" />
+                    <Label layoutX="599.0" layoutY="18.0" text="Logged in as:"/>
+                    <Label layoutX="682.0" layoutY="18.0" text="Null" fx:id="idSpace11"/>
                     <Label layoutX="27.0" layoutY="23.0" text="Change Password">
                       <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="System Bold" size="18.0"/>
                       </font>
                     </Label>
                     <Label layoutX="466.0" layoutY="37.0" text="Change Pin">
                       <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="System Bold" size="18.0"/>
                       </font>
                     </Label>
-                  </children></AnchorPane>
+                  </children>
+                </AnchorPane>
               </content>
             </Tab>
             <Tab text="Booking History">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                   <children>
-                    <Button fx:id="payNow" layoutX="856.0" layoutY="419.0" mnemonicParsing="false" onAction="#paymentScreenRunning" text="Pay Booking Now (For Unpaid Booking)" />
-                    <Button fx:id="deleteOrder" layoutX="425.0" layoutY="555.0" mnemonicParsing="false" onAction="#deleteTheOrder" text="Delete Booking (Paid/Unpaid)" />
+                    <Button layoutX="856.0" layoutY="419.0" mnemonicParsing="false" onAction="#paymentScreenRunning"
+                      text="Pay Booking Now (For Unpaid Booking)" fx:id="payNow"/>
+                    <Button layoutX="425.0" layoutY="555.0" mnemonicParsing="false"
+                      onAction="#deleteTheOrder" text="Delete Booking (Paid/Unpaid)"
+                      fx:id="deleteOrder"/>
                     <Label layoutX="46.0" layoutY="7.0" text="Paid">
                       <font>
-                        <Font size="29.0" />
+                        <Font size="29.0"/>
                       </font>
                     </Label>
                     <Label layoutX="688.0" layoutY="9.0" text="Unpaid">
                       <font>
-                        <Font size="28.0" />
+                        <Font size="28.0"/>
                       </font>
                     </Label>
-                    <TableView fx:id="tableUnpaid" layoutX="570.0" layoutY="55.0" prefHeight="358.0" prefWidth="429.0">
+                    <TableView layoutX="570.0" layoutY="55.0" prefHeight="358.0" prefWidth="429.0"
+                      fx:id="tableUnpaid">
                       <columns>
                         <TableColumn fx:id="pTableRoomNo" prefWidth="63.0" text="RoomNo">
-                          <cellValueFactory><PropertyValueFactory property="room" /></cellValueFactory>
+                          <cellValueFactory>
+                            <PropertyValueFactory property="room"/>
+                          </cellValueFactory>
                         </TableColumn>
                         <TableColumn fx:id="pTableDate" prefWidth="203.0" text="Date">
-                          <cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory>
+                          <cellValueFactory>
+                            <PropertyValueFactory property="date"/>
+                          </cellValueFactory>
                         </TableColumn>
                         <TableColumn fx:id="pTableAmount" prefWidth="83.0" text="Amount">
-                          <cellValueFactory><PropertyValueFactory property="cost" /></cellValueFactory>
+                          <cellValueFactory>
+                            <PropertyValueFactory property="cost"/>
+                          </cellValueFactory>
                         </TableColumn>
                         <TableColumn fx:id="pTableInvoice" prefWidth="79.0" text="Invoice">
-                          <cellValueFactory><PropertyValueFactory property="invoice" /></cellValueFactory>
+                          <cellValueFactory>
+                            <PropertyValueFactory property="invoice"/>
+                          </cellValueFactory>
                         </TableColumn>
                       </columns>
                     </TableView>
-                    <TableView fx:id="tablePaid" layoutX="40.0" layoutY="55.0" prefHeight="358.0" prefWidth="429.0">
+                    <TableView layoutX="40.0" layoutY="55.0" prefHeight="358.0" prefWidth="429.0"
+                      fx:id="tablePaid">
                       <columns>
-                        <TableColumn fx:id="upTableRoomNo" prefWidth="62.999969482421875" text="RoomNo">
-                          <cellValueFactory><PropertyValueFactory property="room" /></cellValueFactory>
+                        <TableColumn prefWidth="62.999969482421875" text="RoomNo"
+                          fx:id="upTableRoomNo">
+                          <cellValueFactory>
+                            <PropertyValueFactory property="room"/>
+                          </cellValueFactory>
                         </TableColumn>
                         <TableColumn fx:id="upTableDate" prefWidth="183.00003051757812" text="Date">
-                          <cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory>
+                          <cellValueFactory>
+                            <PropertyValueFactory property="date"/>
+                          </cellValueFactory>
                         </TableColumn>
                         <TableColumn fx:id="upTableAmount" prefWidth="99.0" text="Amount">
-                          <cellValueFactory><PropertyValueFactory property="cost" /></cellValueFactory>
+                          <cellValueFactory>
+                            <PropertyValueFactory property="cost"/>
+                          </cellValueFactory>
                         </TableColumn>
                         <TableColumn fx:id="upTableInvoice" prefWidth="84.0" text="Invoice">
-                          <cellValueFactory><PropertyValueFactory property="invoice" /></cellValueFactory>
+                          <cellValueFactory>
+                            <PropertyValueFactory property="invoice"/>
+                          </cellValueFactory>
                         </TableColumn>
                       </columns>
                     </TableView>

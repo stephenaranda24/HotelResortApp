@@ -17,7 +17,11 @@ import javafx.stage.Stage;
 
 
 /**
- *
+ * @version 1.0
+ * @ Romanov Andre
+ * @ Shafi Mushfique
+ * @ Stephen Aranda
+ * @since 2019-09-21
  */
 public class SignUpController extends MainScreenController implements Initializable {
 
@@ -47,7 +51,7 @@ public class SignUpController extends MainScreenController implements Initializa
   private PasswordField TF_password;
 
   @FXML
-  private PasswordField  TF_cpassword;
+  private PasswordField TF_cpassword;
 
   @FXML
   private TextField city;
@@ -55,10 +59,10 @@ public class SignUpController extends MainScreenController implements Initializa
   private Button button_back;
 
   @FXML
-  private PasswordField  pin;
+  private PasswordField pin;
 
   @FXML
-  private PasswordField  confirmPin;
+  private PasswordField confirmPin;
 
   @FXML
   private ComboBox<String> countries;
@@ -92,7 +96,7 @@ public class SignUpController extends MainScreenController implements Initializa
 
   /**
    * initilialize
-   * */
+   */
   @Override
   public void initialize(URL url, ResourceBundle resources) {
     setComboBoxText();
@@ -168,6 +172,7 @@ public class SignUpController extends MainScreenController implements Initializa
 
     });
   }
+
   /**
    * Back button  method
    */

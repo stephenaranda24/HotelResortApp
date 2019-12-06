@@ -13,6 +13,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
+/**
+ * @version 1.0
+ * @ Romanov Andre
+ * @ Shafi Mushfique
+ * @ Stephen Aranda
+ * @since 2019-09-21
+ */
 public class DeskAssistantController implements Initializable {
 
   @FXML
@@ -50,6 +57,7 @@ public class DeskAssistantController implements Initializable {
   private TableColumn<?, ?> checkInStatus;
   private ObservableList<CustomerBooking> roomStatus;
   public static String userIdAlt = "NONE";
+
   @FXML
   void logOut(ActionEvent event) {
     Main.loggedInUser = null;
@@ -75,11 +83,10 @@ public class DeskAssistantController implements Initializable {
 
     ClientScreenController.orderNo = newValue;
     Main.Type = "DeskAssistantScreen";
-    if(paymentStatus.equals("NO")){
+    if (paymentStatus.equals("NO")) {
 
-      msc.loadScene( acceptPayment, "PaymentScreen.fxml", "Payment Screen");
-    }
-    else{
+      msc.loadScene(acceptPayment, "PaymentScreen.fxml", "Payment Screen");
+    } else {
       Main.infoMessage("This booking is already paid");
     }
 
@@ -98,43 +105,38 @@ public class DeskAssistantController implements Initializable {
     String roomName = invoiceNo.getRoom();
     ClientScreenController.orderNo = newValue;
 
-    if(checkinStatus.equals("NO")){
-      if(paymentStatus.equals("YES")){
+    if (checkinStatus.equals("NO")) {
+      if (paymentStatus.equals("YES")) {
         DatabaseManager db = new DatabaseManager();
-        db.checkedIn(newValue,roomName);
+        db.checkedIn(newValue, roomName);
         tableActivity.getSelectionModel().clearSelection();
         tableActivity.getItems().clear();
 
-
-        roomStatus = FXCollections.observableArrayList(db.BookingStatus("all","all"));
+        roomStatus = FXCollections.observableArrayList(db.BookingStatus("all", "all"));
         tableActivity.setItems(roomStatus);
-      }
-      else{
+      } else {
         Main.infoMessage("This booking is not paid");
-        msc.loadScene( acceptPayment, "PaymentScreen.fxml", "Payment Screen");
+        msc.loadScene(acceptPayment, "PaymentScreen.fxml", "Payment Screen");
 
 
       }
-    }
-    else{
+    } else {
       Main.infoMessage("This booking is already checked in");
     }
 
 
-
-
-
-
   }
-  /** {@inheritDoc} */
+
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void initialize(URL url, ResourceBundle resources) {
     DatabaseManager db = null;
-    if(userIdAlt.equals("NONE")){
+    if (userIdAlt.equals("NONE")) {
       Main.loggedInUser = Main.loggedInUser;
       idSpace1.setText(Main.loggedInUser);
-    }
-    else {
+    } else {
       Main.loggedInUser = userIdAlt;
       idSpace1.setText(userIdAlt);
     }
@@ -144,7 +146,7 @@ public class DeskAssistantController implements Initializable {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    roomStatus = FXCollections.observableArrayList(db.BookingStatus("all","all"));
+    roomStatus = FXCollections.observableArrayList(db.BookingStatus("all", "all"));
     tableActivity.setItems(roomStatus);
 
 
