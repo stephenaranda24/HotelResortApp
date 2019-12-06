@@ -27,10 +27,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 
-
+/**
+ * This client controller class implements all actions done on the client screen
+ *
+ * @version 1.0
+ * @ Romanov Andre
+ * @ Shafi Mushfique
+ * @ Stephen Aranda
+ * @since 2019-09-21
+ */
 public class CustodianScreenController implements Initializable {
-  String [] roomArray = {"ROOMA101","ROOMA102","ROOMB103","ROOMB104","ROOMC105",
-      "ROOMC106","ROOMD107","ROOMD108"};
+
+  String[] roomArray = {"ROOMA101", "ROOMA102", "ROOMB103", "ROOMB104", "ROOMC105",
+      "ROOMC106", "ROOMD107", "ROOMD108"};
   LocalDate todaysDate = LocalDate.now();
   String datePushed = String.valueOf(todaysDate);
   @FXML
@@ -66,6 +75,13 @@ public class CustodianScreenController implements Initializable {
   @FXML
   private CheckBox roomD108;
   public static String custodianUserId;
+
+  /**
+   * This method is used for the the client to be able to log out of their account and returns to
+   * the main screen.
+   *
+   * @param event This is an object of the ActionEvent class.
+   */
   @FXML
   void logOut(ActionEvent event) {
     Main.loggedInUser = null;
@@ -74,23 +90,28 @@ public class CustodianScreenController implements Initializable {
 
   }
 
-
+  /**
+   * This method handles the functionality of the button that is pressed for the custodian when they
+   * want to submit whether the room is clean or not.
+   *
+   * @param event This is an object of the ActionEvent class.
+   */
   @FXML
   void custodianSubmit(ActionEvent event) {
-    try{
+    try {
       DatabaseManager db = new DatabaseManager();
-      CheckBox [] roomCheckBox = {roomA101,roomA102, roomB103, roomB104, roomC105, roomC106, roomD107, roomD108};
-      for (int i = 0; i < roomCheckBox.length; i++){
+      CheckBox[] roomCheckBox = {roomA101, roomA102, roomB103, roomB104, roomC105, roomC106,
+          roomD107, roomD108};
+      for (int i = 0; i < roomCheckBox.length; i++) {
         boolean selectedClean = roomCheckBox[i].isSelected();
-        if(selectedClean){
-          db.roomCheckedDatabase(roomArray[i],selectedClean,datePushed,custodianUserId);
-         
-        }
-        else{
+        if (selectedClean) {
+          db.roomCheckedDatabase(roomArray[i], selectedClean, datePushed, custodianUserId);
+
+        } else {
           String date = db.dateReturn(roomArray[i]);
           String markedBy = db.custodianNameReturn(roomArray[i]);
-          db.roomCheckedDatabase(roomArray[i],selectedClean, date,markedBy);
-          
+          db.roomCheckedDatabase(roomArray[i], selectedClean, date, markedBy);
+
 
         }
 
@@ -102,13 +123,13 @@ public class CustodianScreenController implements Initializable {
     }
 
 
-
-
   }
+
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void initialize(URL url, ResourceBundle resources) {
-
-
 
     try {
       DatabaseManager db = new DatabaseManager();
@@ -116,16 +137,15 @@ public class CustodianScreenController implements Initializable {
       userId.setText(custodianUserId);
       db.custodianDateValidation(datePushed);
 
-      CheckBox [] roomCheckBox = {roomA101,roomA102, roomB103, roomB104, roomC105, roomC106, roomD107, roomD108};
-      for (int i = 0; i < roomArray.length; i++){
-        boolean checked = db.roomValidationCleaned(roomArray[i],datePushed);
-        if(checked == true){
+      CheckBox[] roomCheckBox = {roomA101, roomA102, roomB103, roomB104, roomC105, roomC106,
+          roomD107, roomD108};
+      for (int i = 0; i < roomArray.length; i++) {
+        boolean checked = db.roomValidationCleaned(roomArray[i], datePushed);
+        if (checked == true) {
           roomCheckBox[i].setSelected(true);
-        }
-        else{
+        } else {
           roomCheckBox[i].setSelected(false);
         }
-
 
 
       }
@@ -133,8 +153,6 @@ public class CustodianScreenController implements Initializable {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-
-
 
 
   }

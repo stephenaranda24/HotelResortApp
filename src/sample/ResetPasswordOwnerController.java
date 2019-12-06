@@ -11,7 +11,18 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+/**
+ * This ResetPasswordOwner controller class implements all the actions done on the
+ * ResetPasswordOwner
+ *
+ * @version 1.0
+ * @ Romanov Andre
+ * @ Shafi Mushfique
+ * @ Stephen Aranda
+ * @since 2019-09-21
+ */
 public class ResetPasswordOwnerController implements Initializable {
+
   @FXML
   private Label user_id;
   @FXML
@@ -29,13 +40,11 @@ public class ResetPasswordOwnerController implements Initializable {
   public static String tempUser;
 
 
-
   /**
-   *  {@inheritDoc}
-   * initiliaze the scene
-   * */
+   * {@inheritDoc} initiliaze the scene
+   */
   public void initialize(URL url, ResourceBundle resources) {
-   tempUser = OwnerScreenController.userNameForChangePassword;
+    tempUser = OwnerScreenController.userNameForChangePassword;
 
     tempUserType = OwnerScreenController.userTypeChangePassword;
     user_id.setText(tempUser);
@@ -43,9 +52,10 @@ public class ResetPasswordOwnerController implements Initializable {
   }
 
   /**
-   * Change Password method
+   * This method handles the functionality of changing the password after submitting all fields and
+   * pressing the button.
    *
-   * @param event
+   * @param event An object of the class ActionEvent.
    */
   @FXML
   void changePassword_Action(ActionEvent event) {
@@ -57,12 +67,11 @@ public class ResetPasswordOwnerController implements Initializable {
       String password = passwordChange.getText();
       String reTypePass = passwordChange_Verify.getText();
 
-      if (password.equals(reTypePass)){
-        db.passwordReset(user_id.getText(),tempUserType,password);
-        msc.loadScene(resetButton,"OwnerScreen.fxml","Owner");
+      if (password.equals(reTypePass)) {
+        db.passwordReset(user_id.getText(), tempUserType, password);
+        msc.loadScene(resetButton, "OwnerScreen.fxml", "Owner");
 
-      }
-      else {
+      } else {
         Main.errorMessage("Password doesnt match");
       }
 

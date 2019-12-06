@@ -1,12 +1,17 @@
 package sample;
 
 /**
+ * This client class contains the characteristics for the client that will be interacting with the
+ * program such as the room name, payment status, dates, and the amount  owed.
  *
+ * @author The Resorters
+ * @version 1.o
+ * @since 2019-12-05
  */
 public class Client {
-	
-private String roomName, paymentStatus, dateDisplay;
-private  double amount;
+
+  private String roomName, paymentStatus, dateDisplay;
+  private double amount;
 
   public Client(String roomName, String paymentStatus, String dateDisplay, double amount) {
     this.roomName = roomName;

@@ -13,6 +13,13 @@ import java.util.List;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
+/**
+ * @version 1.0
+ * @ Romanov Andre
+ * @ Shafi Mushfique
+ * @ Stephen Aranda
+ * @since 2019-09-21
+ */
 public class DateAndCostManager {
 
   final double TAXRATE = 0.065;
@@ -26,31 +33,32 @@ public class DateAndCostManager {
     roomSelectCombo.setPromptText("Select a room.");
     roomSelectCombo.getItems().addAll("A", "B", "C", "D");
   }
+
   /**
    * Setter for property 'dateCombox30'.
    *
    * @param combobox Value to set for property 'dateCombox30'.
    */
-  public void setDateCombox30(ComboBox<String> combobox){
+  public void setDateCombox30(ComboBox<String> combobox) {
     combobox.setPromptText("Date");
-    combobox.getItems().addAll("1", "2", "3", "4","5","6","7","8","9","10",
-        "11", "12", "13", "14","15","16","17","18","19","20",
-        "21", "22", "23", "24","25","26","27","28","29","30");
+    combobox.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+        "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+        "21", "22", "23", "24", "25", "26", "27", "28", "29", "30");
 
   }
+
   /**
    * Setter for property 'dateCombox31'.
    *
    * @param combobox Value to set for property 'dateCombox31'.
    */
-  public void setDateCombox31(ComboBox<String> combobox){
+  public void setDateCombox31(ComboBox<String> combobox) {
     combobox.setPromptText("Date");
-    combobox.getItems().addAll("1", "2", "3", "4","5","6","7","8","9","10",
-        "11", "12", "13", "14","15","16","17","18","19","20",
-        "21", "22", "23", "24","25","26","27","28","29","30");
+    combobox.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+        "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+        "21", "22", "23", "24", "25", "26", "27", "28", "29", "30");
 
   }
-
 
 
   public List<Serializable> dateCalc(ComboBox<String> roomSelectCombo, String startDate,
@@ -60,15 +68,13 @@ public class DateAndCostManager {
     LocalDate todaysDate = LocalDate.now();
     java.util.Date verifyDate = java.sql.Date.valueOf(todaysDate);
 
-
-
     ending = String.format(ending);
     Date startBookingFDate = new Date(startDate);
     Date endBookingFDate = new Date(ending);
     long datesInLong = startBookingFDate.getTime() - verifyDate.getTime();
     datesInLong = (long) Math.ceil((double) datesInLong / 86400000);
 
-    if(datesInLong >= 0) {
+    if (datesInLong >= 0) {
 
       long totalDaysBooked = endBookingFDate.getTime() - startBookingFDate.getTime();
       totalDaysBooked = (long) Math.ceil((double) totalDaysBooked / 86400000);
@@ -95,11 +101,10 @@ public class DateAndCostManager {
             .asList(totalDaysBooked, startBookingFDate, endBookingFDate, bookingCost, dateList,
                 dateToDisplay);
       }
+    } else {
+      Main.errorMessage("The booking date must be greater then " + todaysDate);
     }
-    else {
-      Main.errorMessage("The booking date must be greater then "+todaysDate);
-    }
-    return  Arrays
+    return Arrays
         .asList("null");
   }
 
