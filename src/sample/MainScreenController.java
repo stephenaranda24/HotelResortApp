@@ -16,6 +16,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
+ * This is the screen switch controller with the method that helps
+ * to move from one screen to another when necessary
  * @version 1.0
  * @author Romanov Andre
  * @author Shafi Mushfique
@@ -37,12 +39,13 @@ public class MainScreenController implements Initializable {
   private TextArea idSpace;
 
   /**
-   *
-   * @param url
-   * @param resources
+   *Initialize the scene
+   * @param url N/A
+   * @param resources N/A
    */
   @Override
   public void initialize(URL url, ResourceBundle resources) {
+
     button_signup.setOnMousePressed(new EventHandler<MouseEvent>() {
 
       public void handle(MouseEvent e) {
@@ -61,10 +64,10 @@ public class MainScreenController implements Initializable {
   }
 
   /**
-   *
-   * @param pressedButton
-   * @param nameOfFxml
-   * @param titleOftheScene
+   *This method is for loading a scene
+   * @param pressedButton button that used to generate a scene
+   * @param nameOfFxml  name of the fxml file to load
+   * @param titleOftheScene title of the scene
    */
   //Method use for calling a scene (Andre use it for every scene calling)******************
   public void loadScene(Button pressedButton, String nameOfFxml, String titleOftheScene) {

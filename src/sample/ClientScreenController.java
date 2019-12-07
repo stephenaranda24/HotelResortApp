@@ -42,6 +42,10 @@ import org.h2.table.Table;
 
 public class ClientScreenController implements Initializable {
 
+  /**
+   * @param userId
+   * @param
+   */
   public static String userId;
   public static int orderNo;
   public static String tableName;

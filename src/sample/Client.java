@@ -13,9 +13,20 @@ package sample;
  */
 public class Client {
 
+  /**
+   * @param r
+   */
+
   private String roomName, paymentStatus, dateDisplay;
   private double amount;
 
+  /**
+   *
+   * @param roomName room name info for constructor
+   * @param paymentStatus payment info for constructor
+   * @param dateDisplay rate to display fpr constructor
+   * @param amount amount after booking for constructor
+   */
   public Client(String roomName, String paymentStatus, String dateDisplay, double amount) {
     this.roomName = roomName;
     this.paymentStatus = paymentStatus;
