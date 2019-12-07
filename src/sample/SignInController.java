@@ -16,10 +16,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
+ * SignInController controls the user login which validates the password and userid
+ * and give user a choice of selecting the type of user
+ *
  * @version 1.0
- * @ Romanov Andre
- * @ Shafi Mushfique
- * @ Stephen Aranda
+ * @author  Romanov Andre
+ * @author  Shafi Mushfique
+ * @author Stephen Aranda
  * @since 2019-09-21
  */
 public class SignInController implements Initializable {

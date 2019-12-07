@@ -25,9 +25,9 @@ import javafx.scene.control.TextField;
  * This method implements all the actions done on the Payment Screen
  *
  * @version 1.0
- * @ Romanov Andre
- * @ Shafi Mushfique
- * @ Stephen Aranda
+ * @author Romanov Andre
+ * @author Shafi Mushfique
+ * @author Stephen Aranda
  * @since 2019-09-21
  */
 public class PaymentScreenController implements Initializable {
@@ -101,6 +101,7 @@ public class PaymentScreenController implements Initializable {
 
   /**
    * {@inheritDoc} Initilize
+   * it gets the order number from the class ClientScreenController static variable orderNo
    */
   public void initialize(URL url, ResourceBundle resources) {
     userfxmTitile = Main.Type;
@@ -133,9 +134,9 @@ public class PaymentScreenController implements Initializable {
   }
 
   /**
-   * Pop
+   * This method allow user to retrive to the userscreen without payment
    *
-   * @param event
+   * @param event paymentaction later
    */
   @FXML
   void payLaterAction(ActionEvent event) {
@@ -147,6 +148,10 @@ public class PaymentScreenController implements Initializable {
     msc.loadScene(payLater, userfxmTitile + ".fxml", userfxmTitile);
   }
 
+  /**
+   * This method allows user to save their card info in the database along with their username
+   * @param event save the card info
+   */
   @FXML
   void savedMethodChecked(ActionEvent event) {
     try {
@@ -189,8 +194,10 @@ public class PaymentScreenController implements Initializable {
 
 
   /**
-   * @param event It takes the card info and validates it, If validation is successfull then the
-   *              information is saved as payed booking
+   * It takes the card info and validates it, If validation is successfull then the
+   * information is saved as payed booking
+   * It schecks the card length, type, cvv code and the expiration date
+   * @param event payment Successful event
    * @throws SQLException
    */
   @FXML
@@ -244,6 +251,15 @@ public class PaymentScreenController implements Initializable {
     }
   }
 
+  /**
+   * reference //https://www.dreamincode.net/forums/topic/269950-finding-the-length-of-a-long-data-type/
+   * @param cardSelection card selection type validation
+   * @param valCardNumber card number length validation
+   * @param cvv cvv length validation
+   * @param zipCode zipcode validation
+   * @return as arraylist with the valid card information.
+   */
+
   public List<String> cardNumber(String cardSelection, String valCardNumber, String cvv,
       String zipCode) {
 
@@ -279,8 +295,13 @@ public class PaymentScreenController implements Initializable {
     return Arrays.asList(cardSelection, cardNumberR, cvcR, zipCodeR);
   }
 
-  //https://www.dreamincode.net/forums/topic/269950-finding-the-length-of-a-long-data-type/
 
+  /**
+   * This method validate the year and month of the card details entered
+   * @param month month validation
+   * @param year year validation
+   * @return
+   */
   public boolean monthAndYearValidation(int month, int year) {
     boolean yearMonthmet = false;
     year = 2000 + year;

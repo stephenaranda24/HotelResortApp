@@ -16,9 +16,9 @@ import javafx.scene.control.TextField;
  * ResetPasswordOwner
  *
  * @version 1.0
- * @ Romanov Andre
- * @ Shafi Mushfique
- * @ Stephen Aranda
+ * @author Romanov Andre
+ * @author Shafi Mushfique
+ * @author Stephen Aranda
  * @since 2019-09-21
  */
 public class ResetPasswordOwnerController implements Initializable {
@@ -42,6 +42,7 @@ public class ResetPasswordOwnerController implements Initializable {
 
   /**
    * {@inheritDoc} initiliaze the scene
+   *
    */
   public void initialize(URL url, ResourceBundle resources) {
     tempUser = OwnerScreenController.userNameForChangePassword;
@@ -54,7 +55,7 @@ public class ResetPasswordOwnerController implements Initializable {
   /**
    * This method handles the functionality of changing the password after submitting all fields and
    * pressing the button.
-   *
+   * Owner gets the id from the static field from userNameForChangePassword at OwnerScreenController class
    * @param event An object of the class ActionEvent.
    */
   @FXML

@@ -5,6 +5,9 @@ package sample;
  * program such as the room name, payment status, dates, and the amount  owed.
  *
  * @author The Resorters
+ * @author Romanov Andre
+ * @author Shafi Mushfique
+ * @author Stephen Aranda
  * @version 1.o
  * @since 2019-12-05
  */

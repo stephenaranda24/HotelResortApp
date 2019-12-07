@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="HotelResortApp:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/HotelResortApp_jar</output-path>
+    <root id="archive" name="HotelResortApp.jar">
+      <element id="module-output" name="HotelResortApp" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/res/h2-1.4.199.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

@@ -16,10 +16,14 @@ import java.util.List;
 
 
 /**
+ *
+ * This class contains all the database operation. it has the methods to compare, store data,
+ * validate data, delete dataand etc
  * @version 1.0
- * @ Romanov Andre
- * @ Shafi Mushfique
- * @ Stephen Aranda
+ * @author Romanov Andre
+ * @author Shafi Mushfique
+ * @author Stephen Aranda
+ * @since 2019-09-21
  * @since 2019-09-21
  */
 public class DatabaseManager extends Main {
@@ -38,7 +42,7 @@ public class DatabaseManager extends Main {
     // "jdbc:h2:C:\\Users\\shafi\\IdeaProjects\\HotelResortApp\\res\\ResortData"
     this.con = DriverManager
         .getConnection(
-            "jdbc:h2:C:\\Users\\moart\\OneDrive - Florida Gulf Coast University\\IDEAProjects\\HotelResortApp\\res\\ResortData");
+            "jdbc:h2:C:\\Users\\shafi\\IdeaProjects\\HotelResortApp\\res\\ResortData");
     //"jdbc:h2:C:\\Users\\shafi\\IdeaProjects\\HotelResortApp\\res\\ResortData"
 
   }
@@ -428,34 +432,6 @@ public class DatabaseManager extends Main {
     }
     return null;
   }
-//#byshafi
-  public List<CustomerBooking> BookingStatusForAll() {
-
-    try {
-      String query = "Select * from invoiceno ";
-      ResultSet rs;
-      ArrayList<CustomerBooking> paymentStatus = new ArrayList<>();
-      PreparedStatement stmt = con.prepareStatement(query);
-      rs = stmt.executeQuery();
-      while (rs.next()) {
-        int invoice = rs.getInt("Orderno");
-        String fullName = rs.getString("fullname");
-        String room = rs.getString("roomname");
-        String date = rs.getString("DisplayDate");
-        double cost = rs.getDouble("Cost");
-        String paid = rs.getString("pay");
-        String statusCheckin = rs.getString("CHECKINSTATUS");
-        CustomerBooking cb = new CustomerBooking(invoice, fullName, room, date, cost, paid,
-            statusCheckin);
-        paymentStatus.add(cb);
-      }
-      return paymentStatus;
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return null;
-  }
-  //get id from name
 
   /**
    * This method searches for the customer username by order number and returns that value.
@@ -485,8 +461,7 @@ public class DatabaseManager extends Main {
   //method for displaying table information in customer screen
 
   /**
-   * This method is responsible for displaying the table information in
-   * the customer screen.
+   * This method is responsible for displaying the table information in the customer screen.
    *
    * @param userName A string that represents the username of the client.
    * @param status The status of the payment.
@@ -753,7 +728,7 @@ public class DatabaseManager extends Main {
   }
 
   /**
-   * This method searches for the customers order number in the invoice data base table.
+   * This method searches for the customers order number in the invoice data base table
    *
    * @return The integer value of the order number is returned.
    */
@@ -776,17 +751,15 @@ public class DatabaseManager extends Main {
   }
 
   /**
-   * This method 'pushes' the booking credentials into the invoice data base table
-   * when a booking is made by the client.
+   * This method
    *
-   * @param userName A string value that represents the users username.
-   * @param roomNo A string that represents the clients room number.
-   * @param dateBooked An Array list made up of a string value that represents the dates
-   *                   that the customer will be staying at the resort.
-   * @param cost A double value that represents the cost of the booking.
-   * @param dateToDisplay A string that represents the dates displayed on the date picker in the UI.
-   * @param fullName A string that represents the full name of the user.
-   * @param checkedInStatus A string that represents the check in status of the guest.
+   * @param userName
+   * @param roomNo
+   * @param dateBooked
+   * @param cost
+   * @param dateToDisplay
+   * @param fullName
+   * @param checkedInStatus
    */
   public void pushDate(String userName, String roomNo, ArrayList<String> dateBooked, double cost,
       String dateToDisplay, String fullName, String checkedInStatus) {
@@ -829,11 +802,8 @@ public class DatabaseManager extends Main {
   }
 
   /**
-   * This method is responsible for obtaining the bookings that are not paid for from the
-   * invoice data base table.
-   *
-   * @param userName A string that represents the users username.
-   * @return An array list of the room number, the date, and the cost of the booking.
+   * @param userName
+   * @return
    */
   public List<Serializable> viewUnpaidTable(String userName) {
     try {
@@ -851,34 +821,13 @@ public class DatabaseManager extends Main {
     }
     return null;
   }
-  //method for returning the date of the room was cleaned
-/*  public String dateCleaned(String roomName){
-	  try {
-      PreparedStatement stmt = con.prepareStatement(String.format("Select * FROM ROOMSTATUS WHERE roomname = '%s'", roomName));
-      ResultSet rs = stmt.executeQuery();
-      while (rs.next()) {
-        String date = rs.getString("date");
-        return date;
-      }
 
-
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-	  return null;
-
-  }*/
-
-  //method for passing clean status from custodian to database
 
   /**
-   * This method is responsible for passing the cleaning status of the rooms available
-   * into the room status data base table.
-   *
-   * @param room A string that represents the room number.
-   * @param status A boolean value that represents the status of the room cleaning.
-   * @param datePushed A string that represents the date the submission was made.
-   * @param name A string that represents the name of the user.
+   * @param room
+   * @param status
+   * @param datePushed
+   * @param name
    */
   public void roomCheckedDatabase(String room, boolean status, String datePushed, String name) {
     try {
@@ -893,14 +842,6 @@ public class DatabaseManager extends Main {
   }
 
   //Method for retriving the username for the payment screen with order number
-
-  /**
-   * This method is responsible for retrieving the username of the user by accepting
-   * the order number.
-   *
-   * @param order An integer value that represents the order number of the booking.
-   * @return The username of the user.
-   */
   public String nameFetch(int order) {
     try {
       PreparedStatement stmt = con.prepareStatement(
@@ -921,13 +862,9 @@ public class DatabaseManager extends Main {
   // method for checking if room is cleaned during intialization
 
   /**
-   * This method is responsible for checking if the room is cleaned during the start
-   * up of the program.
-   *
-   * @param room A string value that represents the room number.
-   * @param dateToday A string value that represents the date.
-   * @return If the room is checked as 'Cleaned' then it returns a true boolean value,
-   * otherwise it returns a false.
+   * @param room
+   * @param dateToday
+   * @return
    */
   public boolean roomValidationCleaned(String room, String dateToday) {
     try {
@@ -951,14 +888,6 @@ public class DatabaseManager extends Main {
   }
 
   //get the current date cleaned for each room
-
-  /**
-   * This method retrieves the dates cleaned or not cleaned from the room status
-   * data base table.
-   *
-   * @param room A string that represents the room number.
-   * @return The display date is returned after pulling from the data base.
-   */
   public String dateReturn(String room) {
     try {
       PreparedStatement stmt = con.prepareStatement(
@@ -977,11 +906,8 @@ public class DatabaseManager extends Main {
   }
 
   /**
-   * This method is responsible for retrieving the custodians name from their respective
-   * database tables.
-   *
-   * @param room A string value that represents the room number.
-   * @return The custodians name is returned after pulling from the database.
+   * @param room
+   * @return
    */
   public String custodianNameReturn(String room) {
     try {
@@ -1003,11 +929,8 @@ public class DatabaseManager extends Main {
   //validate to check if the room was cleaned yesterday
 
   /**
-   * This method is responsible for checking to see if a room was
-   * cleaned by validating the date.
-   *
-   * @param date A string that represents the date of cleaning.
-   * @throws SQLException Exception on sql error.
+   * @param date date validation to check room is cleaned or not
+   * @throws SQLException
    */
   public void custodianDateValidation(String date) throws SQLException {
     try {
@@ -1021,11 +944,10 @@ public class DatabaseManager extends Main {
   }
 
   /**
-   * This method is to push a date to the data base.
-   *
-   * @param userName A string that represents the user name.
-   * @param roomNo A string that represents the room number.
-   * @param dateBooked An array list that contains the dates that are booked.
+   * @param userName username for the person booking the room
+   * @param roomNo room no
+   * @param dateBooked date of room booking
+   * Currently unused
    */
   public void pushDateToUserTable(String userName, String roomNo, ArrayList<String> dateBooked) {
     try {
@@ -1043,12 +965,10 @@ public class DatabaseManager extends Main {
   }
 
   /**
-   * This method 'pushes' the date
-   *
-   * @param room
-   * @param userName
-   * @param Datetobebook
-   * @return
+   * @param room for room category
+   * @param userName username for guest
+   * @param Datetobebook date for booking
+   * @return room information
    */
   public String pushDateToRoom(String room, String userName, ArrayList<String> Datetobebook) {
     try {
@@ -1090,10 +1010,7 @@ public class DatabaseManager extends Main {
   }
 
   /**
-   * This method is used to handle the error messages that appears
-   * for all SQL exception errors.
-   *
-   * @param error An object of the SQLException class.
+   * @param error sql error exception
    */
 
   public void sqlExceptionHandler(SQLException error) {
