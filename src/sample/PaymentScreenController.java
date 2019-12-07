@@ -149,7 +149,7 @@ public class PaymentScreenController implements Initializable {
   }
 
   /**
-   * This method allows user to save their card info in the database along with their username
+   * This method allows user to retrive the saved card info from CardSaved  table associated with the username
    * @param event save the card info
    */
   @FXML
@@ -196,7 +196,7 @@ public class PaymentScreenController implements Initializable {
   /**
    * It takes the card info and validates it, If validation is successfull then the
    * information is saved as payed booking
-   * It schecks the card length, type, cvv code and the expiration date
+   * It checks the card length, type, cvv code and the expiration date
    * @param event payment Successful event
    * @throws SQLException
    */
@@ -300,7 +300,7 @@ public class PaymentScreenController implements Initializable {
    * This method validate the year and month of the card details entered
    * @param month month validation
    * @param year year validation
-   * @return
+   * @return years and month
    */
   public boolean monthAndYearValidation(int month, int year) {
     boolean yearMonthmet = false;
@@ -325,6 +325,10 @@ public class PaymentScreenController implements Initializable {
     return yearMonthmet;
   }
 
+  /**
+   * Saved Card Validation
+   * @return if the save card is marked
+   */
   public boolean saveCardValidation() {
     return saveCard.isSelected();
   }
