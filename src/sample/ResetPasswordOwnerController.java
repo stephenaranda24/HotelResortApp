@@ -55,7 +55,7 @@ public class ResetPasswordOwnerController implements Initializable {
   /**
    * This method handles the functionality of changing the password after submitting all fields and
    * pressing the button.
-   *
+   * Owner gets the id from the static field from userNameForChangePassword at OwnerScreenController class
    * @param event An object of the class ActionEvent.
    */
   @FXML

@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 
 
 /**
+ * Signup controller reads all the user input and validate it for new users and
+ * send the information back to the database and create a new user profile and a table under their name
  * @version 1.0
  * @author  Romanov Andre
  * @author  Shafi Mushfique
@@ -70,8 +72,11 @@ public class SignUpController extends MainScreenController implements Initializa
   private TextField phoneNumber;
   boolean accountCreated = false;
 
-  //Method for setting up the combo box from the enum for state list, and
-  //country list to initialize the combo box
+  /**
+   * Method for setting up the combo box from the enum for state list, and
+   * country list to initialize the combo box
+   */
+
   public void setComboBoxText() {
     countries.setPromptText("Select a country.");
     for (int i = 0; i < Country.values().length; i++) {
@@ -111,6 +116,10 @@ public class SignUpController extends MainScreenController implements Initializa
  * Getting value from textfield and send it to the database
  * It is a signup method
  * It validate all the information user inputted and send it to the database
+ * It checks if the textfield are full
+ * It checks if the password match with verify password, It does the same with pin too
+ * If any other user has the same username then it gives an error
+ * If successfull it redirects to mainscreen
  */
     button_create.setOnMousePressed(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent e) {
@@ -148,8 +157,6 @@ public class SignUpController extends MainScreenController implements Initializa
               Main.infoMessage("Account sucessfully created.");
               db.createCustomerTable(userName);
               db.saveEmailCardTable(userName, email);
-
-
             } else {
               Main.errorMessage("Username is unavailable");
               accountCreated = false;

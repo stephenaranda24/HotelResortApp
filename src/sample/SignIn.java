@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
+ * Signin controller to load sign in directly
  * @version 1.0
  * @author Romanov Andre
  * @author Shafi Mushfique
