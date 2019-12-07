@@ -1,8 +1,8 @@
-#Paradise Beach Resort
+# Paradise Beach Resort
 
 This is a resort application. This application is designed to work in a user friendly enviorment.
 
-#Created by
+# Created by
 
 - Mushfique Shafi
 - Stephen Aranda
@@ -14,7 +14,7 @@ This is a resort application. This application is designed to work in a user fri
 - Scene build with scenebuilder
 
 
-#Details
+# Details
 
 This software has four different kind of users
 
