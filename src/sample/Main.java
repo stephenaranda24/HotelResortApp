@@ -18,6 +18,11 @@ import javax.swing.plaf.FontUIResource;
 import org.h2.engine.Database;
 
 /**
+ * This is class is the main class of the program which makes use of methods that create
+ * error/info screens to appear when needed. This class also makes use of the start method
+ * which is the main entry point for all JavaFX applications.
+ *
+ *
  * @version 1.0
  * @author Romanov Andre
  * @author Shafi Mushfique
@@ -33,13 +38,18 @@ public class Main extends Application {
   public static String Type = null;
   public static String tempName = null;
 
+  /**
+   * {@inheritDoc}
+   */
   public static void main(String[] args) {
     launch(args);
   }
 
   /**
+   *This method creates an error message that will appear in the occurrence that the user
+   * inputs something incorrect data.
    *
-   * @param message
+   * @param message A string that represents the error that needs to be shown.
    */
   public static void errorMessage(String message) {
     UIManager.put("OptionPane.minimumSize", new Dimension(600, 200));
@@ -49,8 +59,9 @@ public class Main extends Application {
   }
 
   /**
+   * This method creates an info message to appear when the user needs to be alerted of something.
    *
-   * @param message
+   * @param message A string that represents the message that needs to shown.
    */
   public static void infoMessage(String message) {
     UIManager.put("OptionPane.minimumSize", new Dimension(600, 200));
@@ -60,6 +71,7 @@ public class Main extends Application {
   }
 
   /**
+   * This met
    *
    * @param pressedButton
    */

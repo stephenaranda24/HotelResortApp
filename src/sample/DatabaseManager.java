@@ -1,5 +1,4 @@
 package sample;
-
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,7 +17,7 @@ import java.util.List;
 /**
  *
  * This class contains all the database operation. it has the methods to compare, store data,
- * validate data, delete dataand etc
+ * validate data, delete data and etc
  * @version 1.0
  * @author Romanov Andre
  * @author Shafi Mushfique
@@ -42,16 +41,16 @@ public class DatabaseManager extends Main {
     // "jdbc:h2:C:\\Users\\shafi\\IdeaProjects\\HotelResortApp\\res\\ResortData"
     this.con = DriverManager
         .getConnection(
-            "jdbc:h2:C:\\Users\\shafi\\IdeaProjects\\HotelResortApp\\res\\ResortData");
+            "jdbc:h2:C:\\Users\\moart\\OneDrive - Florida Gulf Coast University\\IDEAProjects\\HotelResortApp\\res\\ResortData");
     //"jdbc:h2:C:\\Users\\shafi\\IdeaProjects\\HotelResortApp\\res\\ResortData"
 
   }
 
   //double cost = Math.round(c
-
   /**
    * Getter for property 'connection'.
    *
+   * @throws SQLException Exception for sql error.
    * @return Value for property 'connection'.
    */
   public static Connection getConnection() throws SQLException {
@@ -79,10 +78,10 @@ public class DatabaseManager extends Main {
   // parse String function
 
   /**
+   * This method parses strings.
    *
-   *
-   * @param stringlist
-   * @return
+   * @param stringlist A string that represents the list of strings.
+   * @return The result of the parsing is returned.
    */
   public ArrayList<String> parseString(String stringlist) {
     ArrayList<String> result = new ArrayList<>();
@@ -245,12 +244,13 @@ public class DatabaseManager extends Main {
   /**
    * This method is used to create an account as an owner by accepting the required credentials.
    *
-   * @param typeUser
-   * @param email
-   * @param userId
-   * @param password
-   * @param verifyPin
-   * @return
+   * @param typeUser A string that represents the type of user.
+   * @param email A string that represents the email of the user.
+   * @param userId A string that represents the user Id of the user.
+   * @param password A string that represents the password of the user.
+   * @param verifyPin An integer that represents the pin of the user along with its verification.
+   * @return A boolean value named 'nameDoesntExist' that is set to false and returns when
+   * the admin attemps to enter
    */
   public boolean addByOwner(String typeUser, String email, String userId, String password,
       int verifyPin) {
@@ -355,10 +355,11 @@ public class DatabaseManager extends Main {
    * This method makes it possible for the user to be able to log in using their log in credentials such
    * as their email, password, and their roles (Admin, Guest, Desk Assistant, Custodian).
    *
-   * @param email
-   * @param password
-   * @param role
-   * @return
+   * @param email This string represents the email of the user.
+   * @param password This string represents the password of the user.
+   * @param role This string represents the role of the user (Admin, Guest, Custodian, Desk Assistant).
+   * @return A boolean value named verified is returned, it returns true if the username and password of the user
+   * is typed correctly and returns false otherwise.
    */
   public boolean LogInAccount(String email, String password, String role) {
     Boolean verified = false;
@@ -751,15 +752,15 @@ public class DatabaseManager extends Main {
   }
 
   /**
-   * This method
+   * This method pushes the booking made by the user into the invoice data base table.
    *
-   * @param userName
-   * @param roomNo
-   * @param dateBooked
-   * @param cost
-   * @param dateToDisplay
-   * @param fullName
-   * @param checkedInStatus
+   * @param userName A string that represents the username of the user.
+   * @param roomNo A string that represents the room number of the user.
+   * @param dateBooked An array list that represents the dates the user books.
+   * @param cost A double value that represents the cost of the booking.
+   * @param dateToDisplay A string that represents the date that is selected in the date picker in the UI.
+   * @param fullName A string that represents the full name of the user.
+   * @param checkedInStatus A string that represents whether the guest has been checked in or not.
    */
   public void pushDate(String userName, String roomNo, ArrayList<String> dateBooked, double cost,
       String dateToDisplay, String fullName, String checkedInStatus) {
@@ -802,8 +803,10 @@ public class DatabaseManager extends Main {
   }
 
   /**
-   * @param userName
-   * @return
+   * This method pulls the information stored in the invoiceno table.
+   *
+   * @param userName A string that represents the username of the user.
+   * @return Null.
    */
   public List<Serializable> viewUnpaidTable(String userName) {
     try {
@@ -824,10 +827,12 @@ public class DatabaseManager extends Main {
 
 
   /**
-   * @param room
-   * @param status
-   * @param datePushed
-   * @param name
+   * This method updates the database when the status of the room cleaning is changed.
+   *
+   * @param room A string that represents the room number.
+   * @param status A boolean value that represents the status of the checking.
+   * @param datePushed A string that represents the date of the changing.
+   * @param name A string that represents the name of the person that made the change.
    */
   public void roomCheckedDatabase(String room, boolean status, String datePushed, String name) {
     try {
@@ -862,9 +867,12 @@ public class DatabaseManager extends Main {
   // method for checking if room is cleaned during intialization
 
   /**
-   * @param room
-   * @param dateToday
-   * @return
+   * This method makes it possible to pull data from the room status table and get
+   * whether the room was cleaned or not.
+   *
+   * @param room A string that represents the room number.
+   * @param dateToday A string that represents the date of cleaning.
+   * @return true or false.
    */
   public boolean roomValidationCleaned(String room, String dateToday) {
     try {
@@ -906,6 +914,8 @@ public class DatabaseManager extends Main {
   }
 
   /**
+   * This method retrieves the data from the room status table
+   *
    * @param room
    * @return
    */
