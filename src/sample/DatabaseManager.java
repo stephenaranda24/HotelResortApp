@@ -16,10 +16,14 @@ import java.util.List;
 
 
 /**
+ *
+ * This class contains all the database operation. it has the methods to compare, store data,
+ * validate data, delete dataand etc
  * @version 1.0
- * @ Romanov Andre
- * @ Shafi Mushfique
- * @ Stephen Aranda
+ * @author Romanov Andre
+ * @author Shafi Mushfique
+ * @author Stephen Aranda
+ * @since 2019-09-21
  * @since 2019-09-21
  */
 public class DatabaseManager extends Main {
@@ -38,7 +42,7 @@ public class DatabaseManager extends Main {
     // "jdbc:h2:C:\\Users\\shafi\\IdeaProjects\\HotelResortApp\\res\\ResortData"
     this.con = DriverManager
         .getConnection(
-            "jdbc:h2:C:\\Users\\moart\\OneDrive - Florida Gulf Coast University\\IDEAProjects\\HotelResortApp\\res\\ResortData");
+            "jdbc:h2:C:\\Users\\shafi\\IdeaProjects\\HotelResortApp\\res\\ResortData");
     //"jdbc:h2:C:\\Users\\shafi\\IdeaProjects\\HotelResortApp\\res\\ResortData"
 
   }
@@ -428,34 +432,6 @@ public class DatabaseManager extends Main {
     }
     return null;
   }
-//#byshafi
-  public List<CustomerBooking> BookingStatusForAll() {
-
-    try {
-      String query = "Select * from invoiceno ";
-      ResultSet rs;
-      ArrayList<CustomerBooking> paymentStatus = new ArrayList<>();
-      PreparedStatement stmt = con.prepareStatement(query);
-      rs = stmt.executeQuery();
-      while (rs.next()) {
-        int invoice = rs.getInt("Orderno");
-        String fullName = rs.getString("fullname");
-        String room = rs.getString("roomname");
-        String date = rs.getString("DisplayDate");
-        double cost = rs.getDouble("Cost");
-        String paid = rs.getString("pay");
-        String statusCheckin = rs.getString("CHECKINSTATUS");
-        CustomerBooking cb = new CustomerBooking(invoice, fullName, room, date, cost, paid,
-            statusCheckin);
-        paymentStatus.add(cb);
-      }
-      return paymentStatus;
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return null;
-  }
-  //get id from name
 
   /**
    * This method searches for the customer username by order number and returns that value.
@@ -845,25 +821,7 @@ public class DatabaseManager extends Main {
     }
     return null;
   }
-  //method for returning the date of the room was cleaned
-/*  public String dateCleaned(String roomName){
-	  try {
-      PreparedStatement stmt = con.prepareStatement(String.format("Select * FROM ROOMSTATUS WHERE roomname = '%s'", roomName));
-      ResultSet rs = stmt.executeQuery();
-      while (rs.next()) {
-        String date = rs.getString("date");
-        return date;
-      }
 
-
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-	  return null;
-
-  }*/
-
-  //method for passing clean status from custodian to database
 
   /**
    * @param room
@@ -971,7 +929,7 @@ public class DatabaseManager extends Main {
   //validate to check if the room was cleaned yesterday
 
   /**
-   * @param date
+   * @param date date validation to check room is cleaned or not
    * @throws SQLException
    */
   public void custodianDateValidation(String date) throws SQLException {
@@ -986,9 +944,10 @@ public class DatabaseManager extends Main {
   }
 
   /**
-   * @param userName
-   * @param roomNo
-   * @param dateBooked
+   * @param userName username for the person booking the room
+   * @param roomNo room no
+   * @param dateBooked date of room booking
+   * Currently unused
    */
   public void pushDateToUserTable(String userName, String roomNo, ArrayList<String> dateBooked) {
     try {
@@ -1006,10 +965,10 @@ public class DatabaseManager extends Main {
   }
 
   /**
-   * @param room
-   * @param userName
-   * @param Datetobebook
-   * @return
+   * @param room for room category
+   * @param userName username for guest
+   * @param Datetobebook date for booking
+   * @return room information
    */
   public String pushDateToRoom(String room, String userName, ArrayList<String> Datetobebook) {
     try {
@@ -1051,7 +1010,7 @@ public class DatabaseManager extends Main {
   }
 
   /**
-   * @param error
+   * @param error sql error exception
    */
 
   public void sqlExceptionHandler(SQLException error) {

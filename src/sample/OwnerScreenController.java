@@ -25,9 +25,9 @@ import javafx.scene.paint.Color;
 
 /**
  * @version 1.0
- * @ Romanov Andre
- * @ Shafi Mushfique
- * @ Stephen Aranda
+ * @author Romanov Andre
+ * @author Shafi Mushfique
+ * @author Stephen Aranda
  * @since 2019-09-21
  */
 public class OwnerScreenController implements Initializable {

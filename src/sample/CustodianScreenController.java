@@ -31,9 +31,9 @@ import javafx.scene.control.Label;
  * This client controller class implements all actions done on the client screen
  *
  * @version 1.0
- * @ Romanov Andre
- * @ Shafi Mushfique
- * @ Stephen Aranda
+ * @author Romanov Andre
+ * @author Shafi Mushfique
+ * @author Stephen Aranda
  * @since 2019-09-21
  */
 public class CustodianScreenController implements Initializable {
@@ -112,10 +112,7 @@ public class CustodianScreenController implements Initializable {
           String markedBy = db.custodianNameReturn(roomArray[i]);
           db.roomCheckedDatabase(roomArray[i], selectedClean, date, markedBy);
 
-
         }
-
-
       }
 
     } catch (Exception e) {
@@ -126,7 +123,7 @@ public class CustodianScreenController implements Initializable {
   }
 
   /**
-   * {@inheritDoc}
+   * initialize method to initiliaze room cleaning status marked
    */
   @Override
   public void initialize(URL url, ResourceBundle resources) {

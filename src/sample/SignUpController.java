@@ -18,9 +18,9 @@ import javafx.stage.Stage;
 
 /**
  * @version 1.0
- * @ Romanov Andre
- * @ Shafi Mushfique
- * @ Stephen Aranda
+ * @author  Romanov Andre
+ * @author  Shafi Mushfique
+ * @author Stephen Aranda
  * @since 2019-09-21
  */
 public class SignUpController extends MainScreenController implements Initializable {
@@ -95,7 +95,7 @@ public class SignUpController extends MainScreenController implements Initializa
   }
 
   /**
-   * initilialize
+   * initilialize the combo box text
    */
   @Override
   public void initialize(URL url, ResourceBundle resources) {
@@ -109,6 +109,8 @@ public class SignUpController extends MainScreenController implements Initializa
     });
 /**
  * Getting value from textfield and send it to the database
+ * It is a signup method
+ * It validate all the information user inputted and send it to the database
  */
     button_create.setOnMousePressed(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent e) {

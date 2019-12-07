@@ -14,10 +14,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 /**
+ * This class helps to validate the room booking info, taxrate calculation date validation
  * @version 1.0
- * @ Romanov Andre
- * @ Shafi Mushfique
- * @ Stephen Aranda
+ * @author Romanov Andre
+ * @author Shafi Mushfique
+ * @author Stephen Aranda
  * @since 2019-09-21
  */
 public class DateAndCostManager {
@@ -39,13 +40,6 @@ public class DateAndCostManager {
    *
    * @param combobox Value to set for property 'dateCombox30'.
    */
-  public void setDateCombox30(ComboBox<String> combobox) {
-    combobox.setPromptText("Date");
-    combobox.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-        "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-        "21", "22", "23", "24", "25", "26", "27", "28", "29", "30");
-
-  }
 
   /**
    * Setter for property 'dateCombox31'.
@@ -60,6 +54,13 @@ public class DateAndCostManager {
 
   }
 
+  /**
+   *
+   * @param roomSelectCombo get the combobox selection from client screen
+   * @param startDate get the start fate from date picker
+   * @param ending get the end date from date picker
+   * @return an array with booking information to save it to the database
+   */
 
   public List<Serializable> dateCalc(ComboBox<String> roomSelectCombo, String startDate,
       String ending) {

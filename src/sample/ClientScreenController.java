@@ -34,11 +34,12 @@ import org.h2.table.Table;
  * This client controller class implements all actions done on the client screen
  *
  * @version 1.0
- * @ Romanov Andre
- * @ Shafi Mushfique
- * @ Stephen Aranda
+ * @author Romanov Andre
+ * @author Shafi Mushfique
+ * @author Stephen Aranda
  * @since 2019-09-21
  */
+
 public class ClientScreenController implements Initializable {
 
   public static String userId;
@@ -352,7 +353,7 @@ public class ClientScreenController implements Initializable {
    * statement.
    *
    * @param table This is an object from the TableView class.
-   * @return
+   * @return the invoice no
    */
 
   public int fetchOrder(TableView table) {
@@ -378,7 +379,7 @@ public class ClientScreenController implements Initializable {
    * This method makes it so an error message occurs when you attempt to pay for a booking that is
    * already paid. It also ensures that if the booking needs to be paid, it will load the payment
    * scree when the button is pressed.
-   *
+   * @param actionEvent when pressed
    * @throws SQLException Exception on sql errors.
    */
   @FXML

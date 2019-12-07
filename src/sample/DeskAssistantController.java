@@ -14,10 +14,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 /**
+ * This method is for the desk assistant controller where all the action by the desk assitant are intitated and completed
  * @version 1.0
- * @ Romanov Andre
- * @ Shafi Mushfique
- * @ Stephen Aranda
+ * @author Romanov Andre
+ * @author Shafi Mushfique
+ * @author Stephen Aranda
  * @since 2019-09-21
  */
 public class DeskAssistantController implements Initializable {
@@ -66,6 +67,10 @@ public class DeskAssistantController implements Initializable {
 
   }
 
+  /**
+   * Method allows desk assistant to accept the payment from customer
+   *
+   */
   @FXML
   void acceptPaymentAction(ActionEvent event) throws SQLException {
     MainScreenController msc = new MainScreenController();
@@ -93,6 +98,11 @@ public class DeskAssistantController implements Initializable {
 
   }
 
+  /**
+   * Method allows a desk_assitant to checkin a customer
+   *
+   * Method decline to scheckin if the payment is not done
+   */
   @FXML
   void checkinCustomerAction(ActionEvent event) throws SQLException {
     MainScreenController msc = new MainScreenController();
@@ -128,7 +138,7 @@ public class DeskAssistantController implements Initializable {
   }
 
   /**
-   * {@inheritDoc}
+   * Initialize the table in the desk assitant screen so when they login they can see the room status
    */
   @Override
   public void initialize(URL url, ResourceBundle resources) {

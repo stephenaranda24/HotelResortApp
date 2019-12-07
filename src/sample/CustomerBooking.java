@@ -6,9 +6,9 @@ package sample;
  * of the customer. It also contains all the required setters and getters for these properties.
  *
  * @version 1.0
- * @ Romanov Andre
- * @ Shafi Mushfique
- * @ Stephen Aranda
+ * @author Romanov Andre
+ * @author Shafi Mushfique
+ * @author Stephen Aranda
  * @since 2019-09-21
  */
 public class CustomerBooking {
@@ -88,7 +88,7 @@ public class CustomerBooking {
   /**
    * Accessor/Getter method for the room.
    *
-   * @return
+   * @return room
    */
   public String getRoom() {
     return room;
@@ -97,7 +97,7 @@ public class CustomerBooking {
   /**
    * Mutator/Setter method for the room.
    *
-   * @param room
+   * @param room room information
    */
   public void setRoom(String room) {
     this.room = room;
