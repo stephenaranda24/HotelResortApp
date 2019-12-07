@@ -53,7 +53,7 @@ This software has four different kind of users
 > Payment
 
 The payment that are accepted by this software is VISA, MAsterCard, Discover and Amex
-![PROJECT OUTPUT](pic5.PNG)
+![PROJECT OUTPUT](pic5.png)
 
 > Room Cleaning Status
 
