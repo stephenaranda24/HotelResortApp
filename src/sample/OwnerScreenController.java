@@ -36,6 +36,7 @@ import javafx.scene.paint.Color;
  */
 public class OwnerScreenController implements Initializable {
 
+
   public static String userTypeChangePassword;
   public static String userNameForChangePassword;
   boolean accountCreated = false;
@@ -105,12 +106,18 @@ public class OwnerScreenController implements Initializable {
   private Label c101, c102, c103, c104, c105, c106, c107, c108;
   private ObservableList<CustomerBooking> roomStatus;
 
+  /**
+   * Setting up the combo box for account creating page
+   */
   public void setComboBoxText() {
 
     CB_type.setPromptText("Select a role.");
     CB_type.getItems().addAll("Desk_Assistant", "Custodian");
   }
 
+  /**
+   * Setting the combo box for password ressting page
+   */
   public void setComboBoxText2() {
 
     CB_type1.setPromptText("Select a role.");
@@ -118,7 +125,8 @@ public class OwnerScreenController implements Initializable {
   }
 
   /**
-   * {@inheritDoc}
+   *Intialize the owner screen scene with all the information INVOICENO table
+   * Room status is also update on the scene to show the latest status
    */
   @Override
   public void initialize(URL url, ResourceBundle resources) {

@@ -35,24 +35,6 @@ public class DateAndCostManager {
     roomSelectCombo.getItems().addAll("A", "B", "C", "D");
   }
 
-  /**
-   * Setter for property 'dateCombox30'.
-   *
-   * @param combobox Value to set for property 'dateCombox30'.
-   */
-
-  /**
-   * Setter for property 'dateCombox31'.
-   *
-   * @param combobox Value to set for property 'dateCombox31'.
-   */
-  public void setDateCombox31(ComboBox<String> combobox) {
-    combobox.setPromptText("Date");
-    combobox.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-        "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-        "21", "22", "23", "24", "25", "26", "27", "28", "29", "30");
-
-  }
 
   /**
    *

@@ -66,7 +66,7 @@ public class Main extends Application {
   public static void logOutUser(Button pressedButton) {
     loggedInUser = null; // remove logged in user
     MainScreenController msc = new MainScreenController();
-    msc.loadScene(pressedButton, "MainScreenSample.fxml", "Main cScreen");
+    msc.loadScene(pressedButton, "MainScreenSample.fxml", "Main Screen");
 
   }
 
