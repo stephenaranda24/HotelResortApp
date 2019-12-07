@@ -87,7 +87,7 @@ public class PaymentScreenController implements Initializable {
   /**
    * This method allows to go back the logged in user account
    *
-   * @param event
+   * @param event back from payment and take to loggen in user
    */
   @FXML
   void backFrompaymentAction(ActionEvent event) {
@@ -157,13 +157,13 @@ public class PaymentScreenController implements Initializable {
     try {
       DatabaseManager db = new DatabaseManager();
       String userId = idSpace.getText();
-      System.out.println(userId);
+
       List cardList = db.cardInfo(userId);
-      System.out.println(cardList);
+
       int checkTempButton = (int) cardList.get(2);
-      System.out.println(checkTempButton);
+
       if (checkTempButton == 0) {
-        System.out.println();
+
         Main.errorMessage("There are no saved card");
         savedMethod.setSelected(false);
 
@@ -198,7 +198,7 @@ public class PaymentScreenController implements Initializable {
    * information is saved as payed booking
    * It checks the card length, type, cvv code and the expiration date
    * @param event payment Successful event
-   * @throws SQLException
+   * @throws SQLException sql exception error
    */
   @FXML
   void submitPaymentSuccessfull(ActionEvent event) throws SQLException {
@@ -218,12 +218,11 @@ public class PaymentScreenController implements Initializable {
     int expYear = Integer.parseInt(tempYear);
     int expMonth = Integer.parseInt(tempGetMonth);
     boolean dateMonthConditionMet = monthAndYearValidation(expMonth, expYear);
-    System.out.println(dateMonthConditionMet);
     if ((dateMonthConditionMet == true)) {
       tempCardSelection = cardType.getValue();
 
-      System.out.println(tempCardNumber);
-      System.out.println(tempCardSelection + " " + tempCVV + tempZipCode);
+
+
       List<String> newList = cardNumber(tempCardSelection, tempCardNumber, tempCVV, tempZipCode);
       finalCardNum = Long.parseLong(newList.get(1));
       finalCvv = Integer.parseInt(newList.get(2));

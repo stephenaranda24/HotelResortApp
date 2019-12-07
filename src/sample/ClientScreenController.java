@@ -150,7 +150,10 @@ public class ClientScreenController implements Initializable {
 
   }
 
-  //#byshafi
+  /**
+   * For future use
+   * @param event tempbutton
+   */
   @FXML
   void tempButton(ActionEvent event) {
     MainScreenController msc = new MainScreenController();

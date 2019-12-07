@@ -73,7 +73,7 @@ public class Main extends Application {
   /**
    * This met
    *
-   * @param pressedButton
+   * @param pressedButton logout button for future use
    */
   public static void logOutUser(Button pressedButton) {
     loggedInUser = null; // remove logged in user

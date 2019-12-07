@@ -115,7 +115,6 @@ public class SignInController implements Initializable {
               Main.Type = "ClientScreen";
               msc.loadScene(button_login, "ClientScreen.fxml", "Client Screen");
             } else if (verified == true && type == "Owner") {
-              System.out.println("Owneerr");
               Main.loggedInUser = username;
               Main.Type = "OwnerScreen";
               msc.loadScene(button_login, "OwnerScreen.fxml", "Owners Screen");

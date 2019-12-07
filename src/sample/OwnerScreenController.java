@@ -240,7 +240,7 @@ public class OwnerScreenController implements Initializable {
 
   /**
    * Logout method
-   * @param event
+   * @param event logout method
    */
   @FXML
   void logoutMethod(ActionEvent event) {
@@ -253,7 +253,7 @@ public class OwnerScreenController implements Initializable {
    * This method takes the owner to reset the password for the user he wants to change,
    * the pin verification is required.
    * @param actionEvent reset password screen method
-   * @throws SQLException
+   * @throws SQLException SQL EXCEPTION ERROR
    */
   public void goToResetScreen(ActionEvent actionEvent) throws SQLException {
     String username = userNameToVerify.getText();

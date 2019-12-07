@@ -63,7 +63,7 @@ public class ResetPasswordOwnerController implements Initializable {
     try {
       DatabaseManager db = new DatabaseManager();
       MainScreenController msc = new MainScreenController();
-      System.out.println();
+
       // retrieves sign-in fields
       String password = passwordChange.getText();
       String reTypePass = passwordChange_Verify.getText();

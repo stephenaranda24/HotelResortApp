@@ -69,7 +69,8 @@ public class DeskAssistantController implements Initializable {
 
   /**
    * Method allows desk assistant to accept the payment from customer
-   *
+   * @param event when payment screen recieve the payment
+   * @throws SQLException sql exception error
    */
   @FXML
   void acceptPaymentAction(ActionEvent event) throws SQLException {
@@ -102,6 +103,9 @@ public class DeskAssistantController implements Initializable {
    * Method allows a desk_assitant to checkin a customer
    *
    * Method decline to scheckin if the payment is not done
+   * @param event checkin customer action
+   *
+   * @throws SQLException SQL EXCEPTION ERROR
    */
   @FXML
   void checkinCustomerAction(ActionEvent event) throws SQLException {

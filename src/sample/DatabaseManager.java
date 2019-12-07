@@ -41,7 +41,7 @@ public class DatabaseManager extends Main {
     // "jdbc:h2:C:\\Users\\shafi\\IdeaProjects\\HotelResortApp\\res\\ResortData"
     this.con = DriverManager
         .getConnection(
-            "jdbc:h2:C:\\Users\\moart\\OneDrive - Florida Gulf Coast University\\IDEAProjects\\HotelResortApp\\res\\ResortData");
+            "jdbc:h2:C:\\Users\\shafi\\IdeaProjects\\HotelResortApp\\res\\ResortData");
     //"jdbc:h2:C:\\Users\\shafi\\IdeaProjects\\HotelResortApp\\res\\ResortData"
 
   }
@@ -56,7 +56,7 @@ public class DatabaseManager extends Main {
   public static Connection getConnection() throws SQLException {
     Connection connection = DriverManager
         .getConnection(
-            "jdbc:h2:C:\\Users\\moart\\OneDrive - Florida Gulf Coast University\\IDEAProjects\\HotelResortApp\\res\\ResortData");
+            "jdbc:h2:C:\\Users\\shafi\\IdeaProjects\\HotelResortApp\\res\\ResortData");
     return connection;
   }
 
@@ -115,7 +115,7 @@ public class DatabaseManager extends Main {
       int year = rs.getInt("year");
       int cvv = rs.getInt("cvv");
       int billingZip = rs.getInt("billingzipcode");
-      System.out.println("LLLLLLLLLLLLLLLLLLLLLLLLLLLL");
+
 
       return Arrays.asList(cardtype, cardNumber, month, year, cvv, billingZip);
     }
@@ -916,8 +916,8 @@ public class DatabaseManager extends Main {
   /**
    * This method retrieves the data from the room status table
    *
-   * @param room
-   * @return
+   * @param room check who cleaned the room
+   * @return the custodian name
    */
   public String custodianNameReturn(String room) {
     try {
@@ -940,7 +940,7 @@ public class DatabaseManager extends Main {
 
   /**
    * @param date date validation to check room is cleaned or not
-   * @throws SQLException
+   * @throws SQLException ""
    */
   public void custodianDateValidation(String date) throws SQLException {
     try {

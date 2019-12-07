@@ -11,11 +11,9 @@ package sample;
  * @version 1.o
  * @since 2019-12-05
  */
+
 public class Client {
 
-  /**
-   * @param r
-   */
 
   private String roomName, paymentStatus, dateDisplay;
   private double amount;
