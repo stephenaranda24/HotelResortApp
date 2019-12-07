@@ -24,7 +24,8 @@ This software has four different kind of users
 - Admin/Owner will be able to create account for custodian and desk assistant account as they are employees to the hotel
 ![PROJECT OUTPUT](pic10.PNG)
 - Admin/Owner Will be able to reset the password for each usertype
-![PROJECT OUTPUT](pic8.PNG)
+![PROJECT OUTPUT](pic8.png)
+
 ![PROJECT OUTPUT](pic11.PNG)
 - Admin/Owner will be able to monitor checkin, payment and cleaning status of the rooms in the resort.
 ![PROJECT OUTPUT](pic9.PNG)
@@ -43,13 +44,14 @@ This software has four different kind of users
 ![PROJECT OUTPUT](pic13.PNG)
 > Custodian
 - Will be able to update room cleaning status
-![PROJECT OUTPUT](pic7.PNG)
+![PROJECT OUTPUT](pic7.png)
 
 > Desk_Asisstant
 - Recieve payment and checkin the customer
-![PROJECT OUTPUT](pic6.PNG)
+![PROJECT OUTPUT](pic6.png)
 
 # Other Functionality
+
 > Payment
 
 The payment that are accepted by this software is VISA, MAsterCard, Discover and Amex
