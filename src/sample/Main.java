@@ -37,6 +37,10 @@ public class Main extends Application {
     launch(args);
   }
 
+  /**
+   *
+   * @param message
+   */
   public static void errorMessage(String message) {
     UIManager.put("OptionPane.minimumSize", new Dimension(600, 200));
     UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
@@ -44,6 +48,10 @@ public class Main extends Application {
     JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
   }
 
+  /**
+   *
+   * @param message
+   */
   public static void infoMessage(String message) {
     UIManager.put("OptionPane.minimumSize", new Dimension(600, 200));
     UIManager.put("OptionPane.messageFont", new FontUIResource(new Font(
@@ -51,6 +59,10 @@ public class Main extends Application {
     JOptionPane.showMessageDialog(null, message, "Message", JOptionPane.INFORMATION_MESSAGE);
   }
 
+  /**
+   *
+   * @param pressedButton
+   */
   public static void logOutUser(Button pressedButton) {
     loggedInUser = null; // remove logged in user
     MainScreenController msc = new MainScreenController();

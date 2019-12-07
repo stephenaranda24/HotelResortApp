@@ -965,6 +965,10 @@ public class DatabaseManager extends Main {
   }
 
   /**
+   * This method checks for the room category selected are available or not
+   * For category it has two differen room available and then check in each rooms database
+   * if the rooms are not available for the selected date then it checks the next room
+   * If that one is booked then it pops an error message
    * @param room for room category
    * @param userName username for guest
    * @param Datetobebook date for booking

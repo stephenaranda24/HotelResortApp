@@ -24,6 +24,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 /**
+ * There are three tabs in this class's associate screen
+ * In one tab Owner can see all the room status, checkin status, payment status.
+ * another for creating new user
+ * and one for restting the password
  * @version 1.0
  * @author Romanov Andre
  * @author Shafi Mushfique
@@ -133,10 +137,10 @@ public class OwnerScreenController implements Initializable {
         String tempDate = db.dateReturn(roomArray[i]);
         dateCleanedArray[i].setText(tempDate);
         if (checked == true) {
-          roomLabelArray[i].setText("DONE");
+          roomLabelArray[i].setText("Cleaned");
           roomLabelArray[i].setTextFill(Color.GREEN);
         } else {
-          roomLabelArray[i].setText("Not Cleaned");
+          roomLabelArray[i].setText("Checking required");
           roomLabelArray[i].setTextFill(Color.RED);
         }
 
@@ -163,7 +167,9 @@ public class OwnerScreenController implements Initializable {
 
       }
     });
-
+/**
+ * create account method for the admin for custodian and desk assistant
+ */
     button_create.setOnMousePressed(new EventHandler<MouseEvent>() {
       public void handle(MouseEvent e) {
         MainScreenController msc = new MainScreenController();
@@ -224,54 +230,23 @@ public class OwnerScreenController implements Initializable {
 
   }
 
-
+  /**
+   * Logout method
+   * @param event
+   */
   @FXML
   void logoutMethod(ActionEvent event) {
     Main.loggedInUser = null;
     MainScreenController msc = new MainScreenController();
     msc.loadScene(logout, "MainScreenSample.fxml", "Main Screen ");
-
-
   }
 
-  /*
-   * private void setActivityTableView() { ObservableList<CustomerBooking>
-   * bookings = FXCollections.observableArrayList(// new CustomerBooking(10,
-   * "Jared12", "A", "11/19/19", false)); //
-   *
-   * tableInvoice.setCellValueFactory(new PropertyValueFactory<CustomerBooking,
-   * Integer>("invoice")); tableName.setCellValueFactory(new
-   * PropertyValueFactory<CustomerBooking, String>("cname"));
-   * tableRoom.setCellValueFactory(new PropertyValueFactory<CustomerBooking,
-   * String>("room")); tableDate.setCellValueFactory(new
-   * PropertyValueFactory<CustomerBooking, String>("date"));
-   * tableCost.setCellValueFactory(new PropertyValueFactory<CustomerBooking,
-   * Double>("cost")); tablePaid.setCellValueFactory(new
-   * PropertyValueFactory<CustomerBooking, Boolean>("paid"));
-   * tableActivity.setItems(bookings); }
+  /**
+   * This method takes the owner to reset the password for the user he wants to change,
+   * the pin verification is required.
+   * @param actionEvent reset password screen method
+   * @throws SQLException
    */
-
-  private void setRoomStatus() {
-    Label[] roomStatus = {labelRoom1, labelRoom2, labelRoom3, labelRoom4, //
-        labelRoom5, labelRoom6, labelRoom7, labelRoom8};
-    Random random = new Random();
-    for (int i = 0; i < 8; i++) {
-      Label status = roomStatus[i];
-      String randomStatus = "Cleaned";
-			if (random.nextBoolean()) {
-				randomStatus = "Maintenance Required";
-			}
-      if (randomStatus.equals("Cleaned")) {
-        status.setText(randomStatus);
-        status.setTextFill(Color.GREEN);
-      } else {
-        status.setText("Maintenace Required");
-        status.setTextFill(Color.RED);
-      }
-    }
-  }
-
-
   public void goToResetScreen(ActionEvent actionEvent) throws SQLException {
     String username = userNameToVerify.getText();
     String pin = pin_User.getText();

@@ -36,7 +36,11 @@ public class MainScreenController implements Initializable {
   @FXML
   private TextArea idSpace;
 
-
+  /**
+   *
+   * @param url
+   * @param resources
+   */
   @Override
   public void initialize(URL url, ResourceBundle resources) {
     button_signup.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -56,6 +60,12 @@ public class MainScreenController implements Initializable {
     });
   }
 
+  /**
+   *
+   * @param pressedButton
+   * @param nameOfFxml
+   * @param titleOftheScene
+   */
   //Method use for calling a scene (Andre use it for every scene calling)******************
   public void loadScene(Button pressedButton, String nameOfFxml, String titleOftheScene) {
 
