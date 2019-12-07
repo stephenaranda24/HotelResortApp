@@ -1,18 +1,23 @@
 #Paradise Beach Resort
+
 This is a resort application. This application is designed to work in a user friendly enviorment.
 
 #Created by
+
 - Mushfique Shafi
 - Stephen Aranda
 - Romanov Andre
 
 # Built With
+
 - Intellij with JAVA 8
 - Scene build with scenebuilder
 
 
 #Details
+
 This software has four different kind of users
+
 > Admin/Owner
   
 - Admin/Owner account will be created by default by us(developer) and be provided to the user
