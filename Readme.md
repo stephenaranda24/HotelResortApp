@@ -62,6 +62,3 @@ The payment that are accepted by this software is VISA, MAsterCard, Discover and
 The room cleaing status will be automatically restted every 24hours on midnight which ensures a mandatory update every day by a custodian for cleaning the room.
 ![PROJECT OUTPUT](pic14.PNG)
 
-> Demo (GIF)
-
-![58due9](https://user-images.githubusercontent.com/36318303/117182102-ef3da080-ada3-11eb-8177-b152bbeb4093.gif)
